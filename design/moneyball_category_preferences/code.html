@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Moneyball - Category Preferences</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Space_Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "inverse-primary": "#bbc9ca",
+                        "surface-container": "#e2f1f2",
+                        "surface-variant": "#d7e5e6",
+                        "surface-container-low": "#e8f6f7",
+                        "on-secondary-fixed-variant": "#2a5000",
+                        "inverse-on-surface": "#e5f4f4",
+                        "primary-fixed-dim": "#bbc9ca",
+                        "surface-dim": "#ceddde",
+                        "primary-fixed": "#d7e5e6",
+                        "outline": "#737878",
+                        "secondary": "#3a6a00",
+                        "on-surface-variant": "#424848",
+                        "on-background": "#111e1f",
+                        "on-primary": "#ffffff",
+                        "tertiary": "#161911",
+                        "tertiary-container": "#2b2e25",
+                        "on-tertiary-fixed-variant": "#45483e",
+                        "on-primary-fixed": "#111e1f",
+                        "on-tertiary-fixed": "#1a1d14",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#c6c8bb",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#e2e4d6",
+                        "error-container": "#ffdad6",
+                        "surface": "#eefcfd",
+                        "on-tertiary": "#ffffff",
+                        "primary": "#0d1a1b",
+                        "secondary-fixed": "#b8f47d",
+                        "on-primary-container": "#899798",
+                        "surface-tint": "#536162",
+                        "on-secondary-fixed": "#0e2000",
+                        "error": "#ba1a1a",
+                        "on-surface": "#111e1f",
+                        "surface-container-high": "#dcebec",
+                        "on-secondary": "#ffffff",
+                        "background": "#eefcfd",
+                        "secondary-fixed-dim": "#9dd765",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#263334",
+                        "secondary-container": "#b8f47d",
+                        "primary-container": "#222f30",
+                        "on-secondary-container": "#3f7102",
+                        "outline-variant": "#c2c7c7",
+                        "surface-bright": "#eefcfd",
+                        "surface-container-highest": "#d7e5e6",
+                        "on-tertiary-container": "#93958a",
+                        "on-primary-fixed-variant": "#3c494a",
+                        "orange-accent": "#f97316", /* Custom branding for the specific request orange color */
+                        "orange-border": "#fdba74"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "label": ["Space Grotesk"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased min-h-screen flex flex-col items-center justify-center p-6">
+<!-- Progress Header -->
+<header class="fixed top-0 w-full px-6 py-8 flex flex-col items-center gap-4 max-w-md">
+<div class="w-full flex justify-between items-center mb-2">
+<span class="font-label text-xs uppercase tracking-[0.2em] text-on-surface-variant/60">Step 3 of 3</span>
+<div class="flex gap-1.5">
+<div class="w-6 h-1 rounded-full bg-secondary/20"></div>
+<div class="w-6 h-1 rounded-full bg-secondary/20"></div>
+<div class="w-10 h-1 rounded-full bg-secondary"></div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="w-full max-w-md mt-16 mb-24">
+<div class="text-center mb-10">
+<h1 class="font-headline font-extrabold text-3xl text-primary tracking-tight leading-tight">
+                What are you looking for?
+            </h1>
+<p class="text-on-surface-variant mt-2 text-sm font-medium">Select your interests to personalize your feed.</p>
+</div>
+<!-- Bento Style Category Grid -->
+<div class="category-grid">
+<!-- Category Tile: Bakery -->
+<div class="relative group cursor-pointer bg-surface-container-lowest rounded-xl p-5 aspect-square flex flex-col items-center justify-center transition-all duration-200 border-2 border-transparent hover:bg-surface-container-low">
+<div class="absolute top-3 right-3 w-5 h-5 rounded border border-outline-variant flex items-center justify-center bg-white transition-colors">
+<!-- Checkbox placeholder -->
+</div>
+<div class="text-4xl mb-3 transform group-hover:scale-110 transition-transform duration-300">🍞</div>
+<span class="font-headline font-bold text-primary">Bakery</span>
+</div>
+<!-- Category Tile: Grocery (Selected State) -->
+<div class="relative group cursor-pointer bg-surface-container-lowest rounded-xl p-5 aspect-square flex flex-col items-center justify-center transition-all duration-200 border-2 border-orange-accent shadow-lg shadow-orange-accent/5">
+<div class="absolute top-3 right-3 w-5 h-5 rounded border border-orange-accent flex items-center justify-center bg-orange-accent transition-colors">
+<span class="material-symbols-outlined text-[14px] text-white font-bold">check</span>
+</div>
+<div class="text-4xl mb-3 transform group-hover:scale-110 transition-transform duration-300">🛒</div>
+<span class="font-headline font-bold text-primary">Grocery</span>
+</div>
+<!-- Category Tile: FMCG -->
+<div class="relative group cursor-pointer bg-surface-container-lowest rounded-xl p-5 aspect-square flex flex-col items-center justify-center transition-all duration-200 border-2 border-transparent hover:bg-surface-container-low">
+<div class="absolute top-3 right-3 w-5 h-5 rounded border border-outline-variant flex items-center justify-center bg-white transition-colors"></div>
+<div class="text-4xl mb-3 transform group-hover:scale-110 transition-transform duration-300">🧴</div>
+<span class="font-headline font-bold text-primary">FMCG</span>
+</div>
+<!-- Category Tile: Snacks (Selected State) -->
+<div class="relative group cursor-pointer bg-surface-container-lowest rounded-xl p-5 aspect-square flex flex-col items-center justify-center transition-all duration-200 border-2 border-orange-accent shadow-lg shadow-orange-accent/5">
+<div class="absolute top-3 right-3 w-5 h-5 rounded border border-orange-accent flex items-center justify-center bg-orange-accent transition-colors">
+<span class="material-symbols-outlined text-[14px] text-white font-bold">check</span>
+</div>
+<div class="text-4xl mb-3 transform group-hover:scale-110 transition-transform duration-300">🍿</div>
+<span class="font-headline font-bold text-primary">Snacks</span>
+</div>
+<!-- Category Tile: Dairy -->
+<div class="relative group cursor-pointer bg-surface-container-lowest rounded-xl p-5 aspect-square flex flex-col items-center justify-center transition-all duration-200 border-2 border-transparent hover:bg-surface-container-low">
+<div class="absolute top-3 right-3 w-5 h-5 rounded border border-outline-variant flex items-center justify-center bg-white transition-colors"></div>
+<div class="text-4xl mb-3 transform group-hover:scale-110 transition-transform duration-300">🥛</div>
+<span class="font-headline font-bold text-primary">Dairy</span>
+</div>
+<!-- Category Tile: All Deals -->
+<div class="relative group cursor-pointer bg-surface-container-lowest rounded-xl p-5 aspect-square flex flex-col items-center justify-center transition-all duration-200 border-2 border-transparent hover:bg-surface-container-low">
+<div class="absolute top-3 right-3 w-5 h-5 rounded border border-outline-variant flex items-center justify-center bg-white transition-colors"></div>
+<div class="text-4xl mb-3 transform group-hover:scale-110 transition-transform duration-300">⭐</div>
+<span class="font-headline font-bold text-primary text-center">All Deals</span>
+</div>
+</div>
+</main>
+<!-- Fixed Footer CTA -->
+<footer class="fixed bottom-0 left-0 w-full p-6 flex justify-center bg-surface/80 backdrop-blur-md">
+<button class="w-full max-w-md bg-orange-accent text-white py-5 px-8 rounded-full font-headline font-bold text-lg shadow-xl shadow-orange-accent/20 hover:scale-[1.02] active:scale-95 transition-all duration-200 flex items-center justify-center gap-2">
+            Start Exploring
+            <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</footer>
+<!-- Visual Polish: Decorative Accents -->
+<div class="fixed -z-10 top-20 -left-20 w-64 h-64 bg-secondary/5 rounded-full blur-3xl"></div>
+<div class="fixed -z-10 bottom-40 -right-20 w-80 h-80 bg-orange-accent/5 rounded-full blur-3xl"></div>
+</body></html>

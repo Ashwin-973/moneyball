@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Moneyball | Retailer Analytics Dashboard</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-surface-variant": "#424848",
+              "primary-fixed": "#d7e5e6",
+              "on-secondary-container": "#3f7102",
+              "surface-dim": "#ceddde",
+              "on-background": "#111e1f",
+              "surface-container-highest": "#d7e5e6",
+              "on-primary": "#ffffff",
+              "surface-container": "#e2f1f2",
+              "primary-container": "#222f30",
+              "on-primary-container": "#899798",
+              "surface-container-high": "#dcebec",
+              "surface-container-low": "#e8f6f7",
+              "secondary-fixed": "#b8f47d",
+              "primary-fixed-dim": "#bbc9ca",
+              "surface-variant": "#d7e5e6",
+              "on-secondary-fixed": "#0e2000",
+              "surface-container-lowest": "#ffffff",
+              "tertiary": "#161911",
+              "on-primary-fixed-variant": "#3c494a",
+              "secondary-fixed-dim": "#9dd765",
+              "on-primary-fixed": "#111e1f",
+              "inverse-surface": "#263334",
+              "secondary": "#3a6a00",
+              "on-error": "#ffffff",
+              "outline": "#737878",
+              "on-surface": "#111e1f",
+              "on-secondary": "#ffffff",
+              "surface-tint": "#536162",
+              "primary": "#0d1a1b",
+              "on-secondary-fixed-variant": "#2a5000",
+              "inverse-on-surface": "#e5f4f4",
+              "outline-variant": "#c2c7c7",
+              "tertiary-container": "#2b2e25",
+              "surface": "#eefcfd",
+              "on-tertiary-fixed": "#1a1d14",
+              "on-tertiary-container": "#93958a",
+              "on-tertiary-fixed-variant": "#45483e",
+              "background": "#eefcfd",
+              "inverse-primary": "#bbc9ca",
+              "tertiary-fixed": "#e2e4d6",
+              "on-tertiary": "#ffffff",
+              "error": "#ba1a1a",
+              "tertiary-fixed-dim": "#c6c8bb",
+              "secondary-container": "#b8f47d",
+              "surface-bright": "#eefcfd",
+              "on-error-container": "#93000a",
+              "error-container": "#ffdad6"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Space Grotesk"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .font-headline { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-label { font-family: 'Space Grotesk', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface flex min-h-screen">
+<!-- SideNavBar (Authority: JSON) -->
+<aside class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 bg-[#0d1a1b] py-6 border-r border-[#eefcfd]/10 z-50">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-secondary rounded flex items-center justify-center text-on-secondary font-black">M</div>
+<div>
+<h1 class="text-xl font-bold text-[#eefcfd] tracking-tighter">Moneyball</h1>
+<p class="font-['Space_Grotesk'] uppercase text-[10px] tracking-widest text-[#eefcfd]/50">Retailer Suite</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Active Tab: Analytics (Based on Dashboard Content) -->
+<a class="text-[#eefcfd]/70 flex items-center gap-3 px-6 py-3 hover:text-[#eefcfd] hover:bg-[#eefcfd]/10 transition-all active:translate-x-1 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-['Space_Grotesk'] uppercase text-xs tracking-widest">Dashboard</span>
+</a>
+<a class="text-[#eefcfd]/70 flex items-center gap-3 px-6 py-3 hover:text-[#eefcfd] hover:bg-[#eefcfd]/10 transition-all active:translate-x-1 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="all_inbox">all_inbox</span>
+<span class="font-['Space_Grotesk'] uppercase text-xs tracking-widest">Inbox</span>
+</a>
+<a class="text-[#eefcfd]/70 flex items-center gap-3 px-6 py-3 hover:text-[#eefcfd] hover:bg-[#eefcfd]/10 transition-all active:translate-x-1 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="query_stats">query_stats</span>
+<span class="font-['Space_Grotesk'] uppercase text-xs tracking-widest">Demand Intelligence</span>
+</a>
+<a class="bg-[#3a6a00] text-[#eefcfd] rounded-lg mx-2 my-1 flex items-center gap-3 px-4 py-3 active:translate-x-1 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="analytics" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="font-['Space_Grotesk'] uppercase text-xs tracking-widest">Analytics</span>
+</a>
+</nav>
+<div class="px-4 mt-4">
+<button class="w-full bg-secondary text-on-secondary py-3 rounded-lg font-headline font-bold text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+                New Campaign
+            </button>
+</div>
+<div class="mt-auto border-t border-[#eefcfd]/10 pt-4">
+<a class="text-[#eefcfd]/70 flex items-center gap-3 px-6 py-3 hover:text-[#eefcfd] hover:bg-[#eefcfd]/10 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
+<span class="font-['Space_Grotesk'] uppercase text-xs tracking-widest">Support</span>
+</a>
+<a class="text-[#eefcfd]/70 flex items-center gap-3 px-6 py-3 hover:text-[#eefcfd] hover:bg-[#eefcfd]/10 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-['Space_Grotesk'] uppercase text-xs tracking-widest">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-64 min-h-screen flex flex-col">
+<!-- TopAppBar (Authority: JSON) -->
+<header class="flex justify-between items-center px-6 h-16 w-full backdrop-blur-xl bg-opacity-80 bg-[#eefcfd] shadow-[0_20px_40px_rgba(17,30,31,0.06)] sticky top-0 z-40">
+<div class="flex items-center gap-4">
+<span class="md:hidden material-symbols-outlined text-primary" data-icon="menu">menu</span>
+<h2 class="font-headline font-bold tracking-tight text-xl text-primary">Analytics Overview</h2>
+</div>
+<div class="flex items-center gap-6">
+<!-- Date Range Selector (User Request) -->
+<div class="hidden lg:flex items-center bg-surface-container-high rounded-full px-2 py-1">
+<button class="px-4 py-1.5 text-xs font-label uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors">This Week</button>
+<button class="px-4 py-1.5 text-xs font-label uppercase tracking-wider bg-primary text-on-primary rounded-full shadow-sm">This Month</button>
+<button class="px-4 py-1.5 text-xs font-label uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors">Custom</button>
+</div>
+<div class="flex items-center gap-3 border-l border-outline-variant pl-6">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-secondary/10 text-primary transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-secondary/10 text-primary transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-secondary/10 text-primary transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="ml-2 w-8 h-8 rounded-full overflow-hidden border-2 border-secondary shadow-sm">
+<img alt="Retailer Profile" class="w-full h-full object-cover" data-alt="professional headshot of a business manager in a modern retail setting, soft lighting, professional attire" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXEwFhvCQM1YsbNNnlBCeD8cGN05Eo9szTRAHyICz0cNcgZ3I8N62-5J71uqgszn_RX3Ng-e_zNLLBKOd5zKEEwdeZcX2f_vzGeJpA_KwVWrJKU5QlziB-kUPxN5fkuPzbNs4B6erHvYjyY0apCoXeH1qvnGuXpGTY4hrTOLwO-oXjYNwgxPr5MAc9GUI1nQx_v2w8KGYyhHQ15zXk_1MAeeEGy0D3_r8Qhk7UEezDYjQturaUC9H7SyKDHTt6_-mNcKSIP-fAh4w"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Dashboard Content -->
+<div class="p-6 lg:p-10 space-y-10">
+<!-- KPI Cards Section: Grid Layout -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Revenue Recovered -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_20px_40px_rgba(17,30,31,0.03)] border border-outline-variant/10">
+<div class="flex items-start justify-between mb-4">
+<div class="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+</div>
+<span class="text-xs font-label font-bold text-secondary bg-secondary-container px-2 py-0.5 rounded-full">+12.5%</span>
+</div>
+<p class="text-on-surface-variant text-xs font-label uppercase tracking-widest mb-1">Revenue Recovered</p>
+<h3 class="text-3xl font-headline font-extrabold text-primary tracking-tighter">₹4,82,900</h3>
+</div>
+<!-- Units Sold -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_20px_40px_rgba(17,30,31,0.03)] border border-outline-variant/10">
+<div class="flex items-start justify-between mb-4">
+<div class="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</div>
+<span class="text-xs font-label font-bold text-secondary bg-secondary-container px-2 py-0.5 rounded-full">+8.2%</span>
+</div>
+<p class="text-on-surface-variant text-xs font-label uppercase tracking-widest mb-1">Units via DealDrop</p>
+<h3 class="text-3xl font-headline font-extrabold text-primary tracking-tighter">1,248</h3>
+</div>
+<!-- Avg Time to Sell -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_20px_40px_rgba(17,30,31,0.03)] border border-outline-variant/10">
+<div class="flex items-start justify-between mb-4">
+<div class="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="timer">timer</span>
+</div>
+<span class="text-xs font-label font-bold text-on-secondary-container bg-secondary-fixed px-2 py-0.5 rounded-full">-4.1h</span>
+</div>
+<p class="text-on-surface-variant text-xs font-label uppercase tracking-widest mb-1">Avg. Time to Sell</p>
+<h3 class="text-3xl font-headline font-extrabold text-primary tracking-tighter">18.4 <span class="text-sm font-medium">hrs</span></h3>
+</div>
+<!-- Waste Prevented -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_20px_40px_rgba(17,30,31,0.03)] border border-outline-variant/10">
+<div class="flex items-start justify-between mb-4">
+<div class="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="eco">eco</span>
+</div>
+<span class="text-xs font-label font-bold text-secondary bg-secondary-container px-2 py-0.5 rounded-full">+142kg</span>
+</div>
+<p class="text-on-surface-variant text-xs font-label uppercase tracking-widest mb-1">Waste Prevented</p>
+<h3 class="text-3xl font-headline font-extrabold text-primary tracking-tighter">2,140 <span class="text-sm font-medium">kg</span></h3>
+</div>
+</section>
+<!-- Charts Section: Bento Grid Inspired -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Line Chart: Revenue Recovered Over Time -->
+<div class="lg:col-span-2 bg-surface-container-lowest p-8 rounded-xl shadow-[0_20px_40px_rgba(17,30,31,0.03)] border border-outline-variant/10">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h4 class="font-headline font-bold text-lg text-primary">Revenue Recovered Over Time</h4>
+<p class="text-on-surface-variant text-sm">Historical recovery trends across all outlets</p>
+</div>
+<div class="flex items-center gap-2 text-xs font-label text-on-surface-variant">
+<span class="w-3 h-3 rounded-full bg-orange-500"></span>
+                            Recovered Revenue (₹)
+                        </div>
+</div>
+<!-- Simulated Line Chart -->
+<div class="relative h-64 w-full flex items-end justify-between px-2">
+<div class="absolute inset-0 flex flex-col justify-between py-2 pointer-events-none">
+<div class="border-b border-outline-variant/10 w-full"></div>
+<div class="border-b border-outline-variant/10 w-full"></div>
+<div class="border-b border-outline-variant/10 w-full"></div>
+<div class="border-b border-outline-variant/10 w-full"></div>
+</div>
+<!-- Chart Lines (Simulated with div polygons/gradients) -->
+<div class="flex-1 h-full flex items-end justify-around relative">
+<div class="w-4 h-[40%] bg-gradient-to-t from-orange-600/20 to-orange-500/80 rounded-t-sm"></div>
+<div class="w-4 h-[55%] bg-gradient-to-t from-orange-600/20 to-orange-500/80 rounded-t-sm"></div>
+<div class="w-4 h-[48%] bg-gradient-to-t from-orange-600/20 to-orange-500/80 rounded-t-sm"></div>
+<div class="w-4 h-[72%] bg-gradient-to-t from-orange-600/20 to-orange-500/80 rounded-t-sm"></div>
+<div class="w-4 h-[65%] bg-gradient-to-t from-orange-600/20 to-orange-500/80 rounded-t-sm"></div>
+<div class="w-4 h-[85%] bg-gradient-to-t from-orange-600/20 to-orange-500/80 rounded-t-sm"></div>
+<div class="w-4 h-[92%] bg-gradient-to-t from-orange-600/20 to-orange-500/80 rounded-t-sm"></div>
+</div>
+</div>
+<div class="flex justify-between mt-4 px-4 text-[10px] font-label text-on-surface-variant uppercase tracking-widest">
+<span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+</div>
+</div>
+<!-- Bar Chart: Deals Sold by Category -->
+<div class="bg-surface-container-highest/30 p-8 rounded-xl border border-outline-variant/20 backdrop-blur-sm">
+<h4 class="font-headline font-bold text-lg text-primary mb-6">Sales by Category</h4>
+<div class="space-y-5">
+<div class="space-y-1">
+<div class="flex justify-between text-xs font-label">
+<span class="uppercase tracking-wider">Bakery &amp; Deli</span>
+<span class="font-bold">42%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-orange-500 rounded-full" style="width: 42%"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-xs font-label">
+<span class="uppercase tracking-wider">Fresh Produce</span>
+<span class="font-bold">28%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-orange-400 rounded-full" style="width: 28%"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-xs font-label">
+<span class="uppercase tracking-wider">Dairy &amp; Eggs</span>
+<span class="font-bold">18%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-orange-300 rounded-full" style="width: 18%"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-xs font-label">
+<span class="uppercase tracking-wider">Meat &amp; Seafood</span>
+<span class="font-bold">12%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-orange-200 rounded-full" style="width: 12%"></div>
+</div>
+</div>
+</div>
+<div class="mt-8 p-4 bg-primary text-on-primary rounded-lg">
+<p class="text-[10px] font-label uppercase tracking-widest opacity-60">Insight</p>
+<p class="text-sm font-medium leading-tight mt-1">Bakery items sell 3.2x faster during "Rainy" weather conditions. Adjust inventory alerts.</p>
+</div>
+</div>
+</section>
+<!-- Table Section: Top 10 Clearance Items -->
+<section class="bg-surface-container-lowest rounded-xl shadow-[0_20px_40px_rgba(17,30,31,0.03)] border border-outline-variant/10 overflow-hidden">
+<div class="p-6 border-b border-outline-variant/10 flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<h4 class="font-headline font-bold text-lg text-primary">Top 10 Clearance Items This Month</h4>
+<p class="text-on-surface-variant text-sm">High-performance stock recovery leaderboard</p>
+</div>
+<button class="flex items-center gap-2 text-xs font-label font-bold uppercase tracking-widest text-secondary hover:underline transition-all">
+<span class="material-symbols-outlined text-lg" data-icon="download">download</span>
+                        Export Report
+                    </button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="px-6 py-4 text-[10px] font-label uppercase tracking-widest text-on-surface-variant">Product Name</th>
+<th class="px-6 py-4 text-[10px] font-label uppercase tracking-widest text-on-surface-variant text-right">Units Sold</th>
+<th class="px-6 py-4 text-[10px] font-label uppercase tracking-widest text-on-surface-variant text-right">Revenue (₹)</th>
+<th class="px-6 py-4 text-[10px] font-label uppercase tracking-widest text-on-surface-variant text-center">Avg. Discount</th>
+<th class="px-6 py-4 text-[10px] font-label uppercase tracking-widest text-on-surface-variant text-center">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-container-high overflow-hidden">
+<img alt="Artisan Sourdough" class="w-full h-full object-cover" data-alt="close up of artisan sourdough bread loaf with rustic crust on a dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMhQhIrqmX6rG4rVAD3WLPtirW1Ax_XXwuBUAMgMyzXIDwXov5ffgwLb_KIvCBYJJtr9sW-iNn-yTZ_cs2zREgwof2cXhSzJei6xG6Q2VPHmP-LWpUCN_uWXdz8luaGrbLI9BoJ54oqEKXRhFl3HXbSdb68ZwhdScNhgos60PS0r2tdwikfChVMwhlnjQBXG5OX-sq_D91zShnHhWFnUtKP0_HMtFAX8ZA3555Bqjj0_y_tehqByPwltBLsZ4toGr8r7ftBxINKi8"/>
+</div>
+<div>
+<p class="text-sm font-bold text-primary">Artisan Sourdough Loaf</p>
+<p class="text-[10px] text-on-surface-variant">Bakery &amp; Pastries</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-right font-label font-medium text-sm">412</td>
+<td class="px-6 py-4 text-right font-label font-bold text-sm">₹32,960</td>
+<td class="px-6 py-4 text-center">
+<span class="text-xs font-label font-bold text-on-secondary-container bg-secondary-container px-2 py-0.5 rounded-full">45% OFF</span>
+</td>
+<td class="px-6 py-4 text-center">
+<div class="flex items-center justify-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-[10px] font-label uppercase tracking-tighter text-secondary font-bold">In-Stock</span>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-container-high overflow-hidden">
+<img alt="Organic Greek Yogurt" class="w-full h-full object-cover" data-alt="glass jar of white creamy greek yogurt with fresh blueberries on top" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrKMmzB5s9IIJKYh0S3_gxuk-p4WLDWtKTXaWX3MFqCEg6hA21UNrOU1TLVICTum_nh45JsooRlGFNZL6oT8agx6TRWA7ovg_KyMsjQLJwhUOQgwId4j45duRzo20nBuMdm8wyJo14PMi2h3KynmMQTJDKm7kRCWA4I-lbNZaDbi1D82tiHBUZALKSmasU0_PtL4SrOM2zuyvt7sNccCUoYq7s3ZSnXCv5ZxarxFHA_KO-BSw78FtlmIlZszp-JDD3bvfwdhsTZCg"/>
+</div>
+<div>
+<p class="text-sm font-bold text-primary">Organic Greek Yogurt (500g)</p>
+<p class="text-[10px] text-on-surface-variant">Dairy &amp; Chilled</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-right font-label font-medium text-sm">289</td>
+<td class="px-6 py-4 text-right font-label font-bold text-sm">₹57,800</td>
+<td class="px-6 py-4 text-center">
+<span class="text-xs font-label font-bold text-on-secondary-container bg-secondary-container px-2 py-0.5 rounded-full">30% OFF</span>
+</td>
+<td class="px-6 py-4 text-center">
+<div class="flex items-center justify-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="text-[10px] font-label uppercase tracking-tighter text-error font-bold">Crit. Low</span>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-container-high overflow-hidden">
+<img alt="Strawberries" class="w-full h-full object-cover" data-alt="punnet of bright red ripe strawberries in a wooden box with morning sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3SkuNUIcTf0qKaaJOtoxa-IxaPB5csf9pCNGBmBOjawH7pjiLMVt8285kgfvqKZbJBrh9RjZU60GreLHguvgSQrZfEgBJ9gwv7zTeH6gwGrTWH1L9dEsXThOYKHpqeRFhdKnHvP1w2aJwlO6cQUWFmQ6J3u2nZ0BD0jC_BM2nSHqaFlJb2gVB6Ep6cqMlbuF0GnqLHo2NU4UO9BMm9ZQdYcd-W9VzgqbLsq7sc1Sez7MQbI17FXM_udB4ye4cFZ7fstTgFyAVb9c"/>
+</div>
+<div>
+<p class="text-sm font-bold text-primary">Premium Strawberries (250g)</p>
+<p class="text-[10px] text-on-surface-variant">Fresh Produce</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-right font-label font-medium text-sm">215</td>
+<td class="px-6 py-4 text-right font-label font-bold text-sm">₹12,900</td>
+<td class="px-6 py-4 text-center">
+<span class="text-xs font-label font-bold text-on-secondary-container bg-secondary-container px-2 py-0.5 rounded-full">60% OFF</span>
+</td>
+<td class="px-6 py-4 text-center">
+<div class="flex items-center justify-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-[10px] font-label uppercase tracking-tighter text-secondary font-bold">In-Stock</span>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-container-high overflow-hidden">
+<img alt="Fresh Salmon" class="w-full h-full object-cover" data-alt="raw salmon fillet on crushed ice with lemon slices and dill, professional food photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNvTJkom-dsXF5Pw4Pd1o4bkKB2IpbjT4CSAJSPyEwa840i5IJ7iaeT_BopNyWOgdTu3dCGitVmVriOFZ-A16Q2wonjN7XEYOyOhPTSefHiVnPdOuEMdaodLFPTugu8qm_CQ3uXOvW8YF1V5Y9oVnfwbuiBEjQRZkCHZcQVxO9l8rxkTBrxP_poE4cjReFx_gXIs0_0kdc1QIYnvMJswvw1HHxvMmYsz2GQ16lwRLY1kC3l9IeRVMBmaA3YDGcV_2quKqujUrSWNA"/>
+</div>
+<div>
+<p class="text-sm font-bold text-primary">Norwegian Salmon Fillet</p>
+<p class="text-[10px] text-on-surface-variant">Meat &amp; Seafood</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-right font-label font-medium text-sm">184</td>
+<td class="px-6 py-4 text-right font-label font-bold text-sm">₹1,47,200</td>
+<td class="px-6 py-4 text-center">
+<span class="text-xs font-label font-bold text-on-secondary-container bg-secondary-container px-2 py-0.5 rounded-full">25% OFF</span>
+</td>
+<td class="px-6 py-4 text-center">
+<div class="flex items-center justify-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-[10px] font-label uppercase tracking-tighter text-secondary font-bold">In-Stock</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-6 bg-surface-container-low/20 border-t border-outline-variant/10 flex justify-center">
+<button class="text-xs font-label font-bold uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors">View All 124 Items</button>
+</div>
+</section>
+</div>
+<!-- Footer -->
+<footer class="mt-auto p-6 text-center border-t border-outline-variant/10">
+<p class="text-[10px] font-label uppercase tracking-widest text-on-surface-variant/60">© 2024 Moneyball AI • Precision Retail Logistics • v2.4.1</p>
+</footer>
+</main>
+<!-- Contextual FAB (Suppressed on Analytics Screen as per Shell visibility rules) -->
+</body></html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DealDrop | Hyperlocal Pulse</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@700;800&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-container": "#b8f47d",
+              "primary-fixed-dim": "#bbc9ca",
+              "on-secondary-fixed-variant": "#2a5000",
+              "outline-variant": "#c2c7c7",
+              "on-tertiary-fixed-variant": "#45483e",
+              "outline": "#737878",
+              "surface-dim": "#ceddde",
+              "inverse-primary": "#bbc9ca",
+              "surface": "#eefcfd",
+              "error": "#ba1a1a",
+              "background": "#eefcfd",
+              "on-error-container": "#93000a",
+              "on-secondary-container": "#3f7102",
+              "on-tertiary-fixed": "#1a1d14",
+              "tertiary": "#161911",
+              "on-surface": "#111e1f",
+              "secondary-fixed-dim": "#9dd765",
+              "on-primary": "#ffffff",
+              "error-container": "#ffdad6",
+              "on-secondary": "#ffffff",
+              "on-primary-container": "#899798",
+              "primary-fixed": "#d7e5e6",
+              "secondary": "#3a6a00",
+              "surface-variant": "#d7e5e6",
+              "inverse-on-surface": "#e5f4f4",
+              "tertiary-container": "#2b2e25",
+              "surface-tint": "#536162",
+              "primary": "#0d1a1b",
+              "surface-container": "#e2f1f2",
+              "inverse-surface": "#263334",
+              "surface-container-high": "#dcebec",
+              "surface-container-low": "#e8f6f7",
+              "surface-container-lowest": "#ffffff",
+              "on-surface-variant": "#424848",
+              "on-primary-fixed-variant": "#3c494a",
+              "primary-container": "#222f30",
+              "tertiary-fixed-dim": "#c6c8bb",
+              "on-background": "#111e1f",
+              "surface-bright": "#eefcfd",
+              "on-primary-fixed": "#111e1f",
+              "on-tertiary": "#ffffff",
+              "on-secondary-fixed": "#0e2000",
+              "on-tertiary-container": "#93958a",
+              "on-error": "#ffffff",
+              "tertiary-fixed": "#e2e4d6",
+              "surface-container-highest": "#d7e5e6",
+              "secondary-fixed": "#b8f47d"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Space Grotesk"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            backdrop-filter: blur(20px);
+            background: rgba(238, 252, 253, 0.8);
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #0d1a1b 0%, #222f30 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-[#eefcfd]/80 dark:bg-[#0d1a1b]/80 backdrop-blur-xl">
+<nav class="flex justify-between items-center w-full px-6 py-3 max-w-full mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black tracking-tighter text-[#0d1a1b] dark:text-[#eefcfd] font-headline">DealDrop</span>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-[#3a6a00] dark:text-[#3f7102] font-bold border-b-2 border-[#3a6a00] font-label uppercase tracking-wider text-xs" href="#">Deals</a>
+<a class="text-[#0d1a1b]/60 dark:text-[#eefcfd]/60 hover:text-[#3a6a00] dark:hover:text-[#3f7102] transition-colors font-label uppercase tracking-wider text-xs" href="#">Map</a>
+<a class="text-[#0d1a1b]/60 dark:text-[#eefcfd]/60 hover:text-[#3a6a00] dark:hover:text-[#3f7102] transition-colors font-label uppercase tracking-wider text-xs" href="#">Reservations</a>
+<a class="text-[#0d1a1b]/60 dark:text-[#eefcfd]/60 hover:text-[#3a6a00] dark:hover:text-[#3f7102] transition-colors font-label uppercase tracking-wider text-xs" href="#">Stores</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden lg:block">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant text-sm" data-icon="search">search</span>
+<input class="bg-surface-container-highest border-none rounded-lg pl-10 pr-4 py-2 text-sm w-64 focus:ring-2 focus:ring-secondary font-label" placeholder="Search stores or deals..." type="text"/>
+</div>
+<button class="p-2 text-on-surface-variant hover:text-secondary transition-colors" data-icon="shopping_cart">
+<span class="material-symbols-outlined">shopping_cart</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-secondary transition-colors" data-icon="person">
+<span class="material-symbols-outlined">person</span>
+</button>
+</div>
+</nav>
+</header>
+<main class="pt-16">
+<!-- Hero Section -->
+<section class="relative h-[600px] flex items-center overflow-hidden hero-gradient">
+<div class="absolute inset-0 opacity-40">
+<img class="w-full h-full object-cover grayscale" data-alt="high-angle wide shot of a bustling organic market with vibrant produce and soft cinematic morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFY-HD5lhDHg-pem6wURVyrJ8j--NzrNGutQlVtTN9IQtiRH87ralfy89srY1NcG7BT8lpYuwS_iQ9NLhaQjOofCFMOwVkjT_oGx0Moyeczd8wMeV139jA536Sy9fpC88lB-7Zg8bfbQYcniDSOsCvw_LQT-pJ-ZlDD-a9ITJJbTSFTUtqhiyGYxkpzodykPN5yAas-v_N7dZp0KLE-k01yCWrTBep-UGJHJW9T9tgVKcfYvlMH1wxhi2iBdjTnft60KuGFS6-wK8"/>
+</div>
+<div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+<div>
+<h1 class="text-6xl font-black text-surface font-headline leading-[1.1] tracking-tighter mb-6">
+                        The pulse of <span class="text-secondary">hyperlocal</span> flash deals.
+                    </h1>
+<p class="text-surface-container-highest text-lg mb-8 max-w-lg font-body">
+                        Real-time biological urgency meet precision retail. Experience the next evolution of local shopping with DealDrop.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-4 max-w-xl">
+<div class="flex-1 bg-surface-container-lowest rounded-xl p-1 flex items-center shadow-2xl">
+<span class="material-symbols-outlined px-3 text-secondary" data-icon="location_on">location_on</span>
+<input class="bg-transparent border-none focus:ring-0 w-full font-label text-primary" placeholder="Enter your neighborhood..." type="text"/>
+<button class="bg-secondary text-on-secondary px-6 py-3 rounded-lg font-bold hover:opacity-90 transition-all font-headline">
+                                Find Deals
+                            </button>
+</div>
+</div>
+</div>
+<div class="hidden lg:block">
+<div class="glass-panel p-8 rounded-xl border border-white/10 shadow-2xl rotate-2">
+<div class="flex justify-between items-start mb-6">
+<div>
+<span class="bg-error-container text-on-error-container font-label text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded">Expiring Soon</span>
+<h3 class="text-2xl font-black text-primary font-headline mt-2">Artisan Sourdough</h3>
+</div>
+<div class="text-right">
+<span class="block text-primary font-label text-sm uppercase opacity-60">Status</span>
+<span class="text-secondary font-black font-label">CRITICAL</span>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between text-primary font-label text-xs uppercase tracking-tighter">
+<span>Remaining Stock</span>
+<span>3 Units</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-1/4"></div>
+</div>
+<div class="flex justify-between items-end pt-4">
+<div class="text-4xl font-black text-primary font-headline">$4.50</div>
+<div class="text-on-surface-variant line-through font-label mb-1">$12.00</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Category Tags -->
+<section class="py-10 bg-surface border-b border-outline-variant/15">
+<div class="container mx-auto px-6 overflow-x-auto no-scrollbar">
+<div class="flex items-center gap-4 min-w-max">
+<span class="text-primary font-label text-xs font-bold uppercase tracking-widest mr-4">Explore Pulse:</span>
+<button class="px-6 py-2 rounded-full bg-primary text-surface font-label text-xs font-bold uppercase tracking-wider transition-all">All Deals</button>
+<button class="px-6 py-2 rounded-full bg-surface-container-highest text-on-surface-variant hover:bg-secondary-container hover:text-on-secondary-container font-label text-xs font-bold uppercase tracking-wider transition-all">Bakery</button>
+<button class="px-6 py-2 rounded-full bg-surface-container-highest text-on-surface-variant hover:bg-secondary-container hover:text-on-secondary-container font-label text-xs font-bold uppercase tracking-wider transition-all">Grocery</button>
+<button class="px-6 py-2 rounded-full bg-surface-container-highest text-on-surface-variant hover:bg-secondary-container hover:text-on-secondary-container font-label text-xs font-bold uppercase tracking-wider transition-all">Dairy</button>
+<button class="px-6 py-2 rounded-full bg-surface-container-highest text-on-surface-variant hover:bg-secondary-container hover:text-on-secondary-container font-label text-xs font-bold uppercase tracking-wider transition-all">Fruits</button>
+<button class="px-6 py-2 rounded-full bg-surface-container-highest text-on-surface-variant hover:bg-secondary-container hover:text-on-secondary-container font-label text-xs font-bold uppercase tracking-wider transition-all">Veggies</button>
+</div>
+</div>
+</section>
+<!-- Trending Deals -->
+<section class="py-20 bg-surface">
+<div class="container mx-auto px-6">
+<div class="flex justify-between items-end mb-12">
+<div>
+<h2 class="text-4xl font-black text-primary font-headline tracking-tighter">Trending Deals</h2>
+<p class="text-on-surface-variant font-label text-sm uppercase tracking-widest mt-2">Active pulses within 2km</p>
+</div>
+<a class="text-secondary font-headline font-bold border-b-2 border-secondary hover:opacity-70 transition-all" href="#">View All</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Deal Card 1 -->
+<div class="group bg-surface-container-lowest rounded-xl shadow-[0_20px_40px_rgba(17,30,31,0.06)] overflow-hidden transition-all hover:-translate-y-1">
+<div class="relative h-48">
+<img class="w-full h-full object-cover" data-alt="close-up of golden brown flaky croissants arranged on a wooden board with soft kitchen lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOpriP5zHVh2WzLX8XkYrv7jMagfBzVvckP29vQH-4IVbfbF1Yor0xpFeAiOaCBvdGbMuY1HDnJ8DKJ20oChx1H1QXfyH1pkWExVlk4o51qVAVgebHUnY0-fmeJQ-pfJKzuTn95d21E2Buvitn1-9aP8hemE7r2Fpm0R5MWt22hlkuVcAOeuFEygSvJ948TK4j1-zxwe3TJZTVQyLKjCdL1LZe7AnstUdE39K12b6y3ytdMAzgwaLntX9t0ZfFtP_ZdwNSd0iftbM"/>
+<div class="absolute top-3 left-3 flex flex-col gap-2">
+<div class="bg-error text-on-error font-label text-[10px] font-bold uppercase px-2 py-1 rounded-sm shadow-lg">Expiring in 23m</div>
+<div class="bg-secondary-container text-on-secondary-container font-label text-[10px] font-bold uppercase px-2 py-1 rounded-sm shadow-lg">60% OFF</div>
+</div>
+</div>
+<div class="p-6">
+<p class="text-on-surface-variant font-label text-[10px] font-bold uppercase tracking-widest mb-1">The Morning Crust</p>
+<h4 class="text-lg font-bold text-primary font-headline leading-tight mb-2 group-hover:text-secondary transition-colors">Assorted Croissants - Box of 4</h4>
+<div class="flex items-center gap-1 text-on-surface-variant text-[10px] font-label uppercase mb-4">
+<span class="material-symbols-outlined text-xs" data-icon="distance">distance</span>
+                                0.8 km away
+                            </div>
+<div class="flex items-baseline gap-3">
+<span class="text-2xl font-black text-primary font-headline">$6.40</span>
+<span class="text-sm text-on-surface-variant line-through font-label">$16.00</span>
+</div>
+</div>
+</div>
+<!-- Deal Card 2 -->
+<div class="group bg-surface-container-lowest rounded-xl shadow-[0_20px_40px_rgba(17,30,31,0.06)] overflow-hidden transition-all hover:-translate-y-1">
+<div class="relative h-48">
+<img class="w-full h-full object-cover" data-alt="fresh organic strawberries in a cardboard punnet with water droplets under natural bright light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNu5MpMBMNvULBLCncbPYvYw4UHGYsYEosBJ25P7z4jv4nVT8ldBCc16oHtDle0MD48Rqy2wlbOB8E_CO8stw5tfEZX7mMfv29lTVKbV393s_DzCUz7mfAdi8e150d7WZ3RnzkcAPXo0ynCK1g0Fr7z7RXEmpBHhwmwd_Ivlyy0mP1r1d_idEKTYjNsW5gg7QCZkx1rowDaJUmNK0lUh0Qo6omG7hZzuKcndSudhqzYCa8VG4v62V0EuWSEFFW1ZaXY9jF2vOHb_U"/>
+<div class="absolute top-3 left-3 flex flex-col gap-2">
+<div class="bg-error text-on-error font-label text-[10px] font-bold uppercase px-2 py-1 rounded-sm shadow-lg">Expiring in 45m</div>
+<div class="bg-secondary-container text-on-secondary-container font-label text-[10px] font-bold uppercase px-2 py-1 rounded-sm shadow-lg">40% OFF</div>
+</div>
+</div>
+<div class="p-6">
+<p class="text-on-surface-variant font-label text-[10px] font-bold uppercase tracking-widest mb-1">Green Life Grocers</p>
+<h4 class="text-lg font-bold text-primary font-headline leading-tight mb-2 group-hover:text-secondary transition-colors">Organic Strawberries 500g</h4>
+<div class="flex items-center gap-1 text-on-surface-variant text-[10px] font-label uppercase mb-4">
+<span class="material-symbols-outlined text-xs" data-icon="distance">distance</span>
+                                1.2 km away
+                            </div>
+<div class="flex items-baseline gap-3">
+<span class="text-2xl font-black text-primary font-headline">$3.00</span>
+<span class="text-sm text-on-surface-variant line-through font-label">$5.00</span>
+</div>
+</div>
+</div>
+<!-- Deal Card 3 -->
+<div class="group bg-surface-container-lowest rounded-xl shadow-[0_20px_40px_rgba(17,30,31,0.06)] overflow-hidden transition-all hover:-translate-y-1">
+<div class="relative h-48">
+<img class="w-full h-full object-cover" data-alt="bottles of fresh milk and artisanal cheeses on a clean marble surface with minimal aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDb_v-dx3N19Q7RcuyUID87a1zCOcz6PqS1DwJTVp_ER7WNCMcpweWhdhKSD2HwLZvcjWcDA43MDN4LBy-gGoJeZVbJV9yLRYOBbEfeN40t05DgmInk4sDTvZy0XXeMDQlJIYccEOruh0Nu1_u72-hsxe4U_4XtoSGGMdov5ymtDTiQPrr2r575YxbZuIShkWdnr9mB1hlWv2kESmSI9iThWoEiatljXc5IZJtqdOpYEWgLRXrwXjrJJT9dMJUX1mBlZvZCHEQfrGo"/>
+<div class="absolute top-3 left-3 flex flex-col gap-2">
+<div class="bg-error text-on-error font-label text-[10px] font-bold uppercase px-2 py-1 rounded-sm shadow-lg">Expiring in 12m</div>
+<div class="bg-secondary-container text-on-secondary-container font-label text-[10px] font-bold uppercase px-2 py-1 rounded-sm shadow-lg">75% OFF</div>
+</div>
+</div>
+<div class="p-6">
+<p class="text-on-surface-variant font-label text-[10px] font-bold uppercase tracking-widest mb-1">Dairy Lane</p>
+<h4 class="text-lg font-bold text-primary font-headline leading-tight mb-2 group-hover:text-secondary transition-colors">Artisanal Goat Cheese</h4>
+<div class="flex items-center gap-1 text-on-surface-variant text-[10px] font-label uppercase mb-4">
+<span class="material-symbols-outlined text-xs" data-icon="distance">distance</span>
+                                0.4 km away
+                            </div>
+<div class="flex items-baseline gap-3">
+<span class="text-2xl font-black text-primary font-headline">$2.25</span>
+<span class="text-sm text-on-surface-variant line-through font-label">$9.00</span>
+</div>
+</div>
+</div>
+<!-- Deal Card 4 -->
+<div class="group bg-surface-container-lowest rounded-xl shadow-[0_20px_40px_rgba(17,30,31,0.06)] overflow-hidden transition-all hover:-translate-y-1">
+<div class="relative h-48">
+<img class="w-full h-full object-cover" data-alt="selection of colorful fresh muffins in a paper liner on a cooling rack with morning sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHlB7xWG6fW6MmLW9mBQbL2li_hYH-PdsgOXO9G6JZnD8-oW5JRoIooh8SwKpZyqWUehXDoqT7DGJc_sZJuTF-9jMflKe0SbGYyCmLRff_6lsK0HHbFT_1cCVLxuSCMajb_0c8vXbuuziRsHGOVryuyJAvS__MxlgnAD7efXAy5cWQKslt9Zg7uj8FS-gSgkSaSg5hgUJLe2sAMnauyIx5hmNEDt0ZP1T8w8ZnuzZc4KWSlmWptDq8SetKMLH-Ojtaxl8EnGu0Fp0"/>
+<div class="absolute top-3 left-3 flex flex-col gap-2">
+<div class="bg-error text-on-error font-label text-[10px] font-bold uppercase px-2 py-1 rounded-sm shadow-lg">Expiring in 58m</div>
+<div class="bg-secondary-container text-on-secondary-container font-label text-[10px] font-bold uppercase px-2 py-1 rounded-sm shadow-lg">50% OFF</div>
+</div>
+</div>
+<div class="p-6">
+<p class="text-on-surface-variant font-label text-[10px] font-bold uppercase tracking-widest mb-1">Sweet Cravings</p>
+<h4 class="text-lg font-bold text-primary font-headline leading-tight mb-2 group-hover:text-secondary transition-colors">Blueberry Oat Muffins (6)</h4>
+<div class="flex items-center gap-1 text-on-surface-variant text-[10px] font-label uppercase mb-4">
+<span class="material-symbols-outlined text-xs" data-icon="distance">distance</span>
+                                2.5 km away
+                            </div>
+<div class="flex items-baseline gap-3">
+<span class="text-2xl font-black text-primary font-headline">$7.50</span>
+<span class="text-sm text-on-surface-variant line-through font-label">$15.00</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Stores -->
+<section class="py-20 bg-surface-container-low">
+<div class="container mx-auto px-6">
+<div class="mb-12">
+<h2 class="text-4xl font-black text-primary font-headline tracking-tighter">Nearby Partners</h2>
+<p class="text-on-surface-variant font-label text-sm uppercase tracking-widest mt-2">Verified merchants in your pulse zone</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Store Card 1 -->
+<div class="bg-surface-container-lowest p-8 rounded-xl flex items-center gap-6 border border-outline-variant/10 group cursor-pointer hover:border-secondary transition-all">
+<div class="w-20 h-20 rounded-lg overflow-hidden bg-primary shrink-0">
+<img class="w-full h-full object-cover opacity-60" data-alt="blurred background of a modern bakery shop interior with warm lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBewwUbBiaLfm6e0qljHBIoKtJtBRd_KBm1U0k-Jp3YCW2D0zX9RIa_cUSQICDq8TCvW0jz7FwD0-YRXjbZ2SM2bR7AvoYs3jIDg3kburewtGOIQiAsZiPda45aLz8_QBzmOg1aSSKy2keIdaJ9A-awgzYUCYTn0Q2dNX3lJ5mTgaCYjSgqSIA7l_WAynvlpAZsvReqEJ5Rb3RuFjlVOQHZpC09bu-QbY4cExC5iohMAUhqCPX3HoBtC1u78dX-uH13KHyWEue3zVg"/>
+</div>
+<div>
+<h4 class="text-xl font-bold font-headline group-hover:text-secondary transition-colors">Bakery Bloom</h4>
+<p class="text-on-surface-variant text-sm font-body mb-2">Authentic French Pastries</p>
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label text-[10px] font-bold uppercase">5 Active Deals</span>
+</div>
+</div>
+<!-- Store Card 2 -->
+<div class="bg-surface-container-lowest p-8 rounded-xl flex items-center gap-6 border border-outline-variant/10 group cursor-pointer hover:border-secondary transition-all">
+<div class="w-20 h-20 rounded-lg overflow-hidden bg-primary shrink-0">
+<img class="w-full h-full object-cover opacity-60" data-alt="vibrant fresh vegetables stacked in an organic grocery store aisle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRsJ-rHP02XDpV_k3zwLVkS-xz-uf3zU-Dbrmc-_MHdJa7afcn3hahhtV708BhHk4yB8RlHCC-dfGpanJVoIe7E3AaF9SEUH4XKS1igAJDPyVAzrMdmtXg-Wo4nVBcicQQSyaQc9Hg-hx597UYYgovPsJijwWHQ3QrR2UlkJKQVUeyI41qUSmmxMKQS4WaqcGd-lg9cISm14u73GgRPM1Hgin8T2AkoU33yP8t7TKIKjOCYwxc_9MGDIejCsZ3EIQ22lrW923Ttd0"/>
+</div>
+<div>
+<h4 class="text-xl font-bold font-headline group-hover:text-secondary transition-colors">Vibe Greens</h4>
+<p class="text-on-surface-variant text-sm font-body mb-2">Premium Organic Produce</p>
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label text-[10px] font-bold uppercase">12 Active Deals</span>
+</div>
+</div>
+<!-- Store Card 3 -->
+<div class="bg-surface-container-lowest p-8 rounded-xl flex items-center gap-6 border border-outline-variant/10 group cursor-pointer hover:border-secondary transition-all">
+<div class="w-20 h-20 rounded-lg overflow-hidden bg-primary shrink-0">
+<img class="w-full h-full object-cover opacity-60" data-alt="neatly arranged dairy products in a clean modern refrigerator display" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOGR0nbIgRb_ruH9rg3ZSKt6gsTJ0v6CZv3769BpIybgtUbUi_v4t5D2yGsvPFpbdgWEpYHnTOaxjNKdaME60l5GW1CYI1Ycz0H7-J2W8yT36qftfPJCFjby-FdvOAdPduW7RKQk3pZNalBvhC_x-zggDDXv2u_eXOJtkuSiTrEH2cH1L4pMurq16eDthLyyIKNDADm2Y6HNAGqoNtaobPBMqBnwnrnfTu95AZDM5QA-Pvm5GwYI6CYTOK-AvFIbfZYgSW9S_fb0I"/>
+</div>
+<div>
+<h4 class="text-xl font-bold font-headline group-hover:text-secondary transition-colors">Pure Dairy</h4>
+<p class="text-on-surface-variant text-sm font-body mb-2">Artisanal Cheeses &amp; Milk</p>
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label text-[10px] font-bold uppercase">3 Active Deals</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section / Bento Layout -->
+<section class="py-20 bg-surface">
+<div class="container mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[250px]">
+<div class="md:col-span-2 bg-primary rounded-xl p-12 flex flex-col justify-center relative overflow-hidden group">
+<div class="absolute right-0 top-0 w-1/2 h-full opacity-30 group-hover:opacity-50 transition-all">
+<img class="w-full h-full object-cover" data-alt="abstract tech pattern with glowing green lines on a dark background representing high-speed data" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRdD6dZ2jZJZv-kqB9NRghJskBYUj1jUS5oH2diCABiFJUzGbzjtEVlJneVUarZIm5AAdNoRTazEk09d3RRbbah3OveDsYN-XvkmndnkuMuzRW8ghJrIwSUgRypw35fUhks7SUuz6exBRSAT3z567dJAQydPPCd693o5tvyWCj_oBlWP1LSaxz_EUljP1ykmy8hg4UAuK7LGW2bUKjzDz8e1ShHehuMbd-5ASTDltQzj2UAA7GklyUqU0fEEFlhVkrmqP9sT2WYyw"/>
+</div>
+<h3 class="text-4xl font-black text-surface font-headline leading-tight max-w-sm mb-6 relative z-10">Own a shop? Join the Pulse.</h3>
+<p class="text-surface-container-highest font-body mb-8 max-w-xs relative z-10">Minimize waste and maximize local reach in minutes.</p>
+<button class="bg-secondary text-on-secondary px-8 py-4 rounded-lg font-bold w-fit hover:scale-105 transition-all font-headline relative z-10">List Your Store</button>
+</div>
+<div class="bg-secondary-container rounded-xl p-8 flex flex-col justify-between border border-secondary/10">
+<div>
+<span class="material-symbols-outlined text-4xl text-on-secondary-container mb-4" data-icon="qr_code_2">qr_code_2</span>
+<h4 class="text-xl font-bold font-headline text-on-secondary-container">Seamless Pickup</h4>
+</div>
+<p class="text-on-secondary-container/80 text-sm font-body">Reserve in-app, scan the code, and walk away with your deal. No friction.</p>
+</div>
+<div class="bg-surface-container-highest rounded-xl p-8 flex flex-col justify-between border border-outline-variant/10">
+<div>
+<span class="material-symbols-outlined text-4xl text-primary mb-4" data-icon="notifications_active">notifications_active</span>
+<h4 class="text-xl font-bold font-headline text-primary">Custom Alerts</h4>
+</div>
+<p class="text-on-surface-variant text-sm font-body">Set triggers for your favorite items and never miss a flash deal again.</p>
+</div>
+<div class="md:col-span-2 bg-surface-container-lowest rounded-xl p-12 flex items-center justify-between border border-outline-variant/10 shadow-sm overflow-hidden relative">
+<div class="max-w-md">
+<h4 class="text-3xl font-black font-headline text-primary mb-4 tracking-tighter">Real-Time Precision Tracking</h4>
+<p class="text-on-surface-variant font-body">Our algorithm calculates store inventory vs. foot traffic to bring you the freshest deals exactly when you need them.</p>
+</div>
+<div class="hidden lg:block w-48 h-48 bg-secondary/5 rounded-full flex items-center justify-center border border-secondary/20 animate-pulse">
+<span class="material-symbols-outlined text-secondary text-6xl" data-icon="biotech">biotech</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-[#c2c7c7]/15 bg-[#eefcfd] dark:bg-[#0d1a1b]">
+<div class="w-full py-12 px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex flex-col items-center md:items-start gap-2">
+<span class="font-['Plus_Jakarta_Sans'] font-black text-[#0d1a1b] dark:text-[#eefcfd] text-2xl tracking-tighter">DealDrop</span>
+<p class="font-['Inter'] text-sm text-[#0d1a1b]/60 dark:text-[#eefcfd]/60">© 2024 DealDrop Hyperlocal Pulse. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-['Inter'] text-sm text-[#0d1a1b]/60 dark:text-[#eefcfd]/60 hover:text-[#3a6a00] transition-all" href="#">About</a>
+<a class="font-['Inter'] text-sm text-[#0d1a1b]/60 dark:text-[#eefcfd]/60 hover:text-[#3a6a00] transition-all" href="#">Help</a>
+<a class="font-['Inter'] text-sm text-[#0d1a1b]/60 dark:text-[#eefcfd]/60 hover:text-[#3a6a00] transition-all" href="#">FAQ</a>
+<a class="font-['Inter'] text-sm text-[#0d1a1b]/60 dark:text-[#eefcfd]/60 hover:text-[#3a6a00] transition-all" href="#">Locations</a>
+<a class="font-['Inter'] text-sm text-[#0d1a1b]/60 dark:text-[#eefcfd]/60 hover:text-[#3a6a00] transition-all" href="#">List Store</a>
+<a class="font-['Inter'] text-sm text-[#3a6a00] font-bold underline transition-all" href="#">Partner Portal</a>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-secondary" data-icon="language">language</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-secondary" data-icon="share">share</span>
+</div>
+</div>
+</footer>
+<!-- Mobile Nav Anchor (Responsive Pivot) -->
+<div class="md:hidden">
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-[#eefcfd]/90 dark:bg-[#0d1a1b]/90 backdrop-blur-lg z-50 rounded-t-xl shadow-[0_-10px_30px_rgba(17,30,31,0.08)]">
+<div class="flex flex-col items-center justify-center text-[#3a6a00] bg-[#3a6a00]/10 rounded-2xl px-4 py-1">
+<span class="material-symbols-outlined" data-icon="flash_on" style="font-variation-settings: 'FILL' 1;">flash_on</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-bold uppercase mt-1">Deals</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#0d1a1b]/50 dark:text-[#eefcfd]/50">
+<span class="material-symbols-outlined" data-icon="distance">distance</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-bold uppercase mt-1">Map</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#0d1a1b]/50 dark:text-[#eefcfd]/50">
+<span class="material-symbols-outlined" data-icon="qr_code_2">qr_code_2</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-bold uppercase mt-1">Reservations</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#0d1a1b]/50 dark:text-[#eefcfd]/50">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-bold uppercase mt-1">Profile</span>
+</div>
+</nav>
+</div>
+</body></html>

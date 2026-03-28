@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@700;800&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-surface-variant": "#424848",
+              "primary-fixed": "#d7e5e6",
+              "on-secondary-container": "#3f7102",
+              "surface-dim": "#ceddde",
+              "on-background": "#111e1f",
+              "surface-container-highest": "#d7e5e6",
+              "on-primary": "#ffffff",
+              "surface-container": "#e2f1f2",
+              "primary-container": "#222f30",
+              "on-primary-container": "#899798",
+              "surface-container-high": "#dcebec",
+              "surface-container-low": "#e8f6f7",
+              "secondary-fixed": "#b8f47d",
+              "primary-fixed-dim": "#bbc9ca",
+              "surface-variant": "#d7e5e6",
+              "on-secondary-fixed": "#0e2000",
+              "surface-container-lowest": "#ffffff",
+              "tertiary": "#161911",
+              "on-primary-fixed-variant": "#3c494a",
+              "secondary-fixed-dim": "#9dd765",
+              "on-primary-fixed": "#111e1f",
+              "inverse-surface": "#263334",
+              "secondary": "#3a6a00",
+              "on-error": "#ffffff",
+              "outline": "#737878",
+              "on-surface": "#111e1f",
+              "on-secondary": "#ffffff",
+              "surface-tint": "#536162",
+              "primary": "#0d1a1b",
+              "on-secondary-fixed-variant": "#2a5000",
+              "inverse-on-surface": "#e5f4f4",
+              "outline-variant": "#c2c7c7",
+              "tertiary-container": "#2b2e25",
+              "surface": "#eefcfd",
+              "on-tertiary-fixed": "#1a1d14",
+              "on-tertiary-container": "#93958a",
+              "on-tertiary-fixed-variant": "#45483e",
+              "background": "#eefcfd",
+              "inverse-primary": "#bbc9ca",
+              "tertiary-fixed": "#e2e4d6",
+              "on-tertiary": "#ffffff",
+              "error": "#ba1a1a",
+              "tertiary-fixed-dim": "#c6c8bb",
+              "secondary-container": "#b8f47d",
+              "surface-bright": "#eefcfd",
+              "on-error-container": "#93000a",
+              "error-container": "#ffdad6"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Space Grotesk"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-panel {
+        backdrop-filter: blur(12px);
+        background: rgba(238, 252, 253, 0.8);
+      }
+      .orange-gradient-text {
+        background: linear-gradient(135deg, #ff8c00 0%, #ba1a1a 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .orange-pulse {
+        background: linear-gradient(135deg, #ffbd45 0%, #ff8c00 100%);
+      }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body">
+<!-- SideNavBar (Authority: JSON) -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-[#0d1a1b] flex flex-col py-6 border-r border-[#eefcfd]/10 z-50">
+<div class="px-6 mb-8">
+<h1 class="text-xl font-bold text-[#eefcfd] font-headline">Moneyball</h1>
+<p class="font-['Space_Grotesk'] uppercase text-[10px] tracking-widest text-[#eefcfd]/50">Retailer Suite</p>
+</div>
+<nav class="flex-1 space-y-1">
+<div class="text-[#eefcfd]/70 flex items-center gap-3 px-6 py-3 hover:text-[#eefcfd] hover:bg-[#eefcfd]/10 transition-all cursor-pointer">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-['Space_Grotesk'] uppercase text-xs tracking-widest">Dashboard</span>
+</div>
+<div class="text-[#eefcfd]/70 flex items-center gap-3 px-6 py-3 hover:text-[#eefcfd] hover:bg-[#eefcfd]/10 transition-all cursor-pointer">
+<span class="material-symbols-outlined">all_inbox</span>
+<span class="font-['Space_Grotesk'] uppercase text-xs tracking-widest">Inbox</span>
+</div>
+<div class="bg-[#3a6a00] text-[#eefcfd] rounded-lg mx-2 my-1 flex items-center gap-3 px-4 py-3 active:translate-x-1 duration-150 cursor-pointer">
+<span class="material-symbols-outlined">query_stats</span>
+<span class="font-['Space_Grotesk'] uppercase text-xs tracking-widest">Demand Intelligence</span>
+</div>
+<div class="text-[#eefcfd]/70 flex items-center gap-3 px-6 py-3 hover:text-[#eefcfd] hover:bg-[#eefcfd]/10 transition-all cursor-pointer">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-['Space_Grotesk'] uppercase text-xs tracking-widest">Analytics</span>
+</div>
+</nav>
+<div class="mt-auto pt-6 border-t border-[#eefcfd]/10">
+<div class="text-[#eefcfd]/70 flex items-center gap-3 px-6 py-3 hover:text-[#eefcfd] hover:bg-[#eefcfd]/10 transition-all cursor-pointer">
+<span class="material-symbols-outlined">contact_support</span>
+<span class="font-['Space_Grotesk'] uppercase text-xs tracking-widest">Support</span>
+</div>
+<div class="text-[#eefcfd]/70 flex items-center gap-3 px-6 py-3 hover:text-[#eefcfd] hover:bg-[#eefcfd]/10 transition-all cursor-pointer">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-['Space_Grotesk'] uppercase text-xs tracking-widest">Logout</span>
+</div>
+</div>
+</aside>
+<main class="ml-64 min-h-screen">
+<!-- TopNavBar (Authority: JSON) -->
+<header class="flex justify-between items-center px-6 h-16 w-full backdrop-blur-xl bg-opacity-80 bg-[#eefcfd] shadow-[0_20px_40px_rgba(17,30,31,0.06)] sticky top-0 z-40">
+<div class="flex items-center gap-4">
+<div class="bg-surface-container-highest px-4 py-1.5 rounded-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-outline">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm font-label w-64" placeholder="Search demand data..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-[#3a6a00]/10 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-primary">notifications</span>
+</button>
+<button class="p-2 rounded-full hover:bg-[#3a6a00]/10 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-primary">help</span>
+</button>
+<button class="p-2 rounded-full hover:bg-[#3a6a00]/10 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-primary">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img alt="Retailer Profile" data-alt="professional headshot of a business manager in a clean modern office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWMXHVSLrqzPcaxs101H9lKx1V8gX_TGu4KV5hEzlDvmr0liOJk7U4L_zsFHrUqrsNpkktShU4t7yZhT0C0zWWOPnB0WM4KT6VwLkKzWytMO4hCWKmJKriYtjWJ3b6LWFZRxvq8rtuZq0dupNpjv9o2lchZfpvQcpy7X4wHvQm7xkckVwrFrSniJIrtb-AGSJyycA9aPVjrizQ72RKUbBLhy89Dn-VW5YWGVrLOCdrDOTkijNjlyUJ5VkXzOOo90s319iMvV4XH_Q"/>
+</div>
+</div>
+</header>
+<div class="p-8 space-y-8">
+<!-- Header Section -->
+<section class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="text-4xl font-extrabold font-headline tracking-tight text-primary">Consumer Demand Near You</h2>
+<p class="text-on-surface-variant font-body mt-2">Real-time localized requests within a 5-mile radius of your store.</p>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-label text-xs uppercase tracking-widest text-outline">Last Updated: Just Now</span>
+<div class="h-2 w-2 rounded-full bg-secondary animate-pulse"></div>
+</div>
+</section>
+<!-- Alert Card -->
+<section class="bg-[#fff4e5] border-l-4 border-[#ff8c00] p-6 rounded-xl flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full orange-pulse flex items-center justify-center text-white">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<div>
+<h3 class="font-bold text-[#8a4b00] text-lg">Inventory Match Found</h3>
+<p class="text-[#8a4b00]/80 font-body">You have 3 products matching high-demand items in your local area. List them now to capture immediate sales.</p>
+</div>
+</div>
+<button class="bg-[#ff8c00] text-white font-bold py-3 px-8 rounded-lg hover:bg-[#e67e00] transition-colors shadow-lg active:scale-95">
+                    View Matches
+                </button>
+</section>
+<!-- Main Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Leaderboard (Bento Style) -->
+<div class="lg:col-span-2 space-y-6">
+<div class="bg-surface-container-lowest rounded-xl p-8 shadow-sm">
+<div class="flex items-center justify-between mb-8">
+<h3 class="font-headline font-bold text-xl flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">trending_up</span>
+                                Top 5 Requested Products
+                            </h3>
+<button class="text-secondary font-label text-sm font-bold uppercase tracking-wider flex items-center gap-1 hover:underline">
+                                Full Report <span class="material-symbols-outlined text-xs">arrow_forward</span>
+</button>
+</div>
+<div class="space-y-4">
+<!-- Product Row 1 -->
+<div class="group flex items-center gap-6 p-4 rounded-xl hover:bg-surface-container-low transition-colors border border-transparent hover:border-outline-variant/10">
+<div class="font-label text-3xl font-bold text-outline-variant w-8">01</div>
+<div class="flex-1">
+<div class="flex justify-between items-end mb-2">
+<div>
+<h4 class="font-bold text-lg text-primary">Organic Cold Brew Concentrate</h4>
+<p class="text-xs font-label uppercase text-on-surface-variant">42 requests this week</p>
+</div>
+<div class="text-right">
+<span class="text-sm font-label font-bold text-secondary">98 Score</span>
+</div>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full orange-pulse" style="width: 98%"></div>
+</div>
+</div>
+<button class="bg-primary text-white text-xs font-label font-bold py-2 px-4 rounded hover:bg-primary/90 transition-all opacity-0 group-hover:opacity-100">
+                                    LIST NOW
+                                </button>
+</div>
+<!-- Product Row 2 -->
+<div class="group flex items-center gap-6 p-4 rounded-xl hover:bg-surface-container-low transition-colors border border-transparent hover:border-outline-variant/10">
+<div class="font-label text-3xl font-bold text-outline-variant w-8">02</div>
+<div class="flex-1">
+<div class="flex justify-between items-end mb-2">
+<div>
+<h4 class="font-bold text-lg text-primary">Sustainable Yoga Mats (Eco-Grip)</h4>
+<p class="text-xs font-label uppercase text-on-surface-variant">38 requests this week</p>
+</div>
+<div class="text-right">
+<span class="text-sm font-label font-bold text-secondary">89 Score</span>
+</div>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full orange-pulse" style="width: 89%"></div>
+</div>
+</div>
+<button class="bg-primary text-white text-xs font-label font-bold py-2 px-4 rounded hover:bg-primary/90 transition-all opacity-0 group-hover:opacity-100">
+                                    LIST NOW
+                                </button>
+</div>
+<!-- Product Row 3 (Matched) -->
+<div class="group flex items-center gap-6 p-4 rounded-xl bg-[#fffcf0] border border-[#ff8c00]/20 hover:bg-surface-container-low transition-colors">
+<div class="font-label text-3xl font-bold text-[#ff8c00] w-8">03</div>
+<div class="flex-1">
+<div class="flex justify-between items-end mb-2">
+<div>
+<div class="flex items-center gap-2">
+<h4 class="font-bold text-lg text-primary">Weighted Sleep Masks</h4>
+<span class="text-[10px] bg-[#ff8c00] text-white px-2 py-0.5 rounded-full font-label font-bold">MATCHED</span>
+</div>
+<p class="text-xs font-label uppercase text-on-surface-variant">31 requests this week</p>
+</div>
+<div class="text-right">
+<span class="text-sm font-label font-bold text-secondary">76 Score</span>
+</div>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full orange-pulse" style="width: 76%"></div>
+</div>
+</div>
+<button class="bg-secondary text-white text-xs font-label font-bold py-2 px-4 rounded hover:bg-secondary/90 transition-all">
+                                    LIST NOW
+                                </button>
+</div>
+<!-- Product Row 4 -->
+<div class="group flex items-center gap-6 p-4 rounded-xl hover:bg-surface-container-low transition-colors border border-transparent hover:border-outline-variant/10">
+<div class="font-label text-3xl font-bold text-outline-variant w-8">04</div>
+<div class="flex-1">
+<div class="flex justify-between items-end mb-2">
+<div>
+<h4 class="font-bold text-lg text-primary">Hand-Crafted Ceramic Mugs</h4>
+<p class="text-xs font-label uppercase text-on-surface-variant">25 requests this week</p>
+</div>
+<div class="text-right">
+<span class="text-sm font-label font-bold text-secondary">62 Score</span>
+</div>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full orange-pulse" style="width: 62%"></div>
+</div>
+</div>
+<button class="bg-primary text-white text-xs font-label font-bold py-2 px-4 rounded hover:bg-primary/90 transition-all opacity-0 group-hover:opacity-100">
+                                    LIST NOW
+                                </button>
+</div>
+<!-- Product Row 5 -->
+<div class="group flex items-center gap-6 p-4 rounded-xl hover:bg-surface-container-low transition-colors border border-transparent hover:border-outline-variant/10">
+<div class="font-label text-3xl font-bold text-outline-variant w-8">05</div>
+<div class="flex-1">
+<div class="flex justify-between items-end mb-2">
+<div>
+<h4 class="font-bold text-lg text-primary">Matcha Whisk Sets</h4>
+<p class="text-xs font-label uppercase text-on-surface-variant">19 requests this week</p>
+</div>
+<div class="text-right">
+<span class="text-sm font-label font-bold text-secondary">54 Score</span>
+</div>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full orange-pulse" style="width: 54%"></div>
+</div>
+</div>
+<button class="bg-primary text-white text-xs font-label font-bold py-2 px-4 rounded hover:bg-primary/90 transition-all opacity-0 group-hover:opacity-100">
+                                    LIST NOW
+                                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Map & Insights -->
+<div class="space-y-8">
+<!-- Map Heatmap Card -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm flex flex-col h-full">
+<div class="p-6">
+<h3 class="font-headline font-bold text-xl flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">map</span>
+                                Local Demand Density
+                            </h3>
+<p class="text-xs font-label text-on-surface-variant mt-1 uppercase tracking-wider">Heatmap of active user requests</p>
+</div>
+<div class="flex-1 relative min-h-[300px] bg-surface-container">
+<img class="w-full h-full object-cover grayscale opacity-50" data-alt="abstract stylized topographic map with bright orange and red heat map pulses over a dark minimalist city grid" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfwNWLyazzsk3a8xh-0NGdD_1CD8VsA0VQ155Fxup-nspnhMjMzEQHiSjcJ_Hf_YngLXHrdyENh1DCAqIE7gCc6-OCZmbOQcFQyjNakz2q-xBQSvKQD9wXTvAkA1O_8fQPjv0nu8JFDaJRgk2V28LOkqdgQG_pakWOMDO_Njp7LiCK8JtNMCRpnT6KzqsO6YNyLEcR7BwDrzulggXny3T4BFTdAuCCDX6YKI_kp4ha48IMDaCEznlWVBCy_j6GTwwzGSgBLMhQF_I"/>
+<!-- Heatmap Overlays (Simulated) -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="absolute top-1/4 left-1/3 w-32 h-32 bg-orange-500/30 rounded-full blur-3xl animate-pulse"></div>
+<div class="absolute bottom-1/3 right-1/4 w-40 h-40 bg-orange-600/20 rounded-full blur-3xl animate-pulse delay-700"></div>
+<div class="absolute top-1/2 right-1/2 w-24 h-24 bg-red-500/20 rounded-full blur-3xl animate-pulse delay-300"></div>
+</div>
+<div class="absolute bottom-4 right-4 bg-primary text-white p-3 rounded-lg shadow-xl glass-panel !bg-primary/90">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-red-500"></div>
+<span class="font-label text-xs">Peak: Highland Park</span>
+</div>
+</div>
+</div>
+<div class="p-4 border-t border-outline-variant/10">
+<div class="flex justify-between items-center">
+<span class="text-xs font-label font-bold">5 MILE RADIUS</span>
+<span class="text-xs font-label text-outline">VIEW FULL MAP</span>
+</div>
+</div>
+</div>
+<!-- Insight Card -->
+<div class="bg-primary rounded-xl p-6 text-white shadow-xl relative overflow-hidden group">
+<div class="relative z-10">
+<div class="flex items-center gap-2 text-secondary mb-4">
+<span class="material-symbols-outlined">lightbulb</span>
+<span class="font-label font-bold text-xs uppercase tracking-widest">Opportunity Insight</span>
+</div>
+<h4 class="font-headline font-bold text-xl leading-tight">Matcha demand is up 140% in your zip code this morning.</h4>
+<p class="text-white/60 text-sm mt-3">Shoppers are looking for premium whisk sets. We found 4 wholesalers nearby with stock ready for same-day delivery.</p>
+<button class="mt-6 w-full bg-secondary text-white font-bold py-3 rounded-lg shadow-lg hover:scale-[1.02] transition-transform active:scale-95">
+                                Source Now
+                            </button>
+</div>
+<!-- Background Pattern -->
+<div class="absolute top-0 right-0 -mr-16 -mt-16 w-48 h-48 bg-secondary/10 rounded-full blur-3xl group-hover:bg-secondary/20 transition-colors"></div>
+</div>
+</div>
+</div>
+<!-- Bottom Data Tickers -->
+<section class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant/5">
+<p class="text-xs font-label uppercase text-on-surface-variant mb-1">Total Active Requests</p>
+<div class="flex items-baseline gap-2">
+<span class="text-2xl font-black font-headline text-primary">1,204</span>
+<span class="text-xs text-secondary font-bold">+12%</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant/5">
+<p class="text-xs font-label uppercase text-on-surface-variant mb-1">Est. Revenue Gap</p>
+<div class="flex items-baseline gap-2">
+<span class="text-2xl font-black font-headline text-primary">$4,850</span>
+<span class="text-xs text-secondary font-bold">Today</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant/5">
+<p class="text-xs font-label uppercase text-on-surface-variant mb-1">Fulfilment Rate</p>
+<div class="flex items-baseline gap-2">
+<span class="text-2xl font-black font-headline text-primary">64%</span>
+<span class="text-xs text-error font-bold">-3%</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant/5">
+<p class="text-xs font-label uppercase text-on-surface-variant mb-1">Conversion Velocity</p>
+<div class="flex items-baseline gap-2">
+<span class="text-2xl font-black font-headline text-primary">1.4m</span>
+<span class="text-xs text-secondary font-bold">Fast</span>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- FAB (Suppressed on analytics/dashboard pages per logic, but adding a "Quick Campaign" FAB as it fits the "Retailer Suite" intent) -->
+<button class="fixed bottom-8 right-8 w-14 h-14 rounded-full bg-secondary text-white shadow-[0_20px_40px_rgba(58,106,0,0.3)] flex items-center justify-center hover:scale-110 active:scale-90 transition-all z-50">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+</body></html>

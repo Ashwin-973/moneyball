@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Retailer Onboarding - Moneyball</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Space_Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-fixed": "#d7e5e6",
+                        "inverse-on-surface": "#e5f4f4",
+                        "tertiary-fixed-dim": "#c6c8bb",
+                        "primary": "#0d1a1b",
+                        "tertiary-container": "#2b2e25",
+                        "inverse-primary": "#bbc9ca",
+                        "on-secondary": "#ffffff",
+                        "surface": "#eefcfd",
+                        "on-surface-variant": "#424848",
+                        "on-primary-fixed-variant": "#3c494a",
+                        "surface-container": "#e2f1f2",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#263334",
+                        "primary-fixed-dim": "#bbc9ca",
+                        "on-secondary-fixed": "#0e2000",
+                        "secondary-container": "#b8f47d",
+                        "background": "#eefcfd",
+                        "outline": "#737878",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#2a5000",
+                        "surface-dim": "#ceddde",
+                        "secondary-fixed-dim": "#9dd765",
+                        "tertiary": "#161911",
+                        "on-tertiary-container": "#93958a",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#c2c7c7",
+                        "primary-container": "#222f30",
+                        "on-tertiary-fixed": "#1a1d14",
+                        "surface-tint": "#536162",
+                        "on-primary-container": "#899798",
+                        "tertiary-fixed": "#e2e4d6",
+                        "surface-bright": "#eefcfd",
+                        "on-secondary-container": "#3f7102",
+                        "secondary": "#3a6a00",
+                        "on-primary-fixed": "#111e1f",
+                        "on-background": "#111e1f",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#d7e5e6",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#45483e",
+                        "surface-variant": "#d7e5e6",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#b8f47d",
+                        "surface-container-high": "#dcebec",
+                        "surface-container-low": "#e8f6f7",
+                        "error-container": "#ffdad6",
+                        "on-surface": "#111e1f"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "label": ["Space Grotesk"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #3a6a00;
+            cursor: pointer;
+            border-radius: 50%;
+            border: 4px solid #ffffff;
+            box-shadow: 0 0 10px rgba(13, 26, 27, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface min-h-screen flex flex-col">
+<!-- Top Navigation Anchor (from JSON) -->
+<header class="fixed top-0 w-full z-50 bg-[#eefcfd]/80 backdrop-blur-md flex items-center justify-between px-6 h-16 w-full">
+<div class="flex items-center gap-2">
+<span class="text-2xl font-black tracking-tight text-[#0d1a1b] font-headline">Moneyball</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<nav class="flex gap-6">
+<a class="text-[#0d1a1b]/60 hover:text-[#3a6a00] transition-colors font-headline font-bold text-lg" href="#">Inventory</a>
+<a class="text-[#3a6a00] font-bold font-headline text-lg" href="#">Settings</a>
+<a class="text-[#0d1a1b]/60 hover:text-[#3a6a00] transition-colors font-headline font-bold text-lg" href="#">Analytics</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer" data-icon="account_circle">account_circle</span>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 mt-16 pb-24 px-4 md:px-8 max-w-5xl mx-auto w-full">
+<!-- Onboarding Header Section -->
+<section class="py-12">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-outline-variant/20 pb-8">
+<div>
+<span class="font-label text-sm uppercase tracking-[0.2em] text-secondary font-bold">Step 03 — Configuration</span>
+<h1 class="font-headline text-4xl font-extrabold text-primary mt-2 tracking-tight">Marketplace Policies</h1>
+<p class="text-on-surface-variant mt-3 max-w-xl">Define how your store interacts with the Moneyball ecosystem. These rules automate your flash sales and fulfillment workflows.</p>
+</div>
+<div class="flex gap-2">
+<div class="h-2 w-12 bg-secondary rounded-full"></div>
+<div class="h-2 w-12 bg-secondary rounded-full"></div>
+<div class="h-2 w-12 bg-secondary rounded-full"></div>
+<div class="h-2 w-12 bg-surface-container-highest rounded-full"></div>
+</div>
+</div>
+</section>
+<!-- Configuration Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Column: Form Controls -->
+<div class="lg:col-span-8 space-y-6">
+<!-- Discount Policy Card -->
+<div class="bg-surface-container-low rounded-xl p-8 border border-transparent">
+<div class="flex justify-between items-start mb-8">
+<div>
+<h3 class="font-headline text-xl font-bold text-primary">Minimum Discount Rate</h3>
+<p class="text-sm text-on-surface-variant font-body">The baseline price reduction for all pulse deals.</p>
+</div>
+<span class="bg-[#ff6b00] text-white font-label font-bold px-4 py-1.5 rounded-full text-lg shadow-sm">45%</span>
+</div>
+<div class="relative py-6">
+<input class="w-full h-1.5 bg-surface-container-highest rounded-lg appearance-none cursor-pointer accent-secondary" max="60" min="10" type="range" value="45"/>
+<div class="flex justify-between mt-4 font-label text-xs text-on-surface-variant uppercase tracking-wider">
+<span>10% Minimum</span>
+<span>60% Maximum</span>
+</div>
+</div>
+</div>
+<!-- Toggle Controls Bento -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Auto-Approve Toggle -->
+<div class="bg-surface-container-lowest rounded-xl p-6 border border-outline-variant/10 shadow-sm flex flex-col justify-between">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-secondary/10 rounded-lg">
+<span class="material-symbols-outlined text-secondary" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+<div>
+<h4 class="font-headline font-bold text-primary">Auto-approve Listings</h4>
+<p class="text-sm text-on-surface-variant mt-1 leading-relaxed">Automatically list items nearing their expiry date based on inventory data.</p>
+</div>
+</div>
+<!-- Business Hours Toggle -->
+<div class="bg-surface-container-lowest rounded-xl p-6 border border-outline-variant/10 shadow-sm flex flex-col justify-between">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-primary/5 rounded-lg">
+<span class="material-symbols-outlined text-primary" data-icon="schedule">schedule</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+<div>
+<h4 class="font-headline font-bold text-primary">Hide After Hours</h4>
+<p class="text-sm text-on-surface-variant mt-1 leading-relaxed">Remove deals from the marketplace when your store is closed to customers.</p>
+</div>
+</div>
+</div>
+<!-- Fulfillment Pills -->
+<div class="bg-surface-container-low rounded-xl p-8">
+<h3 class="font-headline text-xl font-bold text-primary mb-2">Fulfillment Mode</h3>
+<p class="text-sm text-on-surface-variant font-body mb-6">Select how customers can receive their Moneyball purchases.</p>
+<div class="flex flex-wrap gap-3">
+<button class="flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-white font-headline font-bold transition-all active:scale-95">
+<span class="material-symbols-outlined text-sm" data-icon="storefront">storefront</span>
+                            Pickup Only
+                        </button>
+<button class="flex items-center gap-2 px-6 py-3 rounded-full bg-surface-container-highest text-primary font-headline font-bold hover:bg-surface-container-high transition-all active:scale-95">
+<span class="material-symbols-outlined text-sm" data-icon="local_shipping">local_shipping</span>
+                            Delivery
+                        </button>
+<button class="flex items-center gap-2 px-6 py-3 rounded-full bg-surface-container-highest text-primary font-headline font-bold hover:bg-surface-container-high transition-all active:scale-95">
+<span class="material-symbols-outlined text-sm" data-icon="all_inclusive">all_inclusive</span>
+                            Both
+                        </button>
+</div>
+</div>
+<!-- Categories Checkboxes -->
+<div class="bg-surface-container-lowest rounded-xl p-8 border border-outline-variant/10 shadow-sm">
+<h3 class="font-headline text-xl font-bold text-primary mb-6">Enabled Categories</h3>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+<label class="flex items-center gap-3 p-4 rounded-lg bg-surface hover:bg-surface-container-low cursor-pointer transition-colors group">
+<input checked="" class="w-5 h-5 rounded border-outline-variant text-secondary focus:ring-secondary" type="checkbox"/>
+<span class="font-body font-medium group-hover:text-secondary transition-colors">Produce</span>
+</label>
+<label class="flex items-center gap-3 p-4 rounded-lg bg-surface hover:bg-surface-container-low cursor-pointer transition-colors group">
+<input checked="" class="w-5 h-5 rounded border-outline-variant text-secondary focus:ring-secondary" type="checkbox"/>
+<span class="font-body font-medium group-hover:text-secondary transition-colors">Dairy &amp; Eggs</span>
+</label>
+<label class="flex items-center gap-3 p-4 rounded-lg bg-surface hover:bg-surface-container-low cursor-pointer transition-colors group">
+<input checked="" class="w-5 h-5 rounded border-outline-variant text-secondary focus:ring-secondary" type="checkbox"/>
+<span class="font-body font-medium group-hover:text-secondary transition-colors">Bakery</span>
+</label>
+<label class="flex items-center gap-3 p-4 rounded-lg bg-surface hover:bg-surface-container-low cursor-pointer transition-colors group">
+<input class="w-5 h-5 rounded border-outline-variant text-secondary focus:ring-secondary" type="checkbox"/>
+<span class="font-body font-medium group-hover:text-secondary transition-colors">Meat &amp; Seafood</span>
+</label>
+<label class="flex items-center gap-3 p-4 rounded-lg bg-surface hover:bg-surface-container-low cursor-pointer transition-colors group">
+<input class="w-5 h-5 rounded border-outline-variant text-secondary focus:ring-secondary" type="checkbox"/>
+<span class="font-body font-medium group-hover:text-secondary transition-colors">Pantry</span>
+</label>
+<label class="flex items-center gap-3 p-4 rounded-lg bg-surface hover:bg-surface-container-low cursor-pointer transition-colors group">
+<input class="w-5 h-5 rounded border-outline-variant text-secondary focus:ring-secondary" type="checkbox"/>
+<span class="font-body font-medium group-hover:text-secondary transition-colors">Beverages</span>
+</label>
+</div>
+</div>
+</div>
+<!-- Right Column: Context/Visuals -->
+<aside class="lg:col-span-4 space-y-6">
+<!-- Visual Impact Card -->
+<div class="relative rounded-xl overflow-hidden aspect-[4/5] shadow-2xl">
+<img alt="Premium grocery store interior" class="absolute inset-0 w-full h-full object-cover" data-alt="Modern high-end grocery store interior with warm aesthetic lighting and neatly organized organic produce displays" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2VWzqYcRlW2uZmocS4LpPG7HBe-ooQx0DMYPK__41Fi0x-3BgJaJLZN7XgSLPxKw1Y9ozTU6uCrwtkR146guXj7-uTrh_ztFz8LR9IiX7Cg7Dnjl6QKsip3Tfg_0TW5XkjLmxsDCrVK9hF5YcyFE82XkNO10KgpzmjT_qe5c91QXtYj7U2QuyBCGrlnef0QpL8z2atAjqIdm-9PvNeKBqoSRT2KpX5wjLCowkEJCv9NYM-cW0ZaMAIhF3ybK7EFf39wouJbX0JTc"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent"></div>
+<div class="absolute bottom-0 p-8">
+<div class="bg-secondary-container/90 backdrop-blur-md p-4 rounded-lg">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-on-secondary-container" data-icon="bolt">bolt</span>
+<span class="font-label text-xs font-bold uppercase tracking-widest text-on-secondary-container">Market Insight</span>
+</div>
+<p class="text-on-secondary-container font-headline font-bold text-lg leading-tight">Stores with 40%+ discounts see 3.4x faster inventory turnover.</p>
+</div>
+</div>
+</div>
+<!-- Status Card -->
+<div class="bg-surface-container-highest p-6 rounded-xl border-l-4 border-secondary">
+<h5 class="font-label text-xs font-bold text-secondary uppercase tracking-widest mb-4">Onboarding Progress</h5>
+<div class="space-y-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle" data-weight="fill">check_circle</span>
+<span class="text-sm font-medium text-primary">Store Identity</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle" data-weight="fill">check_circle</span>
+<span class="text-sm font-medium text-primary">Payment Integration</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-6 h-6 rounded-full border-2 border-secondary flex items-center justify-center">
+<div class="w-2 h-2 bg-secondary rounded-full"></div>
+</div>
+<span class="text-sm font-bold text-primary">Policy Setup</span>
+</div>
+<div class="flex items-center gap-3 opacity-40">
+<div class="w-6 h-6 rounded-full border-2 border-outline flex items-center justify-center"></div>
+<span class="text-sm font-medium text-primary">Final Launch</span>
+</div>
+</div>
+</div>
+</aside>
+</div>
+<!-- Footer Actions -->
+<div class="fixed bottom-0 left-0 w-full bg-white/60 backdrop-blur-xl border-t border-outline-variant/20 px-6 h-20 flex items-center justify-between z-40">
+<button class="flex items-center gap-2 text-on-surface-variant font-headline font-bold hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+                Previous
+            </button>
+<div class="flex items-center gap-6">
+<span class="hidden md:block font-label text-xs text-on-surface-variant uppercase tracking-widest">Saved to cloud at 14:02</span>
+<button class="bg-secondary text-white px-10 py-3 rounded-xl font-headline font-extrabold text-lg flex items-center gap-2 shadow-lg shadow-secondary/20 hover:shadow-secondary/40 active:scale-95 transition-all">
+                    Next
+                    <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Retailer Onboarding | Moneyball</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-fixed": "#d7e5e6",
+                        "inverse-on-surface": "#e5f4f4",
+                        "tertiary-fixed-dim": "#c6c8bb",
+                        "primary": "#0d1a1b",
+                        "tertiary-container": "#2b2e25",
+                        "inverse-primary": "#bbc9ca",
+                        "on-secondary": "#ffffff",
+                        "surface": "#eefcfd",
+                        "on-surface-variant": "#424848",
+                        "on-primary-fixed-variant": "#3c494a",
+                        "surface-container": "#e2f1f2",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#263334",
+                        "primary-fixed-dim": "#bbc9ca",
+                        "on-secondary-fixed": "#0e2000",
+                        "secondary-container": "#b8f47d",
+                        "background": "#eefcfd",
+                        "outline": "#737878",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#2a5000",
+                        "surface-dim": "#ceddde",
+                        "secondary-fixed-dim": "#9dd765",
+                        "tertiary": "#161911",
+                        "on-tertiary-container": "#93958a",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#c2c7c7",
+                        "primary-container": "#222f30",
+                        "on-tertiary-fixed": "#1a1d14",
+                        "surface-tint": "#536162",
+                        "on-primary-container": "#899798",
+                        "tertiary-fixed": "#e2e4d6",
+                        "surface-bright": "#eefcfd",
+                        "on-secondary-container": "#3f7102",
+                        "secondary": "#3a6a00",
+                        "on-primary-fixed": "#111e1f",
+                        "on-background": "#111e1f",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#d7e5e6",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#45483e",
+                        "surface-variant": "#d7e5e6",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#b8f47d",
+                        "surface-container-high": "#dcebec",
+                        "surface-container-low": "#e8f6f7",
+                        "error-container": "#ffdad6",
+                        "on-surface": "#111e1f"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "label": ["Space Grotesk"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .step-active { color: #3a6a00; font-weight: 700; }
+        .step-pending { color: rgba(238, 252, 253, 0.5); }
+        .glass-panel {
+            background: rgba(238, 252, 253, 0.8);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface flex h-screen overflow-hidden">
+<!-- Sidebar Navigation (SideNavBar Anchor) -->
+<aside class="h-full w-80 fixed left-0 top-0 bg-primary flex flex-col py-10 px-8 z-50 shadow-2xl">
+<div class="mb-12">
+<h1 class="text-2xl font-black tracking-tight text-surface font-headline mb-1">Moneyball</h1>
+<p class="font-label text-xs uppercase tracking-[0.2em] text-on-primary-container">Retailer Portal</p>
+</div>
+<div class="flex-grow space-y-10">
+<!-- Progress Stepper -->
+<nav class="space-y-8">
+<div class="flex items-center gap-4 group">
+<div class="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center text-on-secondary shadow-lg shadow-secondary/20">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">storefront</span>
+</div>
+<div>
+<p class="font-label text-[10px] uppercase tracking-widest text-secondary font-bold">Step 1</p>
+<p class="font-headline text-surface font-semibold">Store Info</p>
+</div>
+</div>
+<div class="flex items-center gap-4 opacity-40">
+<div class="w-10 h-10 rounded-xl bg-surface/10 flex items-center justify-center text-surface">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<div>
+<p class="font-label text-[10px] uppercase tracking-widest text-surface/60">Step 2</p>
+<p class="font-headline text-surface/80 font-medium">Hours</p>
+</div>
+</div>
+<div class="flex items-center gap-4 opacity-40">
+<div class="w-10 h-10 rounded-xl bg-surface/10 flex items-center justify-center text-surface">
+<span class="material-symbols-outlined">gavel</span>
+</div>
+<div>
+<p class="font-label text-[10px] uppercase tracking-widest text-surface/60">Step 3</p>
+<p class="font-headline text-surface/80 font-medium">Policies</p>
+</div>
+</div>
+<div class="flex items-center gap-4 opacity-40">
+<div class="w-10 h-10 rounded-xl bg-surface/10 flex items-center justify-center text-surface">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+<div>
+<p class="font-label text-[10px] uppercase tracking-widest text-surface/60">Step 4</p>
+<p class="font-headline text-surface/80 font-medium">Done</p>
+</div>
+</div>
+</nav>
+</div>
+<!-- Footer Help -->
+<div class="pt-8 border-t border-surface/5">
+<div class="flex items-center gap-3 p-4 rounded-xl bg-surface/5">
+<span class="material-symbols-outlined text-secondary">help</span>
+<p class="text-sm text-surface/70 font-medium">Need help setting up?</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-grow ml-80 overflow-y-auto bg-surface-container-low min-h-screen relative">
+<!-- Top Navigation Mock (Shell Persistence) -->
+<header class="h-16 flex items-center justify-between px-12 sticky top-0 bg-surface/80 backdrop-blur-md z-40">
+<span class="font-headline font-bold text-primary">Onboarding Wizard</span>
+<div class="flex items-center gap-4">
+<button class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center overflow-hidden">
+<img alt="User Profile" data-alt="minimalist user avatar icon placeholder in a dark circle background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1mt-ARKSvWGZT2Wj9dbm9tXAvrf0Mpkbw05jg9OTVVIzni5l4C89I5HqMinz9TI5bwzaDOeMh0ASsNbIvBmuQZOxE09y3NUFrfGia8IgGng9PqfXDYIiWah3ZGxq_juH7Q7YejN8Rs4IW5nvka571FSy-ucR7I_RzXzs_soGXKiASBI3ZUYDHgZZKrRfc4IoVNdHzNBG2u25O8jmZU_5pHuySLWULmYlLot-J1W-YhInqRtCPDx6d_SWzCbywhP2_RMh4VJqELh0"/>
+</div>
+</div>
+</header>
+<section class="max-w-4xl mx-auto py-16 px-12">
+<div class="mb-12">
+<h2 class="text-4xl font-headline font-extrabold text-primary tracking-tight mb-3">Tell us about your store</h2>
+<p class="text-on-surface-variant text-lg max-w-2xl leading-relaxed">
+                    This information will be visible to shoppers on the Moneyball app. Make sure it's accurate so locals can find your flash deals.
+                </p>
+</div>
+<!-- Bento Form Layout -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Left Column: Primary Fields -->
+<div class="col-span-12 lg:col-span-7 space-y-8">
+<div class="space-y-6">
+<!-- Store Name -->
+<div class="space-y-2">
+<label class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant font-bold ml-1">Store Name</label>
+<input class="w-full h-14 px-5 rounded-xl bg-surface-container-highest border-none focus:ring-2 focus:ring-secondary transition-all font-body text-primary placeholder:text-on-surface-variant/40" placeholder="e.g. Green Valley Organics" type="text"/>
+</div>
+<!-- Store Category Dropdown -->
+<div class="space-y-2">
+<label class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant font-bold ml-1">Store Category</label>
+<div class="relative">
+<select class="w-full h-14 px-5 appearance-none rounded-xl bg-surface-container-highest border-none focus:ring-2 focus:ring-secondary transition-all font-body text-primary cursor-pointer">
+<option disabled="" selected="" value="">Select a category</option>
+<option>Grocery &amp; Fresh Produce</option>
+<option>Bakery &amp; Sweets</option>
+<option>Ready-to-Eat / Deli</option>
+<option>Butcher &amp; Meat</option>
+<option>Liquor &amp; Beverages</option>
+</select>
+<span class="material-symbols-outlined absolute right-5 top-4 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+</div>
+<!-- Phone Number -->
+<div class="space-y-2">
+<label class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant font-bold ml-1">Phone Number</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-5 top-4 text-on-surface-variant/60">call</span>
+<input class="w-full h-14 pl-12 pr-5 rounded-xl bg-surface-container-highest border-none focus:ring-2 focus:ring-secondary transition-all font-body text-primary placeholder:text-on-surface-variant/40" placeholder="+1 (555) 000-0000" type="tel"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Map Interaction -->
+<div class="col-span-12 lg:col-span-5 space-y-6">
+<div class="space-y-2">
+<label class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant font-bold ml-1">Store Location</label>
+<div class="relative group">
+<input class="w-full h-14 pl-12 pr-5 rounded-xl bg-surface-container-highest border-none focus:ring-2 focus:ring-secondary transition-all font-body text-primary z-10 relative" placeholder="Search address..." type="text"/>
+<span class="material-symbols-outlined absolute left-5 top-4 z-20 text-on-surface-variant/60">location_on</span>
+</div>
+</div>
+<div class="h-64 rounded-xl overflow-hidden bg-surface-container-highest relative group border border-outline-variant/10">
+<img class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 transition-all duration-500" data-alt="minimalist vector map of a city neighborhood with a single green pin drop in the center, soft muted tones" data-location="San Francisco" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-GLFNRXSB2g8kHlu7Qnqf3DbNrmKUbU9Z-upQHzmRl9fOG9uutQR9qZjKtS-uA_XiOs9q5RYj1yMO5D0N6gDomULnE1hX5VuVNE-CYyIZNtJA9okITKSVWVAhaKUGQ9THMjbAazD9lIV4riZLsCktHSifwpVYEwb5SYDWV0M_vTB5bOkC22si7RO5ZYG-h_g8sYC_bIsSGi2KxrPNPyXnpIon7gML1FxX5pU3-XOewCA4PhQBdNITD0lkNIHd-N5rISXL-njPDzk"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent pointer-events-none"></div>
+<div class="absolute bottom-4 left-4 right-4 bg-surface/90 backdrop-blur-md p-3 rounded-lg flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-secondary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-lg">my_location</span>
+</div>
+<p class="text-[10px] font-label font-bold text-primary uppercase tracking-tight">Drop pin to confirm</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Navigation Actions -->
+<div class="mt-20 flex items-center justify-between">
+<button class="flex items-center gap-2 text-on-surface-variant font-label text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+                    Cancel
+                </button>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex flex-col items-end">
+<span class="text-[10px] font-label font-bold text-on-surface-variant uppercase tracking-widest">Next Step</span>
+<span class="text-sm font-headline font-bold text-primary">Operating Hours</span>
+</div>
+<button class="bg-secondary text-on-secondary px-8 h-14 rounded-xl flex items-center gap-3 font-headline font-bold hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-secondary/10 group">
+                        Next
+                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Aesthetic Background Elements -->
+<div class="absolute top-0 right-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl -z-10 -translate-y-1/2 translate-x-1/2"></div>
+<div class="absolute bottom-0 left-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10 translate-y-1/2 -translate-x-1/2"></div>
+</main>
+</body></html>

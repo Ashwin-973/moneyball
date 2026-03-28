@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Moneyball Savings Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-fixed": "#d7e5e6",
+              "inverse-on-surface": "#e5f4f4",
+              "tertiary-fixed-dim": "#c6c8bb",
+              "primary": "#0d1a1b",
+              "tertiary-container": "#2b2e25",
+              "inverse-primary": "#bbc9ca",
+              "on-secondary": "#ffffff",
+              "surface": "#eefcfd",
+              "on-surface-variant": "#424848",
+              "on-primary-fixed-variant": "#3c494a",
+              "surface-container": "#e2f1f2",
+              "on-error": "#ffffff",
+              "inverse-surface": "#263334",
+              "primary-fixed-dim": "#bbc9ca",
+              "on-secondary-fixed": "#0e2000",
+              "secondary-container": "#b8f47d",
+              "background": "#eefcfd",
+              "outline": "#737878",
+              "on-tertiary": "#ffffff",
+              "on-secondary-fixed-variant": "#2a5000",
+              "surface-dim": "#ceddde",
+              "secondary-fixed-dim": "#9dd765",
+              "tertiary": "#161911",
+              "on-tertiary-container": "#93958a",
+              "error": "#ba1a1a",
+              "outline-variant": "#c2c7c7",
+              "primary-container": "#222f30",
+              "on-tertiary-fixed": "#1a1d14",
+              "surface-tint": "#536162",
+              "on-primary-container": "#899798",
+              "tertiary-fixed": "#e2e4d6",
+              "surface-bright": "#eefcfd",
+              "on-secondary-container": "#3f7102",
+              "secondary": "#3a6a00",
+              "on-primary-fixed": "#111e1f",
+              "on-background": "#111e1f",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-highest": "#d7e5e6",
+              "on-primary": "#ffffff",
+              "on-tertiary-fixed-variant": "#45483e",
+              "surface-variant": "#d7e5e6",
+              "on-error-container": "#93000a",
+              "secondary-fixed": "#b8f47d",
+              "surface-container-high": "#dcebec",
+              "surface-container-low": "#e8f6f7",
+              "error-container": "#ffdad6",
+              "on-surface": "#111e1f"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Space Grotesk"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased pb-24 md:pb-0">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#eefcfd]/80 backdrop-blur-md flex items-center justify-between px-6 h-16 w-full">
+<div class="flex items-center gap-2">
+<span class="text-2xl font-black tracking-tight text-[#0d1a1b]">Moneyball</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center gap-6 mr-6">
+<a class="text-[#3a6a00] font-bold font-headline text-lg hover:text-[#3a6a00] transition-colors active:scale-95 duration-200" href="#">Savings</a>
+<a class="text-[#0d1a1b]/60 font-headline text-lg hover:text-[#3a6a00] transition-colors active:scale-95 duration-200" href="#">Map</a>
+<a class="text-[#0d1a1b]/60 font-headline text-lg hover:text-[#3a6a00] transition-colors active:scale-95 duration-200" href="#">Deals</a>
+</div>
+<div class="flex items-center gap-3">
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[#3a6a00]">notifications</span></button>
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[#3a6a00]">account_circle</span></button>
+</div>
+</div>
+</header>
+<main class="pt-24 px-6 max-w-6xl mx-auto mb-12">
+<!-- Hero Header -->
+<section class="mb-10">
+<h1 class="font-headline font-extrabold text-4xl tracking-tight text-primary mb-2">Your Impact</h1>
+<p class="text-on-surface-variant font-body">Tracking your contribution to a zero-waste world.</p>
+</section>
+<!-- Bento Grid Stats -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+<!-- Stat Card 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl flex flex-col justify-between h-48 group hover:bg-[#fff9f0] transition-colors duration-300">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-orange-500 text-3xl">payments</span>
+<span class="font-label text-xs uppercase tracking-widest text-on-surface-variant bg-surface-container px-2 py-1 rounded-md">Total Saved</span>
+</div>
+<div>
+<h2 class="font-headline font-extrabold text-4xl text-primary">₹1,240</h2>
+<p class="font-label text-xs text-orange-600 mt-1 font-bold">+₹240 this week</p>
+</div>
+</div>
+<!-- Stat Card 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl flex flex-col justify-between h-48 group hover:bg-[#f6ffef] transition-colors duration-300">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-secondary text-3xl">local_fire_department</span>
+<span class="font-label text-xs uppercase tracking-widest text-on-surface-variant bg-surface-container px-2 py-1 rounded-md">Deals Redeemed</span>
+</div>
+<div>
+<h2 class="font-headline font-extrabold text-4xl text-primary">12</h2>
+<p class="font-label text-xs text-secondary mt-1 font-bold">Top 5% of users</p>
+</div>
+</div>
+<!-- Stat Card 3 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl flex flex-col justify-between h-48 group hover:bg-[#f0fcfc] transition-colors duration-300">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-teal-600 text-3xl">eco</span>
+<span class="font-label text-xs uppercase tracking-widest text-on-surface-variant bg-surface-container px-2 py-1 rounded-md">Food Rescued</span>
+</div>
+<div>
+<h2 class="font-headline font-extrabold text-4xl text-primary">3.2kg</h2>
+<p class="font-label text-xs text-teal-600 mt-1 font-bold">Equivalent to 4 meals</p>
+</div>
+</div>
+</div>
+<!-- CO2 Impact Card - Asymmetric Layout -->
+<div class="bg-primary text-surface rounded-xl p-8 mb-10 flex flex-col md:flex-row items-center gap-8 relative overflow-hidden">
+<div class="absolute -right-12 -top-12 w-64 h-64 bg-secondary/10 rounded-full blur-3xl"></div>
+<div class="flex-1 z-10">
+<div class="flex items-center gap-3 mb-4">
+<div class="bg-secondary/20 p-2 rounded-lg">
+<span class="material-symbols-outlined text-secondary text-3xl" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<span class="font-label uppercase tracking-widest text-secondary text-sm font-bold">Sustainability Score</span>
+</div>
+<h3 class="font-headline font-bold text-3xl mb-4 leading-tight">You prevented <span class="text-secondary">8kg of CO₂</span> emissions by choosing rescued items.</h3>
+<p class="text-surface/70 font-body mb-6 max-w-md">That's the same as charging your smartphone for over 900 days or planting a young sapling.</p>
+<button class="bg-secondary text-on-secondary px-6 py-3 rounded-lg font-headline font-bold flex items-center gap-2 hover:opacity-90 transition-opacity active:scale-95">
+                    View Science Report <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="w-full md:w-1/3 h-48 bg-surface-container/10 rounded-xl overflow-hidden z-10 flex items-center justify-center border border-surface/10">
+<img alt="CO2 savings" class="w-full h-full object-cover opacity-60" data-alt="close-up of a vibrant green leaf with water droplets and soft morning sunlight passing through, macro photography style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoo7UPdwNqUzCZsf5MDqWkHVS_-mOomFwAYF8KpDZn31XUusqWXbAz0nADQSwKVyJnQlRjc45CTha-PIAtQbJe1FG06Xr6y85vBvFWs9u0pGOj1Pmio0uhYxV2bx7StcvPcrflIZ0_vWwRxSIuZk2lGOrSOKkMWxNi351eqRTUKStRRj1NBfjkVG7KViY_WDSUWbLUHcIL6HcJQpkRrFlrXBhXGfPp_-b7lAmrtrFw3GvQDOkUszcOyItKAUhQP4bsHvJufgojAoM"/>
+</div>
+</div>
+<!-- Your Badges -->
+<section class="mb-10">
+<div class="flex justify-between items-end mb-6">
+<div>
+<h3 class="font-headline font-bold text-2xl text-primary">Your Badges</h3>
+<p class="font-body text-sm text-on-surface-variant">Achievements you've unlocked along the way.</p>
+</div>
+<button class="text-secondary font-label text-sm font-bold uppercase tracking-widest flex items-center gap-1">All Badges <span class="material-symbols-outlined text-sm">chevron_right</span></button>
+</div>
+<div class="flex gap-4 overflow-x-auto hide-scrollbar pb-4 snap-x">
+<!-- Unlocked Badge -->
+<div class="flex-shrink-0 w-36 h-48 bg-surface-container-lowest rounded-xl p-4 flex flex-col items-center justify-center text-center snap-start border-2 border-secondary/20">
+<div class="w-16 h-16 bg-secondary-container rounded-full flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-on-secondary-container text-3xl" style="font-variation-settings: 'FILL' 1;">stars</span>
+</div>
+<span class="font-headline font-bold text-sm text-primary">First Deal</span>
+<span class="font-label text-[10px] text-secondary font-bold uppercase mt-1">Unlocked</span>
+</div>
+<!-- Unlocked Badge -->
+<div class="flex-shrink-0 w-36 h-48 bg-surface-container-lowest rounded-xl p-4 flex flex-col items-center justify-center text-center snap-start border-2 border-secondary/20">
+<div class="w-16 h-16 bg-secondary-container rounded-full flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-on-secondary-container text-3xl" style="font-variation-settings: 'FILL' 1;">volunteer_activism</span>
+</div>
+<span class="font-headline font-bold text-sm text-primary">5 Rescues</span>
+<span class="font-label text-[10px] text-secondary font-bold uppercase mt-1">Unlocked</span>
+</div>
+<!-- Unlocked Badge -->
+<div class="flex-shrink-0 w-36 h-48 bg-surface-container-lowest rounded-xl p-4 flex flex-col items-center justify-center text-center snap-start border-2 border-secondary/20">
+<div class="w-16 h-16 bg-secondary-container rounded-full flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-on-secondary-container text-3xl" style="font-variation-settings: 'FILL' 1;">bakery_dining</span>
+</div>
+<span class="font-headline font-bold text-sm text-primary">Bread Lover</span>
+<span class="font-label text-[10px] text-secondary font-bold uppercase mt-1">Unlocked</span>
+</div>
+<!-- Locked Badge -->
+<div class="flex-shrink-0 w-36 h-48 bg-surface-container-low rounded-xl p-4 flex flex-col items-center justify-center text-center snap-start grayscale opacity-60">
+<div class="w-16 h-16 bg-surface-container-highest rounded-full flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-on-surface-variant text-3xl">diamond</span>
+</div>
+<span class="font-headline font-bold text-sm text-on-surface-variant">Top Saver</span>
+<span class="font-label text-[10px] text-on-surface-variant mt-1 uppercase">Locked</span>
+</div>
+<!-- Locked Badge -->
+<div class="flex-shrink-0 w-36 h-48 bg-surface-container-low rounded-xl p-4 flex flex-col items-center justify-center text-center snap-start grayscale opacity-60">
+<div class="w-16 h-16 bg-surface-container-highest rounded-full flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-on-surface-variant text-3xl">emoji_events</span>
+</div>
+<span class="font-headline font-bold text-sm text-on-surface-variant">Century Club</span>
+<span class="font-label text-[10px] text-on-surface-variant mt-1 uppercase">Locked</span>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+<!-- Recent Deals List -->
+<section>
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline font-bold text-2xl text-primary">Recent Deals</h3>
+<span class="font-label text-xs font-bold text-on-surface-variant">LAST 5 TRANSACTIONS</span>
+</div>
+<div class="space-y-4">
+<div class="bg-surface-container-low p-4 rounded-xl flex items-center justify-between group hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center overflow-hidden">
+<img alt="Merchant" class="w-full h-full object-cover" data-alt="close-up of artisan fresh sourdough bread crust with flour dusting on a dark bakery surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6GvR-__3fxaEVQsQwG9Oq1t-e5CViAPkWUkgwgu38t0UISdcYc5LXgfInFIrYUSm_igBdee84r6mpJdEcvJAZoj1Cee2hBYeIPdBaTY6qezpFjD-YjIru0QrMbt-f9J1Y_3EXXMKx8hC4xUQkX9Zw1SVVF85TR_Xly0v09GtYpBk9UhrMzyyYShciPClXCd__n-ebeSkNdvQXRMGE3zV5IQMiyRRA3EV0hxIpKuebq_DP8UVzlg6JRcUrouP-dr7o_rgl9LG0w7s"/>
+</div>
+<div>
+<h4 class="font-headline font-bold text-primary">Artisan Crust Bakery</h4>
+<p class="text-xs text-on-surface-variant font-body">Assorted Pastry Bag</p>
+</div>
+</div>
+<div class="text-right">
+<div class="font-label text-secondary font-bold">Saved ₹120</div>
+<div class="text-[10px] text-on-surface-variant font-label uppercase">2 days ago</div>
+</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl flex items-center justify-between group hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center overflow-hidden">
+<img alt="Merchant" class="w-full h-full object-cover" data-alt="delicious gourmet burger with melting cheese and fresh lettuce on a dark background with dramatic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZoLPkOgu3rA9Pw-0dbk6rhAuQTQqdR6FCoT5jZpP6n1npc92Tbd7nEhPVCIVwwBJyz9YDp3vuFV0Os8E2bdOzkXvvJ1qZ0vlBFvWcuhWHFdj-F2NZTU67kViAw3GBGeUjpfF_adRPehdEIzW1-Vpd915U1XcsgMu4EIOdap3V6tS8JRFmhQqCKrDzYxr0Umg8jdm8gOZexWp8K9QM3zpNu_CIsQCSf0ea0CLIcJXrqPFe8a_35AaIb__1141KmuJGX0-66TRl5Ns"/>
+</div>
+<div>
+<h4 class="font-headline font-bold text-primary">The Burger Hub</h4>
+<p class="text-xs text-on-surface-variant font-body">Double Patty Combo</p>
+</div>
+</div>
+<div class="text-right">
+<div class="font-label text-secondary font-bold">Saved ₹185</div>
+<div class="text-[10px] text-on-surface-variant font-label uppercase">4 days ago</div>
+</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl flex items-center justify-between group hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center overflow-hidden">
+<img alt="Merchant" class="w-full h-full object-cover" data-alt="crispy golden french fries in a white paper cone on a rustic wooden table with soft focus background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZfopf5ndZnS-Kvn8HKc2SazGZkl083HSbiZ3_Hc_UUW1Uv9I0GRhhXR0zsbCtb8cYpQPQF-xcBj13vpYMPjoRaOu-ZMPjuqEwdtX6x8hbNX5Wi2vLEbvhpxqaCS6FxaUNr7PpmqdAgybPKD08ZFwq3MV5S2HSOg0yp47U5LJRBXN3udV8Cm1swfAuY-RJWc3xN7se9_spKbkaAZz6FoWSjF5IboK4nHLTq3IHhL6igsx6_Y8v2bEGAazTDhkrZOCudic10zo3RB4"/>
+</div>
+<div>
+<h4 class="font-headline font-bold text-primary">Daily Fresh Mart</h4>
+<p class="text-xs text-on-surface-variant font-body">Organic Veggie Box</p>
+</div>
+</div>
+<div class="text-right">
+<div class="font-label text-secondary font-bold">Saved ₹340</div>
+<div class="text-[10px] text-on-surface-variant font-label uppercase">1 week ago</div>
+</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl flex items-center justify-between group hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center overflow-hidden">
+<img alt="Merchant" class="w-full h-full object-cover" data-alt="vibrant healthy salad bowl with avocado, tomatoes, and greens in a ceramic bowl on a clean white surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDG3Wa7sjyiv_1Ts4mgqiOWjekq3DNDBu_-LF0lOIvshbs-H6DifLBuNCu4JZ77vh9tkoa6gyEPkmsSJuQFhO1VnqN5soCyuU6s7fVxY7bCSNQ6eODo4-Jpr3EjJ8c5a-pOn7DedvCVFRaEP_r9HB7pbBdIapJOHYu_N8mS-Bi5q3nzMeyyHM7WghfP7XGz-bPHjQ--EPk0G6CqwyApy2-PJhpE-IURWSYhe6_gyGfEXwokSZVmJkWk19T7MB6FDd29V-cukjCnCjk"/>
+</div>
+<div>
+<h4 class="font-headline font-bold text-primary">Green Bowls</h4>
+<p class="text-xs text-on-surface-variant font-body">Quinoa Power Salad</p>
+</div>
+</div>
+<div class="text-right">
+<div class="font-label text-secondary font-bold">Saved ₹90</div>
+<div class="text-[10px] text-on-surface-variant font-label uppercase">2 weeks ago</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Shareable Card -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline font-bold text-2xl text-primary">Share Your Streak</h3>
+</div>
+<div class="bg-gradient-to-br from-[#3a6a00] to-[#0d1a1b] p-8 rounded-xl aspect-square flex flex-col justify-between shadow-xl relative overflow-hidden group">
+<div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
+<div class="z-10 flex justify-between items-start">
+<span class="text-2xl font-black text-white">Moneyball</span>
+<div class="bg-white/10 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
+<span class="font-label text-[10px] text-white tracking-widest uppercase">Verified Impact</span>
+</div>
+</div>
+<div class="z-10 text-center">
+<p class="text-white/80 font-headline text-lg mb-2">I've saved</p>
+<h4 class="text-white font-headline font-black text-6xl tracking-tighter mb-4">₹1,240</h4>
+<div class="h-[2px] w-24 bg-secondary mx-auto mb-4"></div>
+<p class="text-secondary font-label text-sm font-bold uppercase tracking-widest">Saving Food &amp; The Planet</p>
+</div>
+<div class="z-10 flex flex-col items-center gap-4">
+<p class="text-white/60 font-body text-xs italic">Join me and 500k others fighting waste.</p>
+<button class="w-full bg-white text-primary font-headline font-bold py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-secondary transition-colors group-hover:text-white">
+<span class="material-symbols-outlined">share</span>
+                            Share Your Savings
+                        </button>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 pb-safe bg-[#eefcfd]/90 backdrop-blur-lg border-t border-[#0d1a1b]/5 flex justify-around items-center h-20 w-full px-2 shadow-[0_-10px_30px_rgba(13,26,27,0.04)] md:hidden">
+<div class="flex flex-col items-center justify-center bg-[#3a6a00]/10 text-[#3a6a00] rounded-xl px-4 py-1 active:scale-90 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">payments</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase tracking-wider">Savings</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#0d1a1b]/50 hover:bg-[#3a6a00]/5 active:scale-90 transition-transform">
+<span class="material-symbols-outlined">map</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase tracking-wider">Map</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#0d1a1b]/50 hover:bg-[#3a6a00]/5 active:scale-90 transition-transform">
+<span class="material-symbols-outlined">local_fire_department</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase tracking-wider">Deals</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#0d1a1b]/50 hover:bg-[#3a6a00]/5 active:scale-90 transition-transform">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase tracking-wider">Profile</span>
+</div>
+</nav>
+</body></html>

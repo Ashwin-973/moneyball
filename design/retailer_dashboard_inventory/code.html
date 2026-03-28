@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Moneyball | Products Inventory</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@700;800&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-container": "#222f30",
+              "on-primary": "#ffffff",
+              "surface-dim": "#ceddde",
+              "on-secondary-container": "#3f7102",
+              "on-background": "#111e1f",
+              "on-tertiary-fixed": "#1a1d14",
+              "on-primary-fixed": "#111e1f",
+              "tertiary-fixed-dim": "#c6c8bb",
+              "on-secondary": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-container": "#93958a",
+              "primary-fixed": "#d7e5e6",
+              "secondary-container": "#b8f47d",
+              "surface-container-highest": "#d7e5e6",
+              "outline-variant": "#c2c7c7",
+              "tertiary-fixed": "#e2e4d6",
+              "surface-container": "#e2f1f2",
+              "on-secondary-fixed-variant": "#2a5000",
+              "on-tertiary-fixed-variant": "#45483e",
+              "primary-fixed-dim": "#bbc9ca",
+              "error": "#ba1a1a",
+              "surface-container-low": "#e8f6f7",
+              "surface-bright": "#eefcfd",
+              "primary": "#0d1a1b",
+              "on-primary-fixed-variant": "#3c494a",
+              "on-surface": "#111e1f",
+              "surface-container-high": "#dcebec",
+              "secondary": "#3a6a00",
+              "tertiary": "#161911",
+              "inverse-surface": "#263334",
+              "inverse-on-surface": "#e5f4f4",
+              "background": "#eefcfd",
+              "on-secondary-fixed": "#0e2000",
+              "on-error": "#ffffff",
+              "tertiary-container": "#2b2e25",
+              "secondary-fixed-dim": "#9dd765",
+              "on-surface-variant": "#424848",
+              "on-primary-container": "#899798",
+              "surface-variant": "#d7e5e6",
+              "surface": "#eefcfd",
+              "surface-tint": "#536162",
+              "secondary-fixed": "#b8f47d",
+              "on-error-container": "#93000a",
+              "error-container": "#ffdad6",
+              "inverse-primary": "#bbc9ca",
+              "outline": "#737878"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Space Grotesk"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-nav {
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+    </style>
+</head>
+<body class="bg-background font-body text-on-background antialiased">
+<!-- SideNavBar Shell -->
+<aside class="h-screen w-64 fixed left-0 top-0 overflow-y-auto bg-[#0d1a1b] dark:bg-[#0d1a1b] flex flex-col py-6 z-50">
+<div class="px-6 mb-10">
+<h1 class="text-2xl font-bold tracking-tight text-white font-headline">Moneyball</h1>
+<p class="text-slate-400 font-label text-xs tracking-wider uppercase mt-1">Retailer Suite</p>
+</div>
+<nav class="flex-grow space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white rounded-lg mx-2 my-1 transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label text-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-[#3a6a00] text-white rounded-lg mx-2 my-1 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label text-sm">Products</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white rounded-lg mx-2 my-1 transition-colors" href="#">
+<span class="material-symbols-outlined">local_offer</span>
+<span class="font-label text-sm">Deals</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white rounded-lg mx-2 my-1 transition-colors" href="#">
+<span class="material-symbols-outlined">event_available</span>
+<span class="font-label text-sm">Reservations</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white rounded-lg mx-2 my-1 transition-colors" href="#">
+<span class="material-symbols-outlined">insert_chart</span>
+<span class="font-label text-sm">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white rounded-lg mx-2 my-1 transition-colors" href="#">
+<span class="material-symbols-outlined">trending_up</span>
+<span class="font-label text-sm">Demand</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white rounded-lg mx-2 my-1 transition-colors" href="#">
+<span class="material-symbols-outlined">extension</span>
+<span class="font-label text-sm">Integrations</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white rounded-lg mx-2 my-1 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label text-sm">Settings</span>
+</a>
+</nav>
+<div class="px-4 mt-auto">
+<div class="bg-white/5 p-4 rounded-xl flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden">
+<img alt="Avatar" data-alt="minimalist avatar icon for a professional retailer dashboard user with a clean green background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtKvIyfDbX8rwyipE5MJs5Yn0infGc0SRY_7rhn678kQO_awk_nlfDIfrFuUDIiYCJM5jn9AT6PElNQ4uX1Djb_kDNFN9e4vESavX5i2cT81pWVmivmq-eduryB6oS1EJGIWBHy8iJoAnzbgzISKKLabDFWtT-ZPqBI__FnDu5KH64ZZkFrZAzEzuJRVS0QainNw6wVo13KQ4whI9xBsiOypWJPB0-czR6j-Q2ksQpxjFZjI8FLkfJUL4GTpAmS3h-7-LgpBsthUA"/>
+</div>
+<div>
+<p class="text-white text-xs font-bold font-headline">Downtown Grocers</p>
+<p class="text-slate-500 text-[10px] font-label">Tier 1 Partner</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen">
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 right-0 left-64 h-16 glass-nav bg-[#eefcfd]/80 dark:bg-[#0d1a1b]/80 flex justify-between items-center px-8 z-40">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full bg-surface-container-highest border-none rounded-lg pl-10 pr-4 py-2 font-label text-sm focus:ring-2 focus:ring-secondary/20" placeholder="Search inventory, SKUs, or batches..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="hover:bg-slate-100 dark:hover:bg-white/5 rounded-full p-2 text-slate-600 transition-opacity">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="hover:bg-slate-100 dark:hover:bg-white/5 rounded-full p-2 text-slate-600 transition-opacity">
+<span class="material-symbols-outlined">calendar_today</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant/30 mx-2"></div>
+<button class="hover:bg-slate-100 dark:hover:bg-white/5 rounded-full p-2 text-slate-600 transition-opacity">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Canvas -->
+<div class="pt-24 px-8 pb-12">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+<div>
+<h2 class="text-4xl font-extrabold font-headline tracking-tight text-primary">Products</h2>
+<p class="text-on-surface-variant mt-1 font-body">Manage your inventory, monitor risk scores, and launch flash deals.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="bg-surface-container-high text-primary font-label px-5 py-2.5 rounded-lg flex items-center gap-2 hover:bg-surface-dim transition-colors">
+<span class="material-symbols-outlined text-lg">upload_file</span>
+                        Upload CSV
+                    </button>
+<button class="bg-secondary text-on-secondary font-headline px-6 py-2.5 rounded-lg flex items-center gap-2 hover:opacity-90 shadow-lg shadow-secondary/20 transition-all scale-100 active:scale-95">
+<span class="material-symbols-outlined text-lg">add_circle</span>
+                        Add Product
+                    </button>
+</div>
+</div>
+<!-- Stats Bar (Asymmetric Bento Lite) -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+<div class="bg-surface-container-low p-5 rounded-xl border-l-4 border-secondary">
+<p class="text-xs font-label text-on-surface-variant uppercase tracking-wider">Active Inventory</p>
+<p class="text-2xl font-headline font-bold mt-1">1,284 <span class="text-sm font-normal text-secondary ml-1">SKUs</span></p>
+</div>
+<div class="bg-surface-container-low p-5 rounded-xl border-l-4 border-error">
+<p class="text-xs font-label text-on-surface-variant uppercase tracking-wider">High Risk Items</p>
+<p class="text-2xl font-headline font-bold mt-1">42 <span class="text-sm font-normal text-error ml-1">Critical</span></p>
+</div>
+<div class="bg-surface-container-low p-5 rounded-xl">
+<p class="text-xs font-label text-on-surface-variant uppercase tracking-wider">Expiring (7 days)</p>
+<p class="text-2xl font-headline font-bold mt-1">118 <span class="text-sm font-normal text-slate-500 ml-1">Items</span></p>
+</div>
+<div class="bg-primary p-5 rounded-xl text-white flex items-center justify-between">
+<div>
+<p class="text-xs font-label text-slate-400 uppercase tracking-wider">Flash Deal Potential</p>
+<p class="text-2xl font-headline font-bold mt-1">$4,120</p>
+</div>
+<span class="material-symbols-outlined text-secondary text-3xl">bolt</span>
+</div>
+</div>
+<!-- Filters Section -->
+<div class="bg-surface-container-lowest rounded-xl p-4 mb-6 flex flex-wrap items-center gap-4">
+<div class="flex-1 min-w-[240px]">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">filter_alt</span>
+<input class="w-full bg-surface-container border-none rounded-lg pl-9 pr-4 py-2 font-body text-sm" placeholder="Filter by product name..." type="text"/>
+</div>
+</div>
+<select class="bg-surface-container border-none rounded-lg px-4 py-2 font-label text-sm focus:ring-0">
+<option>All Categories</option>
+<option>Fresh Produce</option>
+<option>Dairy &amp; Eggs</option>
+<option>Meat &amp; Poultry</option>
+<option>Bakery</option>
+</select>
+<select class="bg-surface-container border-none rounded-lg px-4 py-2 font-label text-sm focus:ring-0">
+<option>Expiry: All</option>
+<option>Expiring Today</option>
+<option>Within 3 Days</option>
+<option>Within 7 Days</option>
+</select>
+<select class="bg-surface-container border-none rounded-lg px-4 py-2 font-label text-sm focus:ring-0">
+<option>Risk: All</option>
+<option>Critical (80-100)</option>
+<option>Elevated (60-80)</option>
+<option>Moderate (30-60)</option>
+</select>
+<button class="bg-surface-container hover:bg-surface-dim rounded-lg p-2 text-primary transition-colors">
+<span class="material-symbols-outlined">refresh</span>
+</button>
+</div>
+<!-- Inventory Table -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label text-xs uppercase tracking-widest border-b border-outline-variant/10">
+<th class="px-6 py-4 w-12">
+<input class="rounded border-outline text-secondary focus:ring-secondary" type="checkbox"/>
+</th>
+<th class="px-6 py-4 font-bold">Product Name</th>
+<th class="px-6 py-4 font-bold">Category</th>
+<th class="px-6 py-4 font-bold">MRP</th>
+<th class="px-6 py-4 font-bold">Expiry Date</th>
+<th class="px-6 py-4 font-bold text-center">Stock Qty</th>
+<th class="px-6 py-4 font-bold">Risk Score</th>
+<th class="px-6 py-4 font-bold text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10 font-body text-sm">
+<!-- Row 1: High Risk -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-6 py-4">
+<input class="rounded border-outline text-secondary focus:ring-secondary" type="checkbox"/>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface-container overflow-hidden shrink-0">
+<img alt="Product" data-alt="close up of organic vine ripened tomatoes in a rustic wooden crate with soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFlLP6MSh8f5IWSpNO_0TIff4hcwFbJYNB_RkhT6b5H7vPsggGGWJt0v9igdTQhbyY8UiU1BVGvq4QoezZIhPC752bps6CdzLiIdGaiFG03DY9YF8I6dbO4J_fSYgiqlEmCdY4hjJAazhwvuUTm6zNJS_65H_CCVThZ1gYN7JmDnyF_Xc1AyzGl3Q0xDdYkfIKHzbPeY6TR_kcGuSqpf9JDv_Gfzs-pts1PDxGkc-r_XUxg92VOleyYnhirAemaSg4tfmkaSehKok"/>
+</div>
+<div>
+<p class="font-semibold text-primary">Organic Vine Tomatoes</p>
+<p class="text-[10px] font-label text-slate-400">SKU: TOM-V-092</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">Fresh Produce</td>
+<td class="px-6 py-4 font-headline font-bold text-primary">$4.99</td>
+<td class="px-6 py-4">
+<span class="font-label text-error font-bold italic">Today</span>
+</td>
+<td class="px-6 py-4 text-center font-label">84</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 rounded-full bg-error/10 text-error font-label text-xs font-bold border border-error/20">92 / 100</span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="bg-secondary text-white font-label text-xs px-3 py-1.5 rounded hover:bg-secondary/90 transition-all opacity-0 group-hover:opacity-100">Create Deal</button>
+<button class="p-1.5 hover:bg-slate-100 rounded text-slate-500"><span class="material-symbols-outlined text-lg">edit</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Elevated Risk -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-6 py-4">
+<input class="rounded border-outline text-secondary focus:ring-secondary" type="checkbox"/>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface-container overflow-hidden shrink-0">
+<img alt="Product" data-alt="glass bottle of fresh whole milk with condensation on a light blue background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCq2Nf-I7lsl075x4p6jlx2aHr7UCXASiaV6RNPjOCuGf-4DkjDPUK4gJWokyVAAGUTXrGvO34XIX3YzLFzy8inqT4nYz__chsxAeymPByAw-ein7dlubRki974RhvbQrXlfemhRhnrqu2rummfIVWeur1z6ONafNJZr-cceiGG-rJyVJafZM4UDfyf8lAwYpFQ6NHeq_wfIkBFEYYFv3wCQdt0qILZtF4CpHsPB7eHtJs2jd_67elf-4VKupRx8vD_YHF9TK3VC10"/>
+</div>
+<div>
+<p class="font-semibold text-primary">Full Cream Milk (1L)</p>
+<p class="text-[10px] font-label text-slate-400">SKU: MK-FC-101</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">Dairy &amp; Eggs</td>
+<td class="px-6 py-4 font-headline font-bold text-primary">$3.20</td>
+<td class="px-6 py-4 font-label">Oct 24, 2023</td>
+<td class="px-6 py-4 text-center font-label">210</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 rounded-full bg-orange-100 text-orange-600 font-label text-xs font-bold border border-orange-200">68 / 100</span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="bg-secondary text-white font-label text-xs px-3 py-1.5 rounded hover:bg-secondary/90 transition-all opacity-0 group-hover:opacity-100">Create Deal</button>
+<button class="p-1.5 hover:bg-slate-100 rounded text-slate-500"><span class="material-symbols-outlined text-lg">edit</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Moderate Risk -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-6 py-4">
+<input class="rounded border-outline text-secondary focus:ring-secondary" type="checkbox"/>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface-container overflow-hidden shrink-0">
+<img alt="Product" data-alt="freshly baked artisan sourdough bread loaf with a crisp golden crust on a dark surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsup4i9vrch7_LAduOKC8lSvrAIr0D1ENI-ijee56ltlt9wORSu1DWN3nxwCTBRgfDucGjfsCdi0Mi4fztZ9nnC_wtbub_6D4KWZyyIzisApWd8lsmI8EbDWxbQeyq8YvHFVY8yOMZr3G4O-tdUiiAdUW8ux6jrZP_fAruX5jIrjP1GV4wMv7PCXUIYywnbV4UbvdhUlqjZpvGaxsb_MIGnY-MeTwDP7qfGQ2jkFIZeySzCks2W-0RG3G_k9ibqg79-ZqSgXNm9J4"/>
+</div>
+<div>
+<p class="font-semibold text-primary">Artisan Sourdough</p>
+<p class="text-[10px] font-label text-slate-400">SKU: BKY-SD-55</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">Bakery</td>
+<td class="px-6 py-4 font-headline font-bold text-primary">$6.50</td>
+<td class="px-6 py-4 font-label">Oct 28, 2023</td>
+<td class="px-6 py-4 text-center font-label">12</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 rounded-full bg-yellow-100 text-yellow-700 font-label text-xs font-bold border border-yellow-200">45 / 100</span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="bg-secondary text-white font-label text-xs px-3 py-1.5 rounded hover:bg-secondary/90 transition-all opacity-0 group-hover:opacity-100">Create Deal</button>
+<button class="p-1.5 hover:bg-slate-100 rounded text-slate-500"><span class="material-symbols-outlined text-lg">edit</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 4: Low Risk -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-6 py-4">
+<input class="rounded border-outline text-secondary focus:ring-secondary" type="checkbox"/>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface-container overflow-hidden shrink-0">
+<img alt="Product" data-alt="stack of sharp cheddar cheese blocks on a marble platter with scattered nuts" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX2CbQ_WyOyB-8sbV7iYHK7vDDAjnqWFN7dN-z9EmQHoUzm0zugP83TBRP-N_n3E7eHwLnEA1Os4M70M9CK9csFmsZOeQGDtzksKR5QKydYb_y8zATdGY1eeE4uDwwNUtKSy0UVwp7KvPukmZoHGYlviK2z2NVzTTFTbRn2Vdrx61Tu9E1TYp2KBPyKns9ZoZ0JJx6aKSJiUVlcELwkCwWYyhMU8GdIw_N44rAX0Pjhi7giZlj7nqjUJY1a7pJdNGUqUZ-fqgd-5k"/>
+</div>
+<div>
+<p class="font-semibold text-primary">Aged Cheddar 250g</p>
+<p class="text-[10px] font-label text-slate-400">SKU: CH-AG-22</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">Dairy &amp; Eggs</td>
+<td class="px-6 py-4 font-headline font-bold text-primary">$8.90</td>
+<td class="px-6 py-4 font-label">Dec 12, 2023</td>
+<td class="px-6 py-4 text-center font-label">540</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 rounded-full bg-secondary-container/30 text-secondary font-label text-xs font-bold border border-secondary/20">12 / 100</span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="bg-secondary text-white font-label text-xs px-3 py-1.5 rounded hover:bg-secondary/90 transition-all opacity-0 group-hover:opacity-100">Create Deal</button>
+<button class="p-1.5 hover:bg-slate-100 rounded text-slate-500"><span class="material-symbols-outlined text-lg">edit</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 bg-surface-container-low/30 border-t border-outline-variant/10 flex items-center justify-between">
+<p class="text-xs font-label text-on-surface-variant">Showing 1 to 10 of 1,284 products</p>
+<div class="flex items-center gap-1">
+<button class="p-2 hover:bg-surface-container rounded-lg disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-secondary text-on-secondary font-label text-xs font-bold">1</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container text-primary font-label text-xs">2</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container text-primary font-label text-xs">3</button>
+<span class="px-2 text-slate-400 font-label text-xs">...</span>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container text-primary font-label text-xs">129</button>
+<button class="p-2 hover:bg-surface-container rounded-lg">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action for Quick Analysis -->
+<div class="fixed bottom-8 right-8 z-30">
+<button class="bg-primary text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform active:scale-95 group relative">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="absolute right-14 top-1/2 -translate-y-1/2 bg-primary text-white text-xs font-label px-3 py-1 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Analyze Loss Risk</span>
+</button>
+</div>
+</body></html>

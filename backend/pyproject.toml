@@ -1,0 +1,9 @@
+[project]
+name = "dealdrop-backend"
+version = "0.1.0"
+description = "DealDrop — Hyperlocal flash-sale marketplace API"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

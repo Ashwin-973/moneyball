@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Moneyball - Nearby Map View</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&amp;family=Inter:wght@400;500;600&amp;family=Space_Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-fixed": "#d7e5e6",
+              "inverse-on-surface": "#e5f4f4",
+              "tertiary-fixed-dim": "#c6c8bb",
+              "primary": "#0d1a1b",
+              "tertiary-container": "#2b2e25",
+              "inverse-primary": "#bbc9ca",
+              "on-secondary": "#ffffff",
+              "surface": "#eefcfd",
+              "on-surface-variant": "#424848",
+              "on-primary-fixed-variant": "#3c494a",
+              "surface-container": "#e2f1f2",
+              "on-error": "#ffffff",
+              "inverse-surface": "#263334",
+              "primary-fixed-dim": "#bbc9ca",
+              "on-secondary-fixed": "#0e2000",
+              "secondary-container": "#b8f47d",
+              "background": "#eefcfd",
+              "outline": "#737878",
+              "on-tertiary": "#ffffff",
+              "on-secondary-fixed-variant": "#2a5000",
+              "surface-dim": "#ceddde",
+              "secondary-fixed-dim": "#9dd765",
+              "tertiary": "#161911",
+              "on-tertiary-container": "#93958a",
+              "error": "#ba1a1a",
+              "outline-variant": "#c2c7c7",
+              "primary-container": "#222f30",
+              "on-tertiary-fixed": "#1a1d14",
+              "surface-tint": "#536162",
+              "on-primary-container": "#899798",
+              "tertiary-fixed": "#e2e4d6",
+              "surface-bright": "#eefcfd",
+              "on-secondary-container": "#3f7102",
+              "secondary": "#3a6a00",
+              "on-primary-fixed": "#111e1f",
+              "on-background": "#111e1f",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-highest": "#d7e5e6",
+              "on-primary": "#ffffff",
+              "on-tertiary-fixed-variant": "#45483e",
+              "surface-variant": "#d7e5e6",
+              "on-error-container": "#93000a",
+              "secondary-fixed": "#b8f47d",
+              "surface-container-high": "#dcebec",
+              "surface-container-low": "#e8f6f7",
+              "error-container": "#ffdad6",
+              "on-surface": "#111e1f"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Space Grotesk"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased overflow-hidden">
+<!-- Full Screen Map Background -->
+<div class="fixed inset-0 z-0 bg-surface-container-highest">
+<div class="w-full h-full relative opacity-80 mix-blend-multiply grayscale">
+<img class="w-full h-full object-cover" data-alt="Clean minimal city map view with light grey streets and soft white blocks for an architectural aesthetic" data-location="San Francisco" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_P-Af2nJXb-L84PsJfbdE0p1D4Ju1SKP9MLnNn7Cj6AZkUe6HylGnHNxJjtO2wR_SLstrBAGUxyxyCMpskYaysQ8i04-nEZyFxq0-xfJVnniRJt7Y8LxLVG9i_yGPYExWGZCL5cL1CJ5QP5l6UiUCgWaO3IynA2aTcDpnvdRHt6JwiQ1B0QuDkEhUmE6dPZ4rFrEcRhGyQ6FQ4WBCOBdO8y3-IJBqVtKgnl2wECr60_oqcg8durX8FX_ko75kASp_vcipL_CpZpg"/>
+</div>
+<!-- Custom Pins Overlay (Mock Positions) -->
+<div class="absolute top-[35%] left-[45%] -translate-x-1/2 -translate-y-1/2 z-10">
+<div class="relative flex flex-col items-center">
+<div class="bg-secondary text-on-secondary px-2 py-0.5 rounded-full text-[10px] font-label font-bold mb-1 shadow-lg ring-2 ring-surface">3 DEALS</div>
+<div class="w-8 h-8 bg-secondary rounded-full flex items-center justify-center shadow-xl ring-4 ring-secondary/20 active:scale-90 transition-transform cursor-pointer">
+<span class="material-symbols-outlined text-on-secondary text-sm">store</span>
+</div>
+</div>
+</div>
+<div class="absolute top-[55%] left-[65%] -translate-x-1/2 -translate-y-1/2 z-10">
+<div class="relative flex flex-col items-center">
+<div class="bg-secondary text-on-secondary px-2 py-0.5 rounded-full text-[10px] font-label font-bold mb-1 shadow-lg ring-2 ring-surface">1 DEAL</div>
+<div class="w-8 h-8 bg-secondary rounded-full flex items-center justify-center shadow-xl ring-4 ring-secondary/20 active:scale-90 transition-transform cursor-pointer">
+<span class="material-symbols-outlined text-on-secondary text-sm">local_cafe</span>
+</div>
+</div>
+</div>
+<div class="absolute top-[20%] left-[25%] -translate-x-1/2 -translate-y-1/2 z-10">
+<div class="relative flex flex-col items-center opacity-70">
+<div class="bg-primary text-on-primary px-2 py-0.5 rounded-full text-[10px] font-label font-bold mb-1 shadow-lg ring-2 ring-surface">7 DEALS</div>
+<div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center shadow-xl ring-4 ring-primary/20 active:scale-90 transition-transform cursor-pointer">
+<span class="material-symbols-outlined text-on-primary text-lg">shopping_basket</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Top Overlay: Search & Radius -->
+<div class="fixed top-0 left-0 w-full z-40 p-4 pointer-events-none">
+<div class="max-w-xl mx-auto flex flex-col gap-3">
+<!-- Search Row -->
+<div class="flex items-center gap-3 pointer-events-auto">
+<button class="w-12 h-12 flex items-center justify-center bg-surface-container-lowest rounded-xl shadow-xl active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<div class="flex-1 h-12 bg-surface-container-lowest rounded-xl shadow-xl flex items-center px-4 gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-on-surface font-body w-full placeholder:text-on-surface-variant/50" placeholder="Search nearby stores..." type="text"/>
+<span class="material-symbols-outlined text-secondary">tune</span>
+</div>
+</div>
+<!-- Radius Toggles -->
+<div class="flex justify-center pointer-events-auto">
+<div class="bg-primary/90 backdrop-blur-md rounded-full p-1 flex items-center gap-1 shadow-2xl border border-white/10">
+<button class="px-4 py-1.5 rounded-full text-xs font-label bg-secondary text-on-secondary shadow-lg">1KM</button>
+<button class="px-4 py-1.5 rounded-full text-xs font-label text-surface/60 hover:text-surface transition-colors">3KM</button>
+<button class="px-4 py-1.5 rounded-full text-xs font-label text-surface/60 hover:text-surface transition-colors">5KM</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Sheet Container -->
+<div class="fixed bottom-0 left-0 w-full z-40">
+<!-- Main Content Area (Peeking UI) -->
+<div class="bg-surface-container-low rounded-t-[24px] shadow-[0_-10px_40px_rgba(13,26,27,0.1)] border-t border-white/50 backdrop-blur-xl">
+<!-- Handle -->
+<div class="w-full flex justify-center py-3">
+<div class="w-12 h-1.5 bg-on-surface/10 rounded-full"></div>
+</div>
+<!-- Content Header -->
+<div class="px-6 flex items-center justify-between mb-4">
+<div>
+<h2 class="font-headline font-bold text-lg text-primary leading-tight">Nearby Pulse</h2>
+<p class="font-label text-[10px] text-on-surface-variant uppercase tracking-widest">12 active flash sales within 1km</p>
+</div>
+<button class="text-secondary font-label text-xs font-bold flex items-center gap-1">
+                    VIEW LIST <span class="material-symbols-outlined text-sm">unfold_more</span>
+</button>
+</div>
+<!-- Horizontal Scroll Cards -->
+<div class="hide-scrollbar overflow-x-auto flex gap-4 px-6 pb-10">
+<!-- Card 1 -->
+<div class="min-w-[280px] bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm flex flex-col group active:scale-95 transition-transform">
+<div class="h-32 relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Fresh organic produce market stand with vibrant green vegetables and ambient natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYCbgxW0Pc9loETFvHNArucJ3epq-lv8smvohKfIddGEMCF263pSiy7PYblszxsuflz7scLcmViJT2hsm2fFkWvPg5yZ7nUNMEnuHZk5fDDvz2G1udpU5KsMaH26ZZRIf9a6ZgBB0BZx-VaBUf_luTzBme3Y9fOuxi7rSxTsGRGHoylzqRLgFaSJgt2FcJ1n1vXxjYvFyzwfSqIig6DC2Qd9tnUYQ2nrb-_LMKfoSHJn6hkuauZxHjqAyHUz6CrZSL1F35Gi2iQNY"/>
+<div class="absolute top-2 right-2 bg-error text-on-error px-2 py-1 rounded-lg text-[10px] font-label font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">timer</span> 14:20
+                        </div>
+<div class="absolute bottom-2 left-2 bg-secondary-container text-on-secondary-container px-2 py-1 rounded-lg text-[10px] font-label font-bold">
+                            60% OFF
+                        </div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-body font-bold text-primary">Green Grocery Co.</h3>
+<span class="font-label text-[10px] text-on-surface-variant">0.2 MI</span>
+</div>
+<p class="text-xs text-on-surface-variant mb-3">Fresh Avocado &amp; Citrus Box</p>
+<div class="flex items-center justify-between">
+<div class="flex items-baseline gap-2">
+<span class="text-lg font-headline font-extrabold text-secondary">$4.50</span>
+<span class="text-xs text-on-surface-variant line-through">$12.00</span>
+</div>
+<button class="bg-primary text-on-primary w-8 h-8 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="min-w-[280px] bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm flex flex-col group active:scale-95 transition-transform">
+<div class="h-32 relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Close up of a professional espresso machine pouring a perfect latte with steam and copper accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGo7iwodkRPy8ZcRMdfFubzhAapP0MU4aq4JzWFWP2Ys8UkGWuazt_tfM78wSoXkpQK02M7QtoQdRglMzkw6OYQzZWhgjCMwjYMnUymfNiyaPCbJDaLAhXixdGn5s9V7n-fDXhHdnlJfrpnilr7FsaPWPf5U1fflOQxD6kD60oZ3bYLLqREl2lGrdpr9GDMZll73l2LsJu51pYKER4NnCrEkGXcacyTbApZDyQv4SBIUoRPZkUlkZCmkdRbNrKECC2l1KitKmUY2o"/>
+<div class="absolute top-2 right-2 bg-error text-on-error px-2 py-1 rounded-lg text-[10px] font-label font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">timer</span> 08:45
+                        </div>
+<div class="absolute bottom-2 left-2 bg-secondary-container text-on-secondary-container px-2 py-1 rounded-lg text-[10px] font-label font-bold">
+                            BOGO
+                        </div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-body font-bold text-primary">The Daily Grind</h3>
+<span class="font-label text-[10px] text-on-surface-variant">0.4 MI</span>
+</div>
+<p class="text-xs text-on-surface-variant mb-3">Any Large Specialty Coffee</p>
+<div class="flex items-center justify-between">
+<div class="flex items-baseline gap-2">
+<span class="text-lg font-headline font-extrabold text-secondary">$3.20</span>
+<span class="text-xs text-on-surface-variant line-through">$6.40</span>
+</div>
+<button class="bg-primary text-on-primary w-8 h-8 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="min-w-[280px] bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm flex flex-col group active:scale-95 transition-transform">
+<div class="h-32 relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Artisan sourdough bakery display with crusty loaves of bread on wooden shelves and warm golden lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZrJurIyY_VqjT41XA4S-hrcEuBcqdVXFIchSzHyA6R7brssZ5rCYPQY411z77PSD6aa5QL9Ggxb5y4yep5KZ5GuD12fV42onX8qnA8-VOY_11DyM07Vh3gCYPU48wHA8Vqmvi0f95rO-Uggy5gcSKZ2h0_6BmFVxeES9VH3iH6dDr30-YDpA2w4cp8VnieV-FUgrj576lMpGdVn5zGM721C2Yxq22volMoomh33Bj3hrEIJcfqXHZ8JUti1jsdqm4qsANMvmWwNw"/>
+<div class="absolute top-2 right-2 bg-error text-on-error px-2 py-1 rounded-lg text-[10px] font-label font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">timer</span> 22:10
+                        </div>
+<div class="absolute bottom-2 left-2 bg-secondary-container text-on-secondary-container px-2 py-1 rounded-lg text-[10px] font-label font-bold">
+                            50% OFF
+                        </div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-body font-bold text-primary">Artisan Hearth</h3>
+<span class="font-label text-[10px] text-on-surface-variant">0.7 MI</span>
+</div>
+<p class="text-xs text-on-surface-variant mb-3">Daily Bread &amp; Pastry Box</p>
+<div class="flex items-center justify-between">
+<div class="flex items-baseline gap-2">
+<span class="text-lg font-headline font-extrabold text-secondary">$6.00</span>
+<span class="text-xs text-on-surface-variant line-through">$12.00</span>
+</div>
+<button class="bg-primary text-on-primary w-8 h-8 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Bar (Mandatory Shell) -->
+<nav class="fixed bottom-0 w-full z-50 pb-safe bg-[#eefcfd]/90 dark:bg-[#0d1a1b]/90 backdrop-blur-lg border-t border-[#0d1a1b]/5 dark:border-[#eefcfd]/5 shadow-[0_-10px_30px_rgba(13,26,27,0.04)] flex justify-around items-center h-20 px-2">
+<a class="flex flex-col items-center justify-center text-[#0d1a1b]/50 dark:text-[#eefcfd]/50 hover:bg-[#3a6a00]/5 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase tracking-wider">Savings</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#3a6a00]/10 dark:bg-[#3a6a00]/20 text-[#3a6a00] rounded-xl px-4 py-1 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">map</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase tracking-wider font-bold">Map</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#0d1a1b]/50 dark:text-[#eefcfd]/50 hover:bg-[#3a6a00]/5 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">local_fire_department</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase tracking-wider">Deals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#0d1a1b]/50 dark:text-[#eefcfd]/50 hover:bg-[#3a6a00]/5 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase tracking-wider">Profile</span>
+</a>
+</nav>
+<!-- Side Map Utilities (Quick zoom/Location) -->
+<div class="fixed right-4 top-1/2 -translate-y-1/2 flex flex-col gap-2 z-40">
+<button class="w-10 h-10 bg-surface-container-lowest rounded-lg shadow-lg flex items-center justify-center active:scale-90 transition-transform border border-on-surface/5">
+<span class="material-symbols-outlined text-primary">add</span>
+</button>
+<button class="w-10 h-10 bg-surface-container-lowest rounded-lg shadow-lg flex items-center justify-center active:scale-90 transition-transform border border-on-surface/5">
+<span class="material-symbols-outlined text-primary">remove</span>
+</button>
+<div class="h-2"></div>
+<button class="w-10 h-10 bg-secondary text-on-secondary rounded-lg shadow-xl flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">my_location</span>
+</button>
+</div>
+</body></html>

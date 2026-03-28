@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Moneyball Retailer - Reservations Inbox</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-surface-variant": "#424848",
+              "primary-fixed": "#d7e5e6",
+              "on-secondary-container": "#3f7102",
+              "surface-dim": "#ceddde",
+              "on-background": "#111e1f",
+              "surface-container-highest": "#d7e5e6",
+              "on-primary": "#ffffff",
+              "surface-container": "#e2f1f2",
+              "primary-container": "#222f30",
+              "on-primary-container": "#899798",
+              "surface-container-high": "#dcebec",
+              "surface-container-low": "#e8f6f7",
+              "secondary-fixed": "#b8f47d",
+              "primary-fixed-dim": "#bbc9ca",
+              "surface-variant": "#d7e5e6",
+              "on-secondary-fixed": "#0e2000",
+              "surface-container-lowest": "#ffffff",
+              "tertiary": "#161911",
+              "on-primary-fixed-variant": "#3c494a",
+              "secondary-fixed-dim": "#9dd765",
+              "on-primary-fixed": "#111e1f",
+              "inverse-surface": "#263334",
+              "secondary": "#3a6a00",
+              "on-error": "#ffffff",
+              "outline": "#737878",
+              "on-surface": "#111e1f",
+              "on-secondary": "#ffffff",
+              "surface-tint": "#536162",
+              "primary": "#0d1a1b",
+              "on-secondary-fixed-variant": "#2a5000",
+              "inverse-on-surface": "#e5f4f4",
+              "outline-variant": "#c2c7c7",
+              "tertiary-container": "#2b2e25",
+              "surface": "#eefcfd",
+              "on-tertiary-fixed": "#1a1d14",
+              "on-tertiary-container": "#93958a",
+              "on-tertiary-fixed-variant": "#45483e",
+              "background": "#eefcfd",
+              "inverse-primary": "#bbc9ca",
+              "tertiary-fixed": "#e2e4d6",
+              "on-tertiary": "#ffffff",
+              "error": "#ba1a1a",
+              "tertiary-fixed-dim": "#c6c8bb",
+              "secondary-container": "#b8f47d",
+              "surface-bright": "#eefcfd",
+              "on-error-container": "#93000a",
+              "error-container": "#ffdad6"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Space Grotesk"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .font-headline { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-label { font-family: 'Space Grotesk', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+<!-- SideNavBar (Authority Source: JSON) -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-[#0d1a1b] flex flex-col py-6 border-r border-[#eefcfd]/10 z-50">
+<div class="px-6 mb-10">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">currency_exchange</span>
+</div>
+<div>
+<h1 class="text-xl font-bold text-[#eefcfd] tracking-tighter">Moneyball</h1>
+<p class="text-[10px] font-label uppercase tracking-widest text-[#eefcfd]/50">Retailer Suite</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="text-[#eefcfd]/70 flex items-center gap-3 px-6 py-3 hover:text-[#eefcfd] transition-all active:translate-x-1 duration-150 font-label uppercase text-xs tracking-widest" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="bg-[#3a6a00] text-[#eefcfd] rounded-lg mx-2 my-1 flex items-center gap-3 px-4 py-3 active:translate-x-1 duration-150 font-label uppercase text-xs tracking-widest" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">all_inbox</span>
+<span>Inbox</span>
+</a>
+<a class="text-[#eefcfd]/70 flex items-center gap-3 px-6 py-3 hover:text-[#eefcfd] transition-all active:translate-x-1 duration-150 font-label uppercase text-xs tracking-widest" href="#">
+<span class="material-symbols-outlined">query_stats</span>
+<span>Demand Intelligence</span>
+</a>
+<a class="text-[#eefcfd]/70 flex items-center gap-3 px-6 py-3 hover:text-[#eefcfd] transition-all active:translate-x-1 duration-150 font-label uppercase text-xs tracking-widest" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span>Analytics</span>
+</a>
+</nav>
+<div class="px-4 mb-6">
+<button class="w-full bg-secondary text-on-secondary py-3 rounded-lg font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-secondary/20">
+<span class="material-symbols-outlined text-sm">add</span>
+                New Campaign
+            </button>
+</div>
+<div class="mt-auto border-t border-[#eefcfd]/10 pt-4">
+<a class="text-[#eefcfd]/70 flex items-center gap-3 px-6 py-3 hover:text-[#eefcfd] transition-all font-label uppercase text-xs tracking-widest" href="#">
+<span class="material-symbols-outlined">contact_support</span>
+<span>Support</span>
+</a>
+<a class="text-[#eefcfd]/70 flex items-center gap-3 px-6 py-3 hover:text-[#eefcfd] transition-all font-label uppercase text-xs tracking-widest" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span>Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-64 min-h-screen">
+<!-- TopAppBar (Authority Source: JSON) -->
+<header class="flex justify-between items-center px-8 h-16 w-full backdrop-blur-xl bg-[#eefcfd]/80 sticky top-0 z-40 shadow-[0_20px_40px_rgba(17,30,31,0.06)]">
+<div class="flex items-center gap-8">
+<h2 class="font-headline font-black text-2xl text-[#0d1a1b] tracking-tighter">Inbox</h2>
+<div class="relative">
+<span class="absolute inset-y-0 left-3 flex items-center text-on-surface-variant/50">
+<span class="material-symbols-outlined text-lg">search</span>
+</span>
+<input class="bg-surface-container-highest border-none rounded-lg pl-10 pr-4 py-1.5 text-sm w-64 focus:ring-2 focus:ring-secondary/20 font-label" placeholder="Search reservations..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-secondary/10 transition-colors text-on-background/70">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 rounded-full hover:bg-secondary/10 transition-colors text-on-background/70">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button class="p-2 rounded-full hover:bg-secondary/10 transition-colors text-on-background/70">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden bg-surface-container-highest ml-2">
+<img alt="Retailer Profile" class="w-full h-full object-cover" data-alt="professional retailer profile photo of a man in a modern office setting, bright lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrLdLBGg4DpvJL3XwBU-pXnoCgiXm6_JtzQUHxXD2Jaf5kZovpc2IimZ-wWlnYNDALPkiRSVs80tboPVCE3mo2S1HF0_OMn8vBs01LwdVE8gwXUzPrdXCluzQP-bf5eJL8S-x9G0ZFriQh3r--ykZjM-Gj2LrdNw2fowTRudhUFQwMRd-drC4U7b31XPYj2UG6kc3Wpvzr5zBRz8Us7C3FblYEYku9C98TTlRcRpvA99mbAyds1O5as4GFfkI2GOR3xBDLVE1dyEc"/>
+</div>
+</div>
+</header>
+<div class="p-8">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+<div>
+<div class="flex items-center gap-3 mb-1">
+<h1 class="text-4xl font-headline font-black text-primary tracking-tight">Reservations</h1>
+<span class="bg-error text-white text-sm font-label font-bold px-2.5 py-0.5 rounded-full shadow-sm shadow-error/30">12 PENDING</span>
+</div>
+<p class="text-on-surface-variant font-body">Manage real-time customer pick-ups and deal validations.</p>
+</div>
+<!-- Filter Tabs -->
+<div class="flex bg-surface-container-low p-1 rounded-xl">
+<button class="px-6 py-2 rounded-lg text-sm font-bold bg-primary text-white transition-all shadow-lg shadow-primary/10">All</button>
+<button class="px-6 py-2 rounded-lg text-sm font-bold text-on-surface-variant hover:text-primary transition-all">Pending</button>
+<button class="px-6 py-2 rounded-lg text-sm font-bold text-on-surface-variant hover:text-primary transition-all">Confirmed</button>
+<button class="px-6 py-2 rounded-lg text-sm font-bold text-on-surface-variant hover:text-primary transition-all">Completed</button>
+</div>
+</div>
+<!-- Inbox Table Container -->
+<div class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-[0_20px_40px_rgba(17,30,31,0.04)]">
+<div class="overflow-x-auto">
+<table class="w-full border-collapse text-left">
+<thead>
+<tr class="border-b border-surface-container text-[10px] font-label uppercase tracking-widest text-on-surface-variant/60 bg-surface-container-low/50">
+<th class="px-6 py-4 font-semibold">Customer</th>
+<th class="px-6 py-4 font-semibold">Product &amp; Quantity</th>
+<th class="px-6 py-4 font-semibold">Deal Price</th>
+<th class="px-6 py-4 font-semibold">Reserved At</th>
+<th class="px-6 py-4 font-semibold">Hold Expires</th>
+<th class="px-6 py-4 font-semibold text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<!-- Pending Row 1 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors group">
+<td class="px-6 py-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary font-bold font-label">
+                                            #10
+                                        </div>
+<div>
+<p class="font-bold text-primary">Customer #1042</p>
+<p class="text-xs text-on-surface-variant font-label">Gold Tier Member</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="stylish red running shoe on a minimalist background with clean studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEnWGCRV_9qXmXgl7dgyYvfmtSzKYyk6pG4EV4RRqFTMnTwsm0-6CxIrRUpSfUXyzJRd6yi1RLIhI2oKVYTGO9mPVqG7U8oA75ffsdoWJlQoq3F6jSyAvy6mhjT8ePa3qT7N-ZQN59202Zq1YLn2Lxmu2uqmj5CAsQax2j9ZZ8eMSp6GVfkKpP7Sk1Ym02DZIzQ71SHe5f4zovvhs2KY-2rszNq094HqcF2pP8aZlMZ8ilUfRZgAnXmZzfQJLWzUgbQGvdOcXTZ9o"/>
+</div>
+<div>
+<p class="font-bold text-primary">Velocity Knit Trainers</p>
+<p class="text-xs text-on-surface-variant">Qty: 01</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-6 font-black text-lg text-primary tracking-tighter">$42.00</td>
+<td class="px-6 py-6 text-sm text-on-surface-variant font-label">14:22 PM</td>
+<td class="px-6 py-6">
+<div class="flex items-center gap-1.5 text-error font-label font-bold text-sm">
+<span class="material-symbols-outlined text-base">timer</span>
+<span>08:42</span>
+</div>
+</td>
+<td class="px-6 py-6 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="h-9 px-4 rounded-lg bg-secondary text-on-secondary text-xs font-bold transition-all active:scale-95">Confirm</button>
+<button class="h-9 px-4 rounded-lg border border-error text-error text-xs font-bold hover:bg-error/5 transition-all active:scale-95">Reject</button>
+</div>
+<div class="flex items-center justify-end gap-2 group-hover:hidden">
+<span class="material-symbols-outlined text-on-surface-variant/40">more_horiz</span>
+</div>
+</td>
+</tr>
+<!-- Confirmed Row (Highlighted) -->
+<tr class="bg-secondary/5 transition-colors border-l-4 border-secondary">
+<td class="px-6 py-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary font-bold font-label">
+                                            #88
+                                        </div>
+<div>
+<p class="font-bold text-primary">Customer #0988</p>
+<p class="text-xs text-on-surface-variant font-label">Frequent Local</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="minimalist modern watch with white face and silver band on clean light background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZd0myF9QTVlXkZJHs7ZMJCkQnCXg9XNXP-4_XdDX1baDnRtdl78HwZnsqBD6qGLueXs5KpstqkGzH_IAp1I72stF521Quzq5TtBBdWBF4p1QeBHEr9KCxl-n2VpAtgCxI5vy9Bnze5vozaB_KKJbL6Lzbm-AJ-Pz7kS1kvvxwj8I3XErhRH1fmoFUjnfx_qsxBlewKS1y6ulSMYRAiXMZqgMMR81lV8Kg3n5Ydk8NVYVnQCMXQWhlPyhNsuqvFnAyAmL5mJI54ic"/>
+</div>
+<div>
+<p class="font-bold text-primary">Core Chronograph</p>
+<p class="text-xs text-on-surface-variant">Qty: 01</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-6 font-black text-lg text-primary tracking-tighter">$115.00</td>
+<td class="px-6 py-6 text-sm text-on-surface-variant font-label">12:10 PM</td>
+<td class="px-6 py-6">
+<span class="px-2.5 py-1 rounded-full bg-secondary/10 text-secondary text-[10px] font-label font-bold uppercase tracking-wider">Confirmed</span>
+</td>
+<td class="px-6 py-6 text-right">
+<button class="h-9 px-4 rounded-lg bg-primary text-white text-xs font-bold hover:bg-primary-container transition-all active:scale-95 shadow-sm">Mark as Picked Up</button>
+</td>
+</tr>
+<!-- Pending Row 2 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors group">
+<td class="px-6 py-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary font-bold font-label">
+                                            #11
+                                        </div>
+<div>
+<p class="font-bold text-primary">Customer #1104</p>
+<p class="text-xs text-on-surface-variant font-label">New Customer</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="premium studio headphones in black and silver with high-end materials and soft shadow" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8EoNdx5QSaQqnqs-UCxanIlRoqO5C2EIv9I6SO3XIGFA3YC54ZB1JCVo48Ej74DY0eWPxxdHhXbkaDsDkdZ6ijS3sCxwIjzTnlxKNZB-ocJZLrHKw9zccW7fFZ322o6K7MB277SpydENrNGboEkLl4kC8WmvZFjXWKYWSXeoOBMFg4wB13MrPE0lYBF1PKZ4DDxBOleXtZ_3KJD84chvreCpNPtaJapulGD1uyQHw7DfvLDZEl0XL9J-n4x9XecIS4WKi3B_camo"/>
+</div>
+<div>
+<p class="font-bold text-primary">Studio Bass X1</p>
+<p class="text-xs text-on-surface-variant">Qty: 02</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-6 font-black text-lg text-primary tracking-tighter">$189.90</td>
+<td class="px-6 py-6 text-sm text-on-surface-variant font-label">14:55 PM</td>
+<td class="px-6 py-6">
+<div class="flex items-center gap-1.5 text-error font-label font-bold text-sm">
+<span class="material-symbols-outlined text-base">timer</span>
+<span>24:15</span>
+</div>
+</td>
+<td class="px-6 py-6 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="h-9 px-4 rounded-lg bg-secondary text-on-secondary text-xs font-bold transition-all">Confirm</button>
+<button class="h-9 px-4 rounded-lg border border-error text-error text-xs font-bold hover:bg-error/5 transition-all">Reject</button>
+</div>
+<div class="flex items-center justify-end gap-2 group-hover:hidden">
+<span class="material-symbols-outlined text-on-surface-variant/40">more_horiz</span>
+</div>
+</td>
+</tr>
+<!-- Completed Row -->
+<tr class="opacity-60 grayscale-[0.5] transition-colors">
+<td class="px-6 py-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant font-bold font-label">
+                                            #07
+                                        </div>
+<div>
+<p class="font-bold text-primary">Customer #0762</p>
+<p class="text-xs text-on-surface-variant font-label">Gold Tier Member</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="close up of premium leather sneakers with textured detailing in soft diffuse light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzghjemK69uDoN6Kf8U3Qm8orjI19OuNJse--N-lWFWEmzH5053WpfNhZgl8GAfsUERdET5AhqjEyjTWWgTPT_nZkFYr6ZCRdf9Q74UdJfzItauaxEuiAhdhyvL6SBIJhErwkkNpNVMwiDhI2QziIL0AAeyzSbgC27KJg4BivtdE-saxh6GDWtVpV7lQP7--CaBUfk2B9Ar-ZtcOjNqdQrwKz-32T12cC54e8TOxGEVwUtqicU35wSopL5hqmYHBDsUN1XxPOBh2Q"/>
+</div>
+<div>
+<p class="font-bold text-primary">Cloud Walkers v2</p>
+<p class="text-xs text-on-surface-variant">Qty: 01</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-6 font-black text-lg text-primary tracking-tighter">$64.00</td>
+<td class="px-6 py-6 text-sm text-on-surface-variant font-label">10:45 AM</td>
+<td class="px-6 py-6">
+<span class="px-2.5 py-1 rounded-full bg-surface-container-highest text-on-surface-variant text-[10px] font-label font-bold uppercase tracking-wider">Completed</span>
+</td>
+<td class="px-6 py-6 text-right">
+<span class="text-xs font-label text-on-surface-variant/60 italic">Picked up at 11:30 AM</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination / Footer -->
+<div class="px-6 py-4 bg-surface-container-low/50 flex items-center justify-between">
+<p class="text-xs font-label text-on-surface-variant">Showing 4 of 12 active reservations</p>
+<div class="flex items-center gap-2">
+<button class="p-1.5 rounded-lg border border-outline-variant hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="p-1.5 rounded-lg border border-outline-variant hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Dashboard Pulse (Bento style small widgets) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+<div class="bg-primary text-on-primary p-6 rounded-2xl relative overflow-hidden group">
+<div class="relative z-10">
+<p class="font-label uppercase text-[10px] tracking-widest text-on-primary-container mb-2">Real-time Demand</p>
+<h3 class="text-3xl font-headline font-black tracking-tight mb-1">+24%</h3>
+<p class="text-xs text-on-primary-container">Reservations up vs yesterday</p>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-10 transform group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-9xl">trending_up</span>
+</div>
+</div>
+<div class="bg-secondary-container text-on-secondary-container p-6 rounded-2xl relative overflow-hidden">
+<p class="font-label uppercase text-[10px] tracking-widest text-on-secondary-fixed-variant mb-2">Validation Rate</p>
+<h3 class="text-3xl font-headline font-black tracking-tight mb-1">98.2%</h3>
+<p class="text-xs text-on-secondary-fixed-variant">Customers arrived for pick-up</p>
+</div>
+<div class="bg-surface-container-highest border border-outline-variant/10 p-6 rounded-2xl flex items-center justify-between">
+<div>
+<p class="font-label uppercase text-[10px] tracking-widest text-on-surface-variant mb-2">Expiring Soon</p>
+<div class="flex items-center gap-2">
+<span class="text-2xl font-black text-error font-headline">03</span>
+<span class="text-xs font-label text-on-surface-variant">Reservations under<br/>10 mins left</span>
+</div>
+</div>
+<button class="bg-surface-container-lowest p-3 rounded-xl shadow-sm text-primary hover:text-secondary transition-colors">
+<span class="material-symbols-outlined">bolt</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Urgency Tooltip (Mock) -->
+<div class="fixed bottom-8 right-8 z-50 animate-bounce">
+<div class="bg-error text-white px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">warning</span>
+<div>
+<p class="text-[10px] font-label font-bold uppercase tracking-widest leading-none mb-1">Critical Update</p>
+<p class="text-xs font-bold">New reservation for Velocity Knit Trainers</p>
+</div>
+<button class="ml-2 hover:bg-white/20 p-1 rounded">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+</div>
+</body></html>

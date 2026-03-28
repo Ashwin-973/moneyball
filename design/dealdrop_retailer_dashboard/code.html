@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DealDrop Partner Portal</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@700;800&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-container": "#b8f47d",
+              "primary-fixed-dim": "#bbc9ca",
+              "on-secondary-fixed-variant": "#2a5000",
+              "outline-variant": "#c2c7c7",
+              "on-tertiary-fixed-variant": "#45483e",
+              "outline": "#737878",
+              "surface-dim": "#ceddde",
+              "inverse-primary": "#bbc9ca",
+              "surface": "#eefcfd",
+              "error": "#ba1a1a",
+              "background": "#eefcfd",
+              "on-error-container": "#93000a",
+              "on-secondary-container": "#3f7102",
+              "on-tertiary-fixed": "#1a1d14",
+              "tertiary": "#161911",
+              "on-surface": "#111e1f",
+              "secondary-fixed-dim": "#9dd765",
+              "on-primary": "#ffffff",
+              "error-container": "#ffdad6",
+              "on-secondary": "#ffffff",
+              "on-primary-container": "#899798",
+              "primary-fixed": "#d7e5e6",
+              "secondary": "#3a6a00",
+              "surface-variant": "#d7e5e6",
+              "inverse-on-surface": "#e5f4f4",
+              "tertiary-container": "#2b2e25",
+              "surface-tint": "#536162",
+              "primary": "#0d1a1b",
+              "surface-container": "#e2f1f2",
+              "inverse-surface": "#263334",
+              "surface-container-high": "#dcebec",
+              "surface-container-low": "#e8f6f7",
+              "surface-container-lowest": "#ffffff",
+              "on-surface-variant": "#424848",
+              "on-primary-fixed-variant": "#3c494a",
+              "primary-container": "#222f30",
+              "tertiary-fixed-dim": "#c6c8bb",
+              "on-background": "#111e1f",
+              "surface-bright": "#eefcfd",
+              "on-primary-fixed": "#111e1f",
+              "on-tertiary": "#ffffff",
+              "on-secondary-fixed": "#0e2000",
+              "on-tertiary-container": "#93958a",
+              "on-error": "#ffffff",
+              "tertiary-fixed": "#e2e4d6",
+              "surface-container-highest": "#d7e5e6",
+              "secondary-fixed": "#b8f47d"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Space Grotesk"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #eefcfd;
+      }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- SideNavBar (Authority: JSON) -->
+<aside class="bg-[#0d1a1b] h-full w-64 fixed left-0 top-0 flex flex-col overflow-y-auto py-6 z-50 shadow-2xl shadow-[#0d1a1b]/20">
+<div class="px-6 mb-10 flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-white" data-icon="storefront">storefront</span>
+</div>
+<div>
+<h1 class="font-headline text-xl font-extrabold text-[#eefcfd]">Partner Portal</h1>
+<p class="font-label text-[10px] uppercase tracking-widest text-[#eefcfd]/50">Manage your pulse</p>
+</div>
+</div>
+<nav class="flex-1 space-y-2">
+<!-- Dashboard Tab (Active) -->
+<a class="bg-[#3a6a00] text-[#eefcfd] rounded-lg mx-2 px-4 py-3 font-bold flex items-center gap-3 transition-all translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label text-sm uppercase tracking-wide">Dashboard</span>
+</a>
+<!-- Inventory Tab -->
+<a class="text-[#eefcfd]/70 hover:bg-[#eefcfd]/10 mx-2 px-4 py-3 rounded-lg flex items-center gap-3 transition-all hover:bg-[#1a2b2c]" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-label text-sm uppercase tracking-wide">Inventory</span>
+</a>
+<!-- Orders Tab -->
+<a class="text-[#eefcfd]/70 hover:bg-[#eefcfd]/10 mx-2 px-4 py-3 rounded-lg flex items-center gap-3 transition-all hover:bg-[#1a2b2c]" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="font-label text-sm uppercase tracking-wide">Orders</span>
+</a>
+<!-- Analytics Tab -->
+<a class="text-[#eefcfd]/70 hover:bg-[#eefcfd]/10 mx-2 px-4 py-3 rounded-lg flex items-center gap-3 transition-all hover:bg-[#1a2b2c]" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label text-sm uppercase tracking-wide">Analytics</span>
+</a>
+</nav>
+<div class="px-4 mt-auto">
+<button class="w-full bg-secondary text-white font-label text-xs font-bold uppercase tracking-widest py-4 rounded-lg hover:brightness-110 transition-all active:scale-95 shadow-lg shadow-secondary/20">
+                List New Deal
+            </button>
+<div class="mt-6 flex items-center gap-3 px-2 py-3 bg-[#1a2b2c] rounded-xl">
+<img alt="Retailer Store Logo" class="w-10 h-10 rounded-full object-cover" data-alt="portrait of a professional store manager in a clean modern retail environment with soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwVgNzulNXpTZF5ERYCpmISHtbPTGSOxKmFwwmTcankuGiZMEBmJ1xrrNJEQ_jHzqnIMxb4Brzwuv3HOhQ9WkJYz4i_6L8MjaJbOdYpPRM98HJ4OqFYxWzIpYbhok9rHn0nOD4y_NCA-NfLbwxpu5lECfTYbq2Sg2YZpT-4YFfclQKaIBtOIII5US5yALg1jZBSaMacmmniXFIyzrlbkPxDbeQzjZg9KZunuxwtUdQzejaaFlt6zltg9o5NevZyNIstRUhC3eoMzE"/>
+<div class="overflow-hidden">
+<p class="text-[#eefcfd] text-sm font-bold truncate">Artisan Heights</p>
+<p class="text-[#eefcfd]/40 text-[10px] truncate">Store ID: #8829</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen bg-surface p-8 lg:p-12">
+<!-- Header Section -->
+<header class="flex justify-between items-end mb-12">
+<div>
+<h2 class="font-headline text-4xl font-black text-primary tracking-tight">Marketplace Pulse</h2>
+<p class="font-body text-on-surface-variant mt-2 max-w-md">Real-time performance metrics for your hyperlocal flash listings.</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="bg-surface-container-high px-4 py-2 rounded-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary scale-75" data-icon="calendar_today">calendar_today</span>
+<span class="font-label text-xs font-bold text-primary">OCT 24, 2024</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center cursor-pointer hover:bg-secondary-container transition-colors">
+<span class="material-symbols-outlined text-primary" data-icon="notifications">notifications</span>
+</div>
+</div>
+</header>
+<!-- Stats Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+<!-- Metric 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl" data-icon="bolt">bolt</span>
+</div>
+<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Deals Active</p>
+<h3 class="font-headline text-5xl font-black text-primary mt-2">14</h3>
+<div class="mt-4 flex items-center gap-2">
+<span class="text-secondary text-xs font-bold">+2 since 1h ago</span>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl" data-icon="bookmark">bookmark</span>
+</div>
+<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Items Saved</p>
+<h3 class="font-headline text-5xl font-black text-primary mt-2">182</h3>
+<div class="mt-4 flex items-center gap-2 text-on-surface-variant">
+<span class="text-xs font-medium">89% conversion potential</span>
+</div>
+</div>
+<!-- Metric 3 -->
+<div class="bg-primary p-6 rounded-xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-20">
+<span class="material-symbols-outlined text-white text-6xl" data-icon="payments">payments</span>
+</div>
+<p class="font-label text-[10px] uppercase tracking-widest text-on-primary-container font-bold">Revenue Today</p>
+<h3 class="font-headline text-4xl font-black text-white mt-2 tracking-tight">$2,840.00</h3>
+<div class="mt-4 flex items-center gap-2">
+<span class="bg-secondary px-2 py-0.5 rounded text-[10px] font-bold text-white">LIVE</span>
+</div>
+</div>
+<!-- Metric 4 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl" data-icon="group">group</span>
+</div>
+<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Waitlist</p>
+<h3 class="font-headline text-5xl font-black text-primary mt-2">41</h3>
+<div class="mt-4 flex items-center gap-2">
+<span class="text-error text-xs font-bold">High urgency detected</span>
+</div>
+</div>
+</div>
+<!-- Inventory List (The Canvas) -->
+<section class="bg-surface-container-low rounded-xl overflow-hidden">
+<div class="px-8 py-6 flex justify-between items-center bg-surface-container">
+<h4 class="font-headline text-lg font-bold text-primary">Active Inventory</h4>
+<div class="flex gap-2">
+<div class="relative">
+<input class="bg-surface-container-lowest border-none rounded-lg font-label text-xs py-2 pl-10 pr-4 w-64 focus:ring-1 focus:ring-secondary" placeholder="Filter listing..." type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-2 text-on-surface-variant scale-75" data-icon="search">search</span>
+</div>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant border-b border-outline-variant/10">
+<th class="px-8 py-5 font-bold">Item &amp; SKU</th>
+<th class="px-4 py-5 font-bold text-center">Qty</th>
+<th class="px-4 py-5 font-bold">Price</th>
+<th class="px-4 py-5 font-bold">Expiry</th>
+<th class="px-4 py-5 font-bold">Status</th>
+<th class="px-8 py-5 font-bold text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body text-sm">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-highest transition-colors">
+<td class="px-8 py-5">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-container-highest rounded-lg flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="artisanal sourdough bread loaves stacked on a rustic wooden shelf with soft morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAO4i-9-q9pOYdKc9kk3GciZAm0gs16NyT9L-XhoUjOCWuKgP1nIBOaoZpcMY9AA3c8cAoitijVmefOXH5Lolg9u733Mgs0zP9omccuX0V7wnjOKzee90fY3yzp7XNw94xhUi9N5ceyn67DGtYe55tcQqrY0WcdMPI5wAq4B3J3MQ_Iq_EtadURwjDhYDvDoTOG8PsaXvqW-jfRJQpzEnHASRyvptfdwlgAm2POWgL0Mmjz3lD7CyWZI4sC73VP0eVuqDjAemd-bYU"/>
+</div>
+<div>
+<p class="font-bold text-primary">Sourdough Reserve Batch</p>
+<p class="font-label text-[10px] text-on-surface-variant tracking-wider">SKU: BAK-9921</p>
+</div>
+</div>
+</td>
+<td class="px-4 py-5 text-center font-label font-bold text-primary">08</td>
+<td class="px-4 py-5">
+<span class="font-bold text-primary">$4.50</span>
+<span class="block text-[10px] line-through text-on-surface-variant">$12.00</span>
+</td>
+<td class="px-4 py-5">
+<span class="font-label text-xs text-error font-bold">02h 44m</span>
+</td>
+<td class="px-4 py-5">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-tighter">Active</span>
+</td>
+<td class="px-8 py-5 text-right">
+<div class="flex justify-end gap-3 text-on-surface-variant">
+<button class="hover:text-secondary transition-colors" title="Edit"><span class="material-symbols-outlined scale-90" data-icon="edit">edit</span></button>
+<button class="hover:text-secondary transition-colors" title="Mark as Sold"><span class="material-symbols-outlined scale-90" data-icon="check_circle">check_circle</span></button>
+<button class="hover:text-error transition-colors" title="Delete"><span class="material-symbols-outlined scale-90" data-icon="delete">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-highest transition-colors">
+<td class="px-8 py-5">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-container-highest rounded-lg flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="colorful organic salad bowl with fresh greens and radishes on a bright minimalist background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBR5ChXlzdU1H6U-Evq7l3GGbx6FgtM838wiCemp3KYo0TBZTKIa0Dmc-Ny5EAdb9eWpqy0WOPhYKLwi-AOLoc4C3kHJgZHFJK4AkH027JbjQliG33hwscwmipQ4MfquuvnkmHVgHRzWShALD_idMY8l9Vavo4O4FeOR2YVYyp_evdclF1ST1niwtr8L1JDZx4KBOaXV0eVJ16YZ1vrBU_i4VTxjVwApdqhnfh6OVsG8res-KnhzVcB7hGExijdFDtm0BfSWg4f9EA"/>
+</div>
+<div>
+<p class="font-bold text-primary">Pacific Green Bowl</p>
+<p class="font-label text-[10px] text-on-surface-variant tracking-wider">SKU: DEL-4410</p>
+</div>
+</div>
+</td>
+<td class="px-4 py-5 text-center font-label font-bold text-primary">02</td>
+<td class="px-4 py-5">
+<span class="font-bold text-primary">$8.20</span>
+<span class="block text-[10px] line-through text-on-surface-variant">$16.50</span>
+</td>
+<td class="px-4 py-5">
+<span class="font-label text-xs text-on-surface-variant font-bold">Expired</span>
+</td>
+<td class="px-4 py-5">
+<span class="bg-surface-container-highest text-on-surface-variant px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-tighter">Reserved</span>
+</td>
+<td class="px-8 py-5 text-right">
+<div class="flex justify-end gap-3 text-on-surface-variant">
+<button class="hover:text-secondary transition-colors" title="Edit"><span class="material-symbols-outlined scale-90" data-icon="edit">edit</span></button>
+<button class="hover:text-secondary transition-colors" title="Mark as Sold"><span class="material-symbols-outlined scale-90" data-icon="check_circle">check_circle</span></button>
+<button class="hover:text-error transition-colors" title="Delete"><span class="material-symbols-outlined scale-90" data-icon="delete">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-highest transition-colors">
+<td class="px-8 py-5">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-container-highest rounded-lg flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="healthy bowl with quinoa and vegetables in soft natural lighting on a light stone surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsh51WwIN2znrVcD7EIhd7G7DJycbNexRsdaWpca09IhK8dK_aM-_AtYzK_ZTTvE_xbGIItG6iRtFMMeGSvrnAcvlOMxxqu93gXT71j9xk6k8gw4ykqXra_ZJQXNIb_RnxZz_AJ7_LJ3e3JDaq1Qzr0vtRrqDO4KyhZNM-vW9BAfDLvxVUjhFRxgXDvvTKEe7XJjBSKCVynCw2ixQ-zDYpRpp5Burk4klM1F0JgJhybIlB2V8ENUJI_d-3L84gtVzOelNfQPjDpXY"/>
+</div>
+<div>
+<p class="font-bold text-primary">Truffle Hummus Kit</p>
+<p class="font-label text-[10px] text-on-surface-variant tracking-wider">SKU: BAK-1288</p>
+</div>
+</div>
+</td>
+<td class="px-4 py-5 text-center font-label font-bold text-primary">00</td>
+<td class="px-4 py-5">
+<span class="font-bold text-primary">$12.00</span>
+<span class="block text-[10px] line-through text-on-surface-variant">$24.00</span>
+</td>
+<td class="px-4 py-5">
+<span class="font-label text-xs text-on-surface-variant font-bold">Sold Out</span>
+</td>
+<td class="px-4 py-5">
+<span class="bg-error-container text-on-error-container px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-tighter">Sold Out</span>
+</td>
+<td class="px-8 py-5 text-right">
+<div class="flex justify-end gap-3 text-on-surface-variant opacity-40">
+<button class="cursor-not-allowed" disabled=""><span class="material-symbols-outlined scale-90" data-icon="edit">edit</span></button>
+<button class="cursor-not-allowed" disabled=""><span class="material-symbols-outlined scale-90" data-icon="check_circle">check_circle</span></button>
+<button class="hover:text-error transition-colors" title="Delete"><span class="material-symbols-outlined scale-90" data-icon="delete">delete</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Footer (Authority: JSON) -->
+<footer class="w-full py-12 px-8 flex flex-col md:flex-row justify-between items-center gap-6 mt-12 border-t border-[#c2c7c7]/15">
+<div class="flex flex-col items-center md:items-start">
+<p class="font-headline font-black text-primary text-lg">DealDrop</p>
+<p class="font-body text-sm text-on-surface-variant mt-1">© 2024 DealDrop Hyperlocal Pulse. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="font-body text-sm text-on-surface-variant hover:text-secondary transition-all" href="#">About</a>
+<a class="font-body text-sm text-on-surface-variant hover:text-secondary transition-all" href="#">Help</a>
+<a class="font-body text-sm text-on-surface-variant hover:text-secondary transition-all" href="#">FAQ</a>
+<a class="font-body text-sm text-on-surface-variant hover:text-secondary transition-all" href="#">Locations</a>
+<a class="font-body text-sm text-on-surface-variant hover:text-secondary transition-all" href="#">List Store</a>
+<a class="font-body text-sm text-secondary font-bold underline" href="#">Partner Portal</a>
+</div>
+</footer>
+</main>
+<!-- FAB for quick listing (Mobile Fallback) -->
+<div class="md:hidden fixed bottom-6 right-6 z-50">
+<button class="w-14 h-14 bg-secondary text-white rounded-full flex items-center justify-center shadow-xl active:scale-90 transition-all">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+</div>
+</body></html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Moneyball - Location Setup</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        h1, h2, h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .label-tech {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "inverse-primary": "#bbc9ca",
+              "surface-container": "#e2f1f2",
+              "surface-variant": "#d7e5e6",
+              "surface-container-low": "#e8f6f7",
+              "on-secondary-fixed-variant": "#2a5000",
+              "inverse-on-surface": "#e5f4f4",
+              "primary-fixed-dim": "#bbc9ca",
+              "surface-dim": "#ceddde",
+              "primary-fixed": "#d7e5e6",
+              "outline": "#737878",
+              "secondary": "#3a6a00",
+              "on-surface-variant": "#424848",
+              "on-background": "#111e1f",
+              "on-primary": "#ffffff",
+              "tertiary": "#161911",
+              "tertiary-container": "#2b2e25",
+              "on-tertiary-fixed-variant": "#45483e",
+              "on-primary-fixed": "#111e1f",
+              "on-tertiary-fixed": "#1a1d14",
+              "surface-container-lowest": "#ffffff",
+              "tertiary-fixed-dim": "#c6c8bb",
+              "on-error-container": "#93000a",
+              "tertiary-fixed": "#e2e4d6",
+              "error-container": "#ffdad6",
+              "surface": "#eefcfd",
+              "on-tertiary": "#ffffff",
+              "primary": "#0d1a1b",
+              "secondary-fixed": "#b8f47d",
+              "on-primary-container": "#899798",
+              "surface-tint": "#536162",
+              "on-secondary-fixed": "#0e2000",
+              "error": "#ba1a1a",
+              "on-surface": "#111e1f",
+              "surface-container-high": "#dcebec",
+              "on-secondary": "#ffffff",
+              "background": "#eefcfd",
+              "secondary-fixed-dim": "#9dd765",
+              "on-error": "#ffffff",
+              "inverse-surface": "#263334",
+              "secondary-container": "#b8f47d",
+              "primary-container": "#222f30",
+              "on-secondary-container": "#3f7102",
+              "outline-variant": "#c2c7c7",
+              "surface-bright": "#eefcfd",
+              "surface-container-highest": "#d7e5e6",
+              "on-tertiary-container": "#93958a",
+              "on-primary-fixed-variant": "#3c494a"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Space Grotesk"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col">
+<!-- TopAppBar suppressed due to Transactional flow (Onboarding) -->
+<main class="flex-grow flex flex-col items-center px-6 pt-12 pb-24 max-w-lg mx-auto w-full">
+<!-- Step Indicator -->
+<div class="w-full mb-12">
+<div class="flex justify-between items-center mb-4">
+<span class="label-tech text-xs font-bold text-on-surface/40 tracking-widest uppercase">Step 2 of 3</span>
+<span class="label-tech text-xs font-bold text-secondary tracking-widest uppercase">Location</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden flex">
+<div class="h-full bg-secondary-fixed-dim w-1/3"></div>
+<div class="h-full bg-secondary w-1/3"></div>
+<div class="h-full bg-surface-container-highest w-1/3"></div>
+</div>
+</div>
+<!-- Headline -->
+<div class="text-center mb-10">
+<h1 class="text-3xl font-extrabold text-primary tracking-tight leading-tight mb-3">Where should we look for deals?</h1>
+<p class="text-on-surface-variant font-medium">Set your radius to find the best local pulse near you.</p>
+</div>
+<!-- Map Illustration / Visualization -->
+<div class="relative w-full aspect-square mb-10 rounded-xl overflow-hidden shadow-sm group">
+<div class="absolute inset-0 bg-surface-container-low">
+<img class="w-full h-full object-cover opacity-60 grayscale-[20%]" data-alt="Modern minimalist city map with clean lines, soft pastel green parks, and grey streets in a top-down architectural style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRfGdfO8zpWjxqpMMaJFnc2HEdaPsi9P4JU3WNya5MYuXhF8ICUyppSlJdtpUAE3GsvsNS3yPyhMJLRSWfBfpTm7cJL65JHPSr3Mr56-6taXnvGMVKJhZGoJxHE3AkkQI1mFZkVC9NQ2zfD0o2i8BQaEh5xi6Bbz_Kb7IuuquT-DiiF1Jo9RlUx1uMfh44Eck8qMDuH-3l9TUQAebJKTSWGeUpLfkhS5AVIvE0xd1hrnHVPSuG5qpCHduXkQb-p9S2i7QumBXi73M"/>
+</div>
+<!-- Map Overlay UI -->
+<div class="absolute inset-0 flex items-center justify-center">
+<!-- Outer Radius Circle -->
+<div class="w-48 h-48 rounded-full border-2 border-dashed border-secondary/40 bg-secondary/5 flex items-center justify-center relative">
+<!-- Dynamic Pulse Effect -->
+<div class="absolute inset-0 w-full h-full rounded-full border border-secondary animate-ping opacity-20"></div>
+<!-- Center Pin -->
+<div class="relative flex flex-col items-center">
+<div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center shadow-lg text-white mb-1 border-4 border-white">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+<div class="bg-primary text-white text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-tighter">Your Hub</div>
+</div>
+</div>
+</div>
+<!-- Distance Tag -->
+<div class="absolute bottom-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-lg shadow-sm">
+<span class="label-tech text-xs font-bold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">distance</span> 3.0 km Radius
+                </span>
+</div>
+</div>
+<!-- Radius Selector -->
+<div class="w-full mb-10">
+<label class="label-tech text-[10px] font-bold text-on-surface/60 uppercase tracking-widest block text-center mb-4">Search Distance
+<div class="flex justify-center gap-3">
+<button class="px-6 py-2.5 rounded-full border border-outline-variant font-bold text-sm hover:border-secondary hover:text-secondary transition-all">
+                    1km
+                </button>
+<button class="px-6 py-2.5 rounded-full bg-secondary text-on-secondary font-bold text-sm shadow-md shadow-secondary/20 transition-all">
+                    3km
+                </button>
+<button class="px-6 py-2.5 rounded-full border border-outline-variant font-bold text-sm hover:border-secondary hover:text-secondary transition-all">
+                    5km
+                </button>
+</div>
+</label></div>
+<!-- Action Buttons -->
+<div class="w-full space-y-4">
+<button class="w-full py-4 bg-secondary text-on-secondary rounded-lg font-bold text-lg shadow-xl shadow-secondary/10 flex items-center justify-center gap-2 hover:opacity-90 active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">my_location</span>
+                Use my current location
+            </button>
+<button class="w-full py-3 text-secondary font-semibold text-base hover:underline transition-all">
+                Enter manually
+            </button>
+</div>
+</main>
+<!-- BottomNavBar suppressed due to Transactional flow (Onboarding) -->
+<!-- Secondary Task-Focused Footer -->
+<footer class="fixed bottom-0 left-0 w-full bg-surface-container-low/80 backdrop-blur-xl px-6 py-4 flex justify-between items-center md:hidden">
+<button class="text-on-surface-variant font-medium px-4 py-2 hover:bg-surface-container-high rounded-lg transition-all">
+            Back
+        </button>
+<div class="flex gap-1.5">
+<div class="w-1.5 h-1.5 rounded-full bg-on-surface-variant/20"></div>
+<div class="w-4 h-1.5 rounded-full bg-secondary"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-on-surface-variant/20"></div>
+</div>
+<button class="text-secondary font-bold px-4 py-2 opacity-50 cursor-not-allowed">
+            Next
+        </button>
+</footer>
+</body></html>

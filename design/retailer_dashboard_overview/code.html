@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Moneyball Retailer Suite | Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@700;800&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-container": "#222f30",
+              "on-primary": "#ffffff",
+              "surface-dim": "#ceddde",
+              "on-secondary-container": "#3f7102",
+              "on-background": "#111e1f",
+              "on-tertiary-fixed": "#1a1d14",
+              "on-primary-fixed": "#111e1f",
+              "tertiary-fixed-dim": "#c6c8bb",
+              "on-secondary": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-container": "#93958a",
+              "primary-fixed": "#d7e5e6",
+              "secondary-container": "#b8f47d",
+              "surface-container-highest": "#d7e5e6",
+              "outline-variant": "#c2c7c7",
+              "tertiary-fixed": "#e2e4d6",
+              "surface-container": "#e2f1f2",
+              "on-secondary-fixed-variant": "#2a5000",
+              "on-tertiary-fixed-variant": "#45483e",
+              "primary-fixed-dim": "#bbc9ca",
+              "error": "#ba1a1a",
+              "surface-container-low": "#e8f6f7",
+              "surface-bright": "#eefcfd",
+              "primary": "#0d1a1b",
+              "on-primary-fixed-variant": "#3c494a",
+              "on-surface": "#111e1f",
+              "surface-container-high": "#dcebec",
+              "secondary": "#3a6a00",
+              "tertiary": "#161911",
+              "inverse-surface": "#263334",
+              "inverse-on-surface": "#e5f4f4",
+              "background": "#eefcfd",
+              "on-secondary-fixed": "#0e2000",
+              "on-error": "#ffffff",
+              "tertiary-container": "#2b2e25",
+              "secondary-fixed-dim": "#9dd765",
+              "on-surface-variant": "#424848",
+              "on-primary-container": "#899798",
+              "surface-variant": "#d7e5e6",
+              "surface": "#eefcfd",
+              "surface-tint": "#536162",
+              "secondary-fixed": "#b8f47d",
+              "on-error-container": "#93000a",
+              "error-container": "#ffdad6",
+              "inverse-primary": "#bbc9ca",
+              "outline": "#737878"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Space Grotesk"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- SideNavBar Shell -->
+<aside class="h-screen w-64 fixed left-0 top-0 overflow-y-auto bg-[#0d1a1b] dark:bg-[#0d1a1b] flex flex-col py-6 z-50">
+<div class="px-6 mb-8">
+<h1 class="text-2xl font-bold tracking-tight text-white font-headline">Moneyball</h1>
+<p class="text-slate-400 font-label text-xs uppercase tracking-widest mt-1">Retailer Suite</p>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Dashboard (Active) -->
+<a class="flex items-center gap-3 px-4 py-3 bg-[#3a6a00] text-white rounded-lg mx-2 my-1 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label text-sm">Dashboard</span>
+</a>
+<!-- Inactive Tabs -->
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white hover:bg-[#1a2e2f] rounded-lg mx-2 my-1 transition-colors" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label text-sm">Products</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white hover:bg-[#1a2e2f] rounded-lg mx-2 my-1 transition-colors" href="#">
+<span class="material-symbols-outlined">local_offer</span>
+<span class="font-label text-sm">Deals</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white hover:bg-[#1a2e2f] rounded-lg mx-2 my-1 transition-colors" href="#">
+<span class="material-symbols-outlined">event_available</span>
+<span class="font-label text-sm">Reservations</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white hover:bg-[#1a2e2f] rounded-lg mx-2 my-1 transition-colors" href="#">
+<span class="material-symbols-outlined">insert_chart</span>
+<span class="font-label text-sm">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white hover:bg-[#1a2e2f] rounded-lg mx-2 my-1 transition-colors" href="#">
+<span class="material-symbols-outlined">trending_up</span>
+<span class="font-label text-sm">Demand</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white hover:bg-[#1a2e2f] rounded-lg mx-2 my-1 transition-colors" href="#">
+<span class="material-symbols-outlined">extension</span>
+<span class="font-label text-sm">Integrations</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white hover:bg-[#1a2e2f] rounded-lg mx-2 my-1 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label text-sm">Settings</span>
+</a>
+</nav>
+<div class="px-4 mt-auto">
+<div class="bg-[#1a2e2f] rounded-xl p-4 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-white font-bold">AB</div>
+<div class="overflow-hidden">
+<p class="text-white text-sm font-medium truncate">Arun Bakery</p>
+<p class="text-slate-500 text-xs truncate">Merchant ID: 8842</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 right-0 left-64 h-16 z-40 bg-[#eefcfd]/80 dark:bg-[#0d1a1b]/80 backdrop-blur-md flex justify-between items-center px-8 w-auto">
+<div class="flex items-center gap-4 bg-surface-container-highest px-4 py-2 rounded-lg w-96">
+<span class="material-symbols-outlined text-outline">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm font-label w-full placeholder-outline" placeholder="Search inventory or deals..." type="text"/>
+</div>
+<div class="flex items-center gap-6">
+<button class="hover:bg-slate-100 dark:hover:bg-white/5 rounded-full p-2 text-on-surface flex items-center">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="hover:bg-slate-100 dark:hover:bg-white/5 rounded-full p-2 text-on-surface flex items-center">
+<span class="material-symbols-outlined">calendar_today</span>
+</button>
+<button class="hover:bg-slate-100 dark:hover:bg-white/5 rounded-full p-2 text-on-surface flex items-center">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 pb-12 px-8 min-h-screen">
+<!-- Header Section -->
+<div class="flex justify-between items-end mb-10">
+<div>
+<h2 class="text-3xl font-extrabold font-headline text-primary tracking-tight">Good morning, Arun Bakery 👋</h2>
+<p class="text-on-surface-variant font-label mt-1 text-sm tracking-wide">October 24, 2026</p>
+</div>
+<button class="bg-secondary text-white font-bold px-6 py-3 rounded-lg flex items-center gap-2 hover:opacity-90 transition-all scale-100 active:scale-95 duration-150">
+<span class="material-symbols-outlined">add</span>
+<span>Launch Quick Deal</span>
+</button>
+</div>
+<!-- Stat Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+<div class="bg-surface-container-low p-6 rounded-xl border-l-4 border-orange-500 flex flex-col justify-between">
+<p class="text-on-surface-variant font-label text-xs uppercase tracking-widest">At Risk Products</p>
+<div class="flex items-baseline gap-2 mt-4">
+<span class="text-4xl font-extrabold font-headline text-primary">7</span>
+<span class="text-orange-600 text-xs font-bold">+2 since yesterday</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl border-l-4 border-secondary flex flex-col justify-between">
+<p class="text-on-surface-variant font-label text-xs uppercase tracking-widest">Active Deals</p>
+<div class="flex items-baseline gap-2 mt-4">
+<span class="text-4xl font-extrabold font-headline text-primary">4</span>
+<span class="text-secondary text-xs font-bold">1 expiring soon</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl border-l-4 border-yellow-500 flex flex-col justify-between">
+<p class="text-on-surface-variant font-label text-xs uppercase tracking-widest">Pending Reservations</p>
+<div class="flex items-baseline gap-2 mt-4">
+<span class="text-4xl font-extrabold font-headline text-primary">2</span>
+<span class="text-on-surface-variant text-xs font-medium">Ready for pickup</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl border-l-4 border-teal-500 flex flex-col justify-between">
+<p class="text-on-surface-variant font-label text-xs uppercase tracking-widest">Revenue Recovered</p>
+<div class="flex items-baseline gap-2 mt-4">
+<span class="text-4xl font-extrabold font-headline text-primary">₹3,420</span>
+<span class="text-teal-600 text-xs font-bold">↑ 12% MoM</span>
+</div>
+</div>
+</div>
+<!-- Two Column Layout for Main Sections -->
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-8 items-start">
+<!-- Left Column: Products Needing Action -->
+<div class="xl:col-span-2">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl font-bold font-headline text-primary">Products Needing Action</h3>
+<a class="text-secondary font-bold text-sm hover:underline" href="#">View All Inventory</a>
+</div>
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label text-xs uppercase tracking-wider">
+<th class="px-6 py-4">Product Name</th>
+<th class="px-6 py-4">Category</th>
+<th class="px-6 py-4">Expiry Date</th>
+<th class="px-6 py-4">Risk Status</th>
+<th class="px-6 py-4 text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low">
+<tr class="hover:bg-surface-container/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="close-up of artisan sourdough bread loaf with golden crust on dark bakery shelf" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1gAm-I1yWlJE_EJK2k-FQKv-hCHVK8Ed3TuJbjilxLtZ6f24syDS9cX6GktGnYfqaWPlT5NKhl29W_xUivrQBPw2aYKL28qJwrIRpcMXQAf6Pv1LPulYZjMCnwWCaSQZ8HS0k2NM42gTwkcEiGSnopLC20Cmg_guAY08kirV6GeE9tcJeXMvP2ZPHWvoG9tiTQlWi-Wtxf_iHzGUMnUsX98kY3JHBqr12WMhdds2ba9j22N6BfRJEbRnClo0gFvHf7fOlre1rcxs"/>
+</div>
+<span class="font-medium text-primary">Artisan Sourdough</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm font-label text-on-surface-variant">Bakery</td>
+<td class="px-6 py-4 text-sm font-label text-on-surface-variant">Today, 8:00 PM</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-error-container text-on-error-container">Critical</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="bg-primary text-white text-xs font-bold px-4 py-2 rounded-lg hover:opacity-90">Create Deal</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="freshly baked chocolate croissants on a cooling rack with warm golden lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDNMizGjUeXPmKD6y2aUTbsX6scubMGt58pOt0fXivntjg0swUtForgxvhWwTfpwGXtvR6GWjy9Q_mhmvgLIRH1VxG4E0ZWUqTkM15ACEAGgGY00AkiSr--jW2YzMZ0u0y04OGlI572aGmKeJoZkLlBnMYV1woLUkaybE8vzki6WpE0q7wbZ35tjPlYR-uAkep-SXvYUO1SDxZnRryh6Qldl7sb7cBZfI8xaWPjbc5XcAk-8bKTcShWbcXSgWmMYMZVZqhg2CTDJY"/>
+</div>
+<span class="font-medium text-primary">Pain au Chocolat (x5)</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm font-label text-on-surface-variant">Pastry</td>
+<td class="px-6 py-4 text-sm font-label text-on-surface-variant">Oct 25, 9:00 AM</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-orange-100 text-orange-700">Medium Risk</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="bg-primary text-white text-xs font-bold px-4 py-2 rounded-lg hover:opacity-90">Create Deal</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="selection of colorful macarons in a minimalist white gift box" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8IdOaI8H00gDDDuuxQU750iKiLp2ooVjsJYtQ5y_Y5s8sWj8JJpxbKsGEV29_bEwRSSB1JOwoT_4ZoeZmTowuDnyUvrDRb14pUWCwrNv5ebRHPIfnPwndYUGcaGqI-H2pZ5wjq1BYotN-Zfn9bkKgVbRs2truoz2E2TsDYeOggTvmXiePicRHWZNW_R4jPSQ4WDS0y8fg2ekDqodpxhufGPMhAZdISQMEaowo6mOU2MD94bsRSbWCv33FKzkX4YA_-GHoAos_fZA"/>
+</div>
+<span class="font-medium text-primary">Macaron Box (Assorted)</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm font-label text-on-surface-variant">Confectionery</td>
+<td class="px-6 py-4 text-sm font-label text-on-surface-variant">Oct 26, 6:00 PM</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-surface-container text-on-surface-variant">Low Risk</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="bg-primary text-white text-xs font-bold px-4 py-2 rounded-lg hover:opacity-90">Create Deal</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Right Column: Active Deals -->
+<div class="xl:col-span-1">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl font-bold font-headline text-primary">Active Deals</h3>
+<span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-0.5 rounded-full">4 LIVE</span>
+</div>
+<div class="space-y-4">
+<!-- Deal Card 1 -->
+<div class="bg-surface-container-low rounded-xl p-4 flex gap-4 items-center group cursor-pointer hover:bg-surface-container transition-all">
+<div class="w-16 h-16 rounded-lg overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="close up of glazed donuts with sprinkles on a tray in a vibrant bakery window" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiZHcWkvP_rpG4rPu1d7vYnq_B9ZiN-jur9r-PkMOdVJeZvle31E4ma4o3WfPpUD0TJl2iP0Z4AJu2A0Q16mT3BF-IQN6p2vsYmQsRwrCQYcB5sK72ntxbl5A_G3BzFeu2WEWCjjj5u0O6lGKXlERWHuODRv-tGl_rPO3q2B1H0OO5NbRnTORCvCfnfIPoMzcSecNpthQFb2HfzZcGo5GDZYc0PdugFBZMvsrlg0M1YWDjgncx8JFyrrCGdgbBN39LoUlTLQzmwss"/>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-bold text-sm text-primary truncate">Late Night Donuts Mix</h4>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-secondary font-label font-bold text-lg">40% OFF</span>
+<span class="text-on-surface-variant text-xs font-label">5/12 left</span>
+</div>
+<div class="flex items-center gap-1 text-error text-[10px] font-bold font-label mt-1">
+<span class="material-symbols-outlined text-[12px]">timer</span>
+<span>ENDS IN 01:42:10</span>
+</div>
+</div>
+</div>
+<!-- Deal Card 2 -->
+<div class="bg-surface-container-low rounded-xl p-4 flex gap-4 items-center group cursor-pointer hover:bg-surface-container transition-all">
+<div class="w-16 h-16 rounded-lg overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="batch of fresh blueberry muffins with golden brown tops and dusting of sugar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQ1L36e0PbIkIo0yJhyM3yQvPIk4krErN1PiLrGkVATKljSFOh8-8-Ic_6j0MFrstZ_HeOHcg_GIrq2f_vZX0d20C0sghJM3iAsT84wg45of5O3vmgZF7SBBVZcaC_tMs1E1AJVoT7ECwyZdLQS8LTyMiYt2GS8O0EySgY-Z20JVuhA75VHUQim7oDnBOR3JYPbZw3Sj_H77zcHIWfkHF12p8k6lRYG8KMY_ljmU_bCKe71lpvvoPurODduQjpQobMN-B7lxwaADg"/>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-bold text-sm text-primary truncate">Blueberry Muffin Trio</h4>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-secondary font-label font-bold text-lg">50% OFF</span>
+<span class="text-on-surface-variant text-xs font-label">2/8 left</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant text-[10px] font-bold font-label mt-1">
+<span class="material-symbols-outlined text-[12px]">timer</span>
+<span>ENDS IN 04:15:22</span>
+</div>
+</div>
+</div>
+<!-- Deal Card 3 -->
+<div class="bg-surface-container-low rounded-xl p-4 flex gap-4 items-center group cursor-pointer hover:bg-surface-container transition-all">
+<div class="w-16 h-16 rounded-lg overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="sourdough bread sliced on wooden board with crumb visible" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAf52xptgXWeWsZwfvwgguTt0G7IK-b7ShrxGuQ-67IhqT9isbkP8hcuEPdcbNEeuk3KSCnzbVKSTw_K0SX2tOgOQ7AB6xkvL_X86NqK68x6Q7MYQ8Z4m-3tKILycnPo06uicKof2Dho2reWt8xCq4jqukcDnPbhLUq1hp4M6joqp5KYsBpSEGNzQO288o16zysBBQl5NyBWhOBKFYx9kbHyeY0GmWQAx5w9Nard4TX62ojzsJbNl-jtYtvc6r9mMQVVR2Ts30Cbo"/>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-bold text-sm text-primary truncate">Daily Sourdough Loaf</h4>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-secondary font-label font-bold text-lg">30% OFF</span>
+<span class="text-on-surface-variant text-xs font-label">8/10 left</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant text-[10px] font-bold font-label mt-1">
+<span class="material-symbols-outlined text-[12px]">timer</span>
+<span>ENDS IN 07:44:02</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Analytical Insights (Data Dense Row) -->
+<div class="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8">
+<div class="bg-primary text-white rounded-xl p-8 relative overflow-hidden">
+<div class="relative z-10">
+<span class="font-label text-xs uppercase tracking-widest text-slate-400">Demand Intelligence</span>
+<h3 class="text-2xl font-bold font-headline mt-2 mb-4">Predicted Surge in Footfall</h3>
+<p class="text-slate-300 text-sm max-w-md">Our AI predicts a 22% increase in bakery demand tomorrow morning due to the local festival. Consider stocking 15% more croissants.</p>
+<div class="flex gap-4 mt-6">
+<button class="bg-secondary text-white font-bold px-4 py-2 rounded-lg text-sm">View Forecast</button>
+<button class="text-white font-bold text-sm border-b border-white/30 hover:border-white">Optimization Settings</button>
+</div>
+</div>
+<!-- Glassmorphism decorative element -->
+<div class="absolute -right-20 -bottom-20 w-64 h-64 bg-secondary/20 rounded-full blur-3xl"></div>
+<div class="absolute right-8 top-8 opacity-20">
+<span class="material-symbols-outlined !text-7xl">trending_up</span>
+</div>
+</div>
+<div class="bg-surface-container-high rounded-xl p-8 flex flex-col justify-between">
+<div>
+<span class="font-label text-xs uppercase tracking-widest text-on-surface-variant">Last 30 Days</span>
+<h3 class="text-2xl font-bold font-headline text-primary mt-2">Sustainability Impact</h3>
+</div>
+<div class="flex items-center gap-8 mt-6">
+<div>
+<p class="text-primary font-bold text-3xl font-headline">142kg</p>
+<p class="text-on-surface-variant text-xs font-label uppercase">Waste Prevented</p>
+</div>
+<div class="h-12 w-px bg-outline-variant"></div>
+<div>
+<p class="text-primary font-bold text-3xl font-headline">₹14.2k</p>
+<p class="text-on-surface-variant text-xs font-label uppercase">Margin Recovered</p>
+</div>
+</div>
+<div class="mt-6">
+<div class="w-full bg-surface-container rounded-full h-2 overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 78%"></div>
+</div>
+<p class="text-[10px] font-label text-on-surface-variant mt-2">78% of surplus products sold through Moneyball</p>
+</div>
+</div>
+</div>
+</main>
+</body></html>

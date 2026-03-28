@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DealDrop | Artisanal Pastry Box</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-container": "#b8f47d",
+              "primary-fixed-dim": "#bbc9ca",
+              "on-secondary-fixed-variant": "#2a5000",
+              "outline-variant": "#c2c7c7",
+              "on-tertiary-fixed-variant": "#45483e",
+              "outline": "#737878",
+              "surface-dim": "#ceddde",
+              "inverse-primary": "#bbc9ca",
+              "surface": "#eefcfd",
+              "error": "#ba1a1a",
+              "background": "#eefcfd",
+              "on-error-container": "#93000a",
+              "on-secondary-container": "#3f7102",
+              "on-tertiary-fixed": "#1a1d14",
+              "tertiary": "#161911",
+              "on-surface": "#111e1f",
+              "secondary-fixed-dim": "#9dd765",
+              "on-primary": "#ffffff",
+              "error-container": "#ffdad6",
+              "on-secondary": "#ffffff",
+              "on-primary-container": "#899798",
+              "primary-fixed": "#d7e5e6",
+              "secondary": "#3a6a00",
+              "surface-variant": "#d7e5e6",
+              "inverse-on-surface": "#e5f4f4",
+              "tertiary-container": "#2b2e25",
+              "surface-tint": "#536162",
+              "primary": "#0d1a1b",
+              "surface-container": "#e2f1f2",
+              "inverse-surface": "#263334",
+              "surface-container-high": "#dcebec",
+              "surface-container-low": "#e8f6f7",
+              "surface-container-lowest": "#ffffff",
+              "on-surface-variant": "#424848",
+              "on-primary-fixed-variant": "#3c494a",
+              "primary-container": "#222f30",
+              "tertiary-fixed-dim": "#c6c8bb",
+              "on-background": "#111e1f",
+              "surface-bright": "#eefcfd",
+              "on-primary-fixed": "#111e1f",
+              "on-tertiary": "#ffffff",
+              "on-secondary-fixed": "#0e2000",
+              "on-tertiary-container": "#93958a",
+              "on-error": "#ffffff",
+              "tertiary-fixed": "#e2e4d6",
+              "surface-container-highest": "#d7e5e6",
+              "secondary-fixed": "#b8f47d"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Space Grotesk"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(238, 252, 253, 0.8);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#eefcfd]/80 dark:bg-[#0d1a1b]/80 backdrop-blur-xl flex justify-between items-center w-full px-6 py-3 max-w-full mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black tracking-tighter text-[#0d1a1b] dark:text-[#eefcfd] font-headline">DealDrop</span>
+<div class="hidden md:flex items-center gap-6">
+<a class="font-label font-medium uppercase tracking-wider text-xs text-[#3a6a00] dark:text-[#3f7102] font-bold border-b-2 border-[#3a6a00] transition-colors" href="#">Deals</a>
+<a class="font-label font-medium uppercase tracking-wider text-xs text-[#0d1a1b]/60 dark:text-[#eefcfd]/60 hover:text-[#3a6a00] transition-colors" href="#">Map</a>
+<a class="font-label font-medium uppercase tracking-wider text-xs text-[#0d1a1b]/60 dark:text-[#eefcfd]/60 hover:text-[#3a6a00] transition-colors" href="#">Reservations</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center bg-surface-container-highest px-4 py-1.5 rounded-lg gap-3 w-64">
+<span class="material-symbols-outlined text-on-surface-variant text-lg">search</span>
+<input class="bg-transparent border-none focus:ring-0 font-label text-sm w-full p-0" placeholder="Search for drops..." type="text"/>
+</div>
+<button class="p-2 text-[#0d1a1b] hover:scale-95 duration-150 ease-in-out">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+</button>
+<button class="p-2 text-[#0d1a1b] hover:scale-95 duration-150 ease-in-out">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</button>
+</div>
+</nav>
+<main class="pt-24 pb-20 px-4 md:px-8 max-w-7xl mx-auto">
+<!-- Breadcrumb -->
+<div class="flex items-center gap-2 mb-6 text-xs font-label uppercase tracking-widest text-on-surface-variant">
+<span>Home</span>
+<span class="material-symbols-outlined text-[10px]">chevron_right</span>
+<span>Bakery</span>
+<span class="material-symbols-outlined text-[10px]">chevron_right</span>
+<span class="text-secondary font-bold">Flash Sale</span>
+</div>
+<!-- Bento Layout Hero -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Product Gallery & Scarcity -->
+<div class="lg:col-span-7 flex flex-col gap-6">
+<div class="relative rounded-xl overflow-hidden bg-surface-container h-[500px] shadow-sm">
+<img alt="Assorted Pastries" class="w-full h-full object-cover" data-alt="close-up of a rustic wooden tray filled with assorted artisanal pastries, croissants, and fruit tarts in soft natural morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCybDK5QzJjqaNcME5nQPGbup3OjGA4p1Y3P42X6R-PZ-MrGTwWpbR1z-PJl9tSTnQm1K89Ye-eAhbhiogbBgwaPX7A81tbNYLjPN_y-UrGlJHQNJfKhd92R4JAwbkDldmOZDqTq-qcIQWMeMfgfN-LzH7MVEckrcgvXeLdtWLjZ_PCWOJGoeNxL1qzcEVqBAf7NMlSpfvfdsNRsYqjPt22yFF28gzo0eSWFLD6YM0jAPNliD8s0FHJBP9SsrgqRbe3fO2HM7s1RHo"/>
+<!-- Scarcity Badge -->
+<div class="absolute top-4 left-4 bg-error-container text-on-error-container px-3 py-1.5 rounded-full flex items-center gap-2 shadow-lg">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="font-label font-bold text-xs uppercase">Only 3 left</span>
+</div>
+<!-- Visual Urgency Overlay -->
+<div class="absolute bottom-6 left-6 right-6 p-6 glass-panel rounded-xl flex justify-between items-center">
+<div class="flex flex-col">
+<span class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant mb-1">Price Drops In</span>
+<div class="flex items-center gap-3 text-error">
+<span class="material-symbols-outlined">schedule</span>
+<span class="font-label text-2xl font-bold tracking-tighter">14:52:08</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant mb-1">Instant Value</span>
+<div class="text-secondary font-headline text-3xl font-black">-65%</div>
+</div>
+</div>
+</div>
+<!-- Description & Store Details -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-surface-container-low p-6 rounded-xl">
+<h2 class="font-headline font-bold text-lg mb-3">About this Drop</h2>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-4">
+                            This box of assorted pastries is baked daily using organic heirloom flour and European-style butter. Includes 2 croissants, 1 pain au chocolat, and 2 seasonal fruit danishes.
+                        </p>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-surface-container text-on-surface-variant font-label text-[10px] rounded uppercase">Eco-Packaging</span>
+<span class="px-2 py-1 bg-surface-container text-on-surface-variant font-label text-[10px] rounded uppercase">Daily Batch</span>
+</div>
+</div>
+<!-- Store Card -->
+<div class="bg-primary text-surface p-6 rounded-xl flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline font-bold text-xl">The Crumb Factory</h3>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label text-xs">4.9 (240+ Reviews)</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface/10 flex items-center justify-center">
+<span class="material-symbols-outlined">storefront</span>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-surface/10 flex items-center justify-between">
+<span class="font-label text-[10px] uppercase opacity-70">0.4 miles away</span>
+<button class="text-secondary font-label text-xs font-bold hover:underline">View Merchant</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Transaction Panel -->
+<div class="lg:col-span-5">
+<div class="sticky top-24 space-y-6">
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-[0_20px_40px_rgba(17,30,31,0.06)]">
+<div class="mb-8">
+<h1 class="font-headline text-4xl font-black text-primary tracking-tight mb-2">Artisanal Morning Pastry Box</h1>
+<div class="flex items-baseline gap-4">
+<span class="text-4xl font-black font-headline text-primary">$12.00</span>
+<span class="text-xl text-on-surface-variant line-through font-label opacity-40">$34.50</span>
+</div>
+</div>
+<div class="space-y-4 mb-8">
+<div class="flex items-center gap-4 p-4 bg-surface-container-low rounded-lg">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined">shopping_bag</span>
+</div>
+<div>
+<p class="font-label text-[10px] uppercase text-on-surface-variant">Available for pickup</p>
+<p class="font-body font-bold text-sm">Today before 8:00 PM</p>
+</div>
+</div>
+<div class="flex items-center gap-4 p-4 bg-surface-container-low rounded-lg">
+<div class="w-10 h-10 rounded-full bg-primary-fixed-dim flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div>
+<p class="font-label text-[10px] uppercase text-on-surface-variant">Location</p>
+<p class="font-body font-bold text-sm">124 Baker St, East End</p>
+</div>
+</div>
+</div>
+<button class="w-full bg-secondary text-on-secondary py-5 rounded-lg font-headline font-bold text-lg hover:brightness-110 active:scale-[0.98] transition-all shadow-lg shadow-secondary/20 mb-4 uppercase tracking-wider">
+                            Reserve Now
+                        </button>
+<p class="text-center text-[10px] font-label uppercase text-on-surface-variant">
+                            No payment required until pickup. 15min hold window.
+                        </p>
+</div>
+<!-- Map Snippet -->
+<div class="rounded-xl overflow-hidden h-48 bg-surface-container-highest relative group">
+<img alt="Map location" class="w-full h-full object-cover grayscale opacity-50 group-hover:grayscale-0 transition-all duration-500" data-location="London" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbSmts6_WUV7GpgXqaSbGoy7VtqsAsm4-oC-tHchhJZpIMaPVO7uuEEL5FjN9Y1MSSjgW1P_MPyXvXLXuiaLEq963G9rQMX6XPKN16fVh1SMTw4OSf__Z-CMZI8OEPewveGHZjYrFa43Hp0ga0VM3sU3M1YHJ6nlBtNhZNT4n1D9L-8q9VR5fH0Wg3Dklgy_VDddf4dyp13yXEZ4Zii2ycPj-0N8BxEFreJlsHFV19C7RRtnajRevQNmTfLJQc28bbxlv5TbjQC0Q"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-12 h-12 bg-secondary text-on-secondary rounded-full flex items-center justify-center shadow-2xl animate-pulse">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Related Deals -->
+<section class="mt-20">
+<div class="flex justify-between items-end mb-8">
+<div>
+<h2 class="font-headline text-3xl font-black text-primary">Nearby Pulsing Deals</h2>
+<p class="font-label text-xs uppercase tracking-widest text-on-surface-variant mt-2">Active flash sales within 1 mile</p>
+</div>
+<button class="font-label text-xs font-bold uppercase tracking-widest text-secondary flex items-center gap-2 hover:gap-3 transition-all">
+                    View All <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Related Card 1 -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all">
+<div class="h-48 relative">
+<img alt="Coffee Drop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="minimalist overhead shot of a latte and a small espresso cup on a dark textured table" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFaP8_V0KnfXY6Nvp3r2_J_CygiAdqk3_rZSe3gr2ooZGJhk5JeNoFgioCl671pkjbN12QaguhXt24XgXrq-CWk_ULcpYfg_mQHuyAWQ3UNqrjcXJDUjAWkvucSnn3gw7o1rUa4NRKRcRP-A2F2IQOaejAn_gbGiQF9ZaXxjlZMfxEN8shOk5BbNrlNwJ-u85C3aQkZF-Jssjs4JMnM0FOTP41EKpJF_XqnVUmJs0DEuOmx79P4oUuaatJYMrXw281bA03-42_YDg"/>
+<div class="absolute top-3 right-3 bg-secondary text-on-secondary font-label text-[10px] font-bold px-2 py-1 rounded uppercase">50% Off</div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-headline font-bold text-sm text-primary">Espresso Tasting Kit</h4>
+<span class="font-label text-xs font-bold">$4.50</span>
+</div>
+<div class="flex items-center gap-2 text-[10px] font-label text-on-surface-variant uppercase">
+<span class="material-symbols-outlined text-[12px]">timer</span>
+<span>Ends in 12m</span>
+</div>
+</div>
+</div>
+<!-- Related Card 2 -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all">
+<div class="h-48 relative">
+<img alt="Salad Drop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="fresh gourmet salad bowl with vibrant vegetables and roasted seeds on a neutral clean background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDv8kp18De6TEBlf3ZZiIMOwU_rLgDyZ5JIMiSOsRfvMDxLmn4YOTGWnHIkXtDvkJPhFdzYge_GqDO-iRnueCgXM9qKHXWxA3Q9GQiT7WRdIoBsqN2Z2jUsI9noVcyYImxBYGdM2gpbVepIWXbO6HZEiu-z7FT_jbKAhtW0pDrlrka8Sk2In2ACtGJ06k1Tr1GYGbiq97jh2UOQPTbdGk9Wz__NuBzt5TZ0I_OGcFkKNGQCeDCMRL5X9iXWJAV1j_f5yN8aByj_C7I"/>
+<div class="absolute top-3 right-3 bg-secondary text-on-secondary font-label text-[10px] font-bold px-2 py-1 rounded uppercase">Flash Sale</div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-headline font-bold text-sm text-primary">Garden Greens Bowl</h4>
+<span class="font-label text-xs font-bold">$8.00</span>
+</div>
+<div class="flex items-center gap-2 text-[10px] font-label text-on-surface-variant uppercase">
+<span class="material-symbols-outlined text-[12px]">timer</span>
+<span>Ends in 45m</span>
+</div>
+</div>
+</div>
+<!-- Related Card 3 -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all">
+<div class="h-48 relative">
+<img alt="Pizza Drop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="close-up of a rustic wood-fired pizza with fresh basil and melted mozzarella on a dark slate background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgBMCpUaw5NsIE0RyA2ycSyvbMvXRlasnadRt91dhrJMEAwQDsWUUghhuUsnQIkmrUwz8unUEvSsTRhr9OBygJhgl5XfTi4gF3ydNIwsv4q30l0UEUb-buAlGmgAkg38Ed4_431Ffes0gE9dkuF2PHwNFhdB3GAqPTqvhZ4RmxSC0I-qr-OreM0iBeFR1V_C4cpR41X2IM8fWsCIT6l1efc5MtxKGaQvfmoIWSLEbjS3c-ujrTMc28QcfeDzq3Rn4O_oguudnJmro"/>
+<div class="absolute top-3 right-3 bg-secondary text-on-secondary font-label text-[10px] font-bold px-2 py-1 rounded uppercase">Last Call</div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-headline font-bold text-sm text-primary">Margherita Sourdough</h4>
+<span class="font-label text-xs font-bold">$11.20</span>
+</div>
+<div class="flex items-center gap-2 text-[10px] font-label text-on-surface-variant uppercase text-error">
+<span class="material-symbols-outlined text-[12px]">timer</span>
+<span>Ends in 4m</span>
+</div>
+</div>
+</div>
+<!-- Related Card 4 -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all">
+<div class="h-48 relative">
+<img alt="Smoothie Drop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="colorful fruit smoothie bowls in minimalist ceramic bowls arranged on a light grey surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiXAakKzHn1G3TlzFjCTKGX3l7r0PUDPsX9fIxUf5cIkRDdIstpjDwkm1OivQgq3Y1B3P0ApaH2Eh3o2JcJOQu_l3MwPjoHQK11zJ4B3aqZ680ovl35AuhiIswQeNT9bm0FvGJVv_EwOAjqjYxBfFrfTHVatCeIdIIIrkypSllQEKHspjosQ9Q8OjT6A4VJM_9gdmiMkm0rrSmlxcHQLNcUs3zI0V1VvjDoIn_hcKlZqbgiKXoDIVoxymhekj2BWXQWoHNeM3caBU"/>
+<div class="absolute top-3 right-3 bg-secondary text-on-secondary font-label text-[10px] font-bold px-2 py-1 rounded uppercase">BOGO</div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-headline font-bold text-sm text-primary">Superfood Smoothie</h4>
+<span class="font-label text-xs font-bold">$6.50</span>
+</div>
+<div class="flex items-center gap-2 text-[10px] font-label text-on-surface-variant uppercase">
+<span class="material-symbols-outlined text-[12px]">timer</span>
+<span>Ends in 1h 20m</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-[#c2c7c7]/15 bg-[#eefcfd] dark:bg-[#0d1a1b] w-full py-12 px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex flex-col gap-4 items-center md:items-start">
+<span class="font-['Plus_Jakarta_Sans'] font-black text-[#0d1a1b] dark:text-[#eefcfd] text-xl">DealDrop</span>
+<p class="font-['Inter'] text-sm text-[#0d1a1b]/60 dark:text-[#eefcfd]/60 max-w-xs text-center md:text-left">
+                Hyperlocal pulse for flash deals. Reducing waste, one drop at a time.
+            </p>
+</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="font-['Inter'] text-sm text-[#0d1a1b]/60 dark:text-[#eefcfd]/60 hover:text-[#3a6a00] transition-all" href="#">About</a>
+<a class="font-['Inter'] text-sm text-[#0d1a1b]/60 dark:text-[#eefcfd]/60 hover:text-[#3a6a00] transition-all" href="#">Help</a>
+<a class="font-['Inter'] text-sm text-[#0d1a1b]/60 dark:text-[#eefcfd]/60 hover:text-[#3a6a00] transition-all" href="#">FAQ</a>
+<a class="font-['Inter'] text-sm text-[#0d1a1b]/60 dark:text-[#eefcfd]/60 hover:text-[#3a6a00] transition-all" href="#">Locations</a>
+<a class="font-['Inter'] text-sm text-[#0d1a1b]/60 dark:text-[#eefcfd]/60 hover:text-[#3a6a00] transition-all" href="#">List Store</a>
+<a class="font-['Inter'] text-sm text-[#0d1a1b]/60 dark:text-[#eefcfd]/60 hover:text-[#3a6a00] transition-all" href="#">Partner Portal</a>
+</div>
+<p class="font-['Inter'] text-sm text-[#0d1a1b]/60 dark:text-[#eefcfd]/60">
+            © 2024 DealDrop Hyperlocal Pulse. All rights reserved.
+        </p>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-[#eefcfd]/90 dark:bg-[#0d1a1b]/90 backdrop-blur-lg z-50 rounded-t-xl shadow-[0_-10px_30px_rgba(17,30,31,0.08)] border-t border-[#c2c7c7]/15">
+<a class="flex flex-col items-center justify-center text-[#3a6a00] bg-[#3a6a00]/10 rounded-2xl px-4 py-1 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="flash_on">flash_on</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-bold uppercase mt-1">Deals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#0d1a1b]/50 dark:text-[#eefcfd]/50 hover:bg-[#eefcfd] dark:hover:bg-[#1a2b2c]" href="#">
+<span class="material-symbols-outlined" data-icon="distance">distance</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-bold uppercase mt-1">Map</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#0d1a1b]/50 dark:text-[#eefcfd]/50 hover:bg-[#eefcfd] dark:hover:bg-[#1a2b2c]" href="#">
+<span class="material-symbols-outlined" data-icon="qr_code_2">qr_code_2</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-bold uppercase mt-1">Reservations</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#0d1a1b]/50 dark:text-[#eefcfd]/50 hover:bg-[#eefcfd] dark:hover:bg-[#1a2b2c]" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Space_Grotesk'] text-[10px] font-bold uppercase mt-1">Profile</span>
+</a>
+</nav>
+</body></html>
