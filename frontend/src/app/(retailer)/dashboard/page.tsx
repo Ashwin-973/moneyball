@@ -1,14 +1,36 @@
+import Link from "next/link";
+import { SlidersHorizontal } from "lucide-react";
+import { cn } from "@/lib/utils";
+
 export default function RetailerDashboardPage() {
   return (
     <div className="p-6 lg:p-8 animate-fade-in">
       {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-3xl sm:text-4xl font-black text-charcoal tracking-tight">
-          Good morning 👋
-        </h1>
-        <p className="mt-1 text-gray-500">
-          Real-time performance metrics for your hyperlocal flash listings.
-        </p>
+      <div className="mb-8 flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
+        <div>
+          <h1 className="text-3xl sm:text-4xl font-black text-charcoal tracking-tight">
+            Good morning 👋
+          </h1>
+          <p className="mt-1 text-gray-500">
+            Real-time performance metrics for your hyperlocal flash listings.
+          </p>
+        </div>
+        <Link
+          href="/strategy"
+          className="group flex items-center gap-3 rounded-2xl border border-gray-100 bg-white px-5 py-4 shadow-sm hover:border-primary/30 hover:shadow-md transition-all shrink-0"
+        >
+          <div className="w-10 h-10 rounded-xl bg-mint flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+            <SlidersHorizontal className="w-5 h-5 text-olive group-hover:text-primary" />
+          </div>
+          <div>
+            <p className="text-sm font-bold text-charcoal">
+              Onboarding &amp; strategy
+            </p>
+            <p className="text-xs text-gray-500 mt-0.5">
+              Configure pricing rules, pickup, and safeguards
+            </p>
+          </div>
+        </Link>
       </div>
 
       {/* Stat cards preview */}
@@ -50,8 +72,4 @@ export default function RetailerDashboardPage() {
       </div>
     </div>
   );
-}
-
-function cn(...classes: (string | boolean | undefined)[]) {
-  return classes.filter(Boolean).join(" ");
 }

@@ -1,8 +1,12 @@
 """Store policy model — per-store configuration."""
 
+from __future__ import annotations
+
+from datetime import time
+from typing import Any, Optional
 from uuid import uuid4
 
-from sqlalchemy import Boolean, Enum, ForeignKey, Integer, String
+from sqlalchemy import Boolean, Enum, ForeignKey, Integer, String, Time
 from sqlalchemy.dialects.postgresql import JSON, UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -33,6 +37,25 @@ class StorePolicy(Base):
         Boolean, default=False, nullable=False
     )
     enabled_categories = mapped_column(JSON, nullable=True)
+
+    # ── Retailer onboarding & strategy (see migration 0002) ───
+    retail_domain: Mapped[Optional[str]] = mapped_column(String(32), nullable=True)
+    target_product_types: Mapped[Optional[Any]] = mapped_column(JSON, nullable=True)
+    pickup_window_start: Mapped[Optional[time]] = mapped_column(Time, nullable=True)
+    pickup_window_end: Mapped[Optional[time]] = mapped_column(Time, nullable=True)
+    pickup_all_business_hours: Mapped[bool] = mapped_column(
+        Boolean, default=False, nullable=False
+    )
+    min_base_discount_pct: Mapped[int] = mapped_column(Integer, default=20, nullable=False)
+    max_markdown_limit_pct: Mapped[int] = mapped_column(Integer, default=60, nullable=False)
+    markdown_trigger: Mapped[str] = mapped_column(
+        String(32), default="24h_before", nullable=False
+    )
+    packaging_policy: Mapped[Optional[str]] = mapped_column(String(32), nullable=True)
+    allergen_acknowledged: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
+    notification_preference: Mapped[str] = mapped_column(
+        String(32), default="in_app", nullable=False
+    )
 
     # ── Relationships ─────────────────────────────────────────
     store = relationship("Store", back_populates="policies")

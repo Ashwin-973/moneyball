@@ -13,12 +13,14 @@ import {
   Menu,
   X,
   Bell,
+  SlidersHorizontal,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuthStore } from "@/store/authStore";
 
 const SIDEBAR_ITEMS = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/strategy", label: "Strategy", icon: SlidersHorizontal },
   { href: "/products", label: "Products", icon: Package },
   { href: "/retailer-deals", label: "Deals", icon: Tag },
   { href: "/retailer-reservations", label: "Reservations", icon: CalendarCheck },
