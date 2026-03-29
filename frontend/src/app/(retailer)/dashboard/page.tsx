@@ -56,7 +56,9 @@ export default function RetailerDashboardPage() {
            <h1 className="text-3xl sm:text-4xl font-black text-charcoal tracking-tight">
             Welcome, {user?.name?.split(" ")[0] || "Retailer"} 👋
           </h1>
-          <p className="mt-1 text-gray-500">Let's get your inventory set up to start recovering revenue.</p>
+          <p className="mt-1 text-gray-500">
+            Let&apos;s get your inventory set up to start recovering revenue.
+          </p>
         </div>
         
         <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-12 text-center">
