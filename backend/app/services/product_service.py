@@ -175,7 +175,7 @@ async def bulk_create_from_csv(
     today = date.today()
 
     for i, row in enumerate(rows, start=2):  # start=2 because row 1 is header
-        row = {k.strip().lower(): v.strip() for k, v in row.items() if k}
+        row = {str(k).strip().lower(): (v.strip() if v is not None else "") for k, v in row.items() if k}
 
         # Validate required fields
         name = row.get("name", "")
