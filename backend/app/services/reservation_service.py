@@ -17,6 +17,11 @@ from app.db.session import async_session_factory
 from app.models.deal import Deal
 from app.models.reservation import Reservation
 from app.schemas.reservation import ReservationCreateRequest
+from app.services.notification_service import (
+    notify_hold_expiring,
+    notify_reservation_confirmed,
+    notify_reservation_cancelled,
+)
 
 logger = logging.getLogger("dealdrop.reservation")
 
@@ -129,8 +134,11 @@ async def create_reservation(
     await db.commit()
     await db.refresh(reservation)
 
-    # 5) Schedule background hold-expiry
+    # 5) Schedule background hold-expiry tasks
     background_tasks.add_task(expire_hold_if_not_confirmed, reservation.id)
+    background_tasks.add_task(
+        notify_hold_expiring, reservation.id
+    )
 
     return reservation
 
@@ -143,6 +151,7 @@ async def update_reservation_status(
     reservation_id: UUID,
     store_id: UUID,
     new_status: ReservationStatus,
+    background_tasks: BackgroundTasks | None = None,
 ) -> Reservation:
     """Called by retailer to confirm, complete, or cancel."""
     reservation = await db.get(Reservation, reservation_id)
@@ -188,6 +197,14 @@ async def update_reservation_status(
 
     await db.commit()
     await db.refresh(reservation)
+
+    # Fire notification based on new status
+    if background_tasks is not None:
+        if new_status == ReservationStatus.confirmed:
+            background_tasks.add_task(notify_reservation_confirmed, reservation.id)
+        elif new_status == ReservationStatus.cancelled:
+            background_tasks.add_task(notify_reservation_cancelled, reservation.id, "store")
+
     return reservation
 
 

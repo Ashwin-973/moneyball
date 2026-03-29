@@ -21,6 +21,13 @@ import {
 } from "@/hooks/useConsumerProfile";
 import { useLocationStore } from "@/store/locationStore";
 
+import { NotificationBell } from "@/components/ui/NotificationBell";
+import { useSSE } from "@/hooks/useSSE";
+import { useNotificationStore } from "@/store/notificationStore";
+import { useToast } from "@/components/ui/Toast";
+import Spinner from "@/components/ui/Spinner";
+import { useState } from "react";
+
 const NAV_ITEMS = [
   { href: "/deals", label: "Home", icon: Home },
   { href: "/map", label: "Map", icon: Map },
@@ -40,6 +47,31 @@ export default function ConsumerLayout({
   const { data: onboarding, isLoading: isAuthLoading } = useConsumerOnboardingStatus();
   const { data: profile } = useConsumerProfile();
   const locationStore = useLocationStore();
+  const { incrementUnread, setLatestEvent, setSSEConnected } = useNotificationStore();
+  const toast = useToast();
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+
+  // SSE Integration
+  const { isConnected } = useSSE((event) => {
+    if (event.type === "ping" || event.type === "connected") return;
+    
+    incrementUnread();
+    setLatestEvent(event);
+    
+    // Show toast for new notifications
+    if (event.title) {
+      toast.success(
+        <div className="flex flex-col gap-1">
+          <span className="font-bold">{event.title}</span>
+          <span className="text-sm opacity-90">{event.body}</span>
+        </div>
+      );
+    }
+  });
+
+  useEffect(() => {
+    setSSEConnected(isConnected);
+  }, [isConnected, setSSEConnected]);
 
   useEffect(() => {
     if (!isLoading) {
@@ -75,6 +107,17 @@ export default function ConsumerLayout({
     }
   }, [onboarding, pathname, router]);
 
+  const handleLogout = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsLoggingOut(true);
+    try {
+      await logout();
+      router.push("/login");
+    } finally {
+      setIsLoggingOut(false);
+    }
+  };
+
   if (isLoading || !isAuthenticated || user?.role !== UserRole.consumer) {
     return null; // Don't flash layout while redirecting
   }
@@ -106,13 +149,7 @@ export default function ConsumerLayout({
             <span className="text-sm font-medium text-charcoal hidden sm:block">
               Welcome, {user?.name || "Guest"}
             </span>
-            <button
-              className="relative w-10 h-10 rounded-xl bg-gray-50 hover:bg-gray-100 flex items-center justify-center transition-colors"
-              aria-label="Notifications"
-            >
-              <Bell className="w-5 h-5 text-charcoal" />
-              <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-primary" />
-            </button>
+            <NotificationBell />
           </div>
         </div>
       </header>
@@ -131,16 +168,7 @@ export default function ConsumerLayout({
             return (
               <Link
                 key={href}
-                href={isProfile ? "#" : href}
-                onClick={
-                  isProfile
-                    ? async (e) => {
-                        e.preventDefault();
-                        await logout();
-                        router.push("/login");
-                      }
-                    : undefined
-                }
+                href={href}
                 className={cn(
                   "flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl transition-all duration-200 min-w-[56px]",
                   isActive

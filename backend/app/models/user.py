@@ -33,9 +33,10 @@ class User(Base):
     )
     is_active: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False, index=True)
 
-    # ── Relationships (lazy, populated in later phases) ───────
+    # ── Relationships ─────────────────────────────────────────
     stores = relationship("Store", back_populates="owner", lazy="selectin")
     consumer_profile = relationship(
         "ConsumerProfile", back_populates="user", uselist=False, lazy="selectin"
     )
     reservations = relationship("Reservation", back_populates="consumer", lazy="selectin")
+    notifications = relationship("Notification", back_populates="user", lazy="noload")

@@ -81,3 +81,11 @@ class NotificationPreference(str, enum.Enum):
     in_app = "in_app"
     sms = "sms"
     email = "email"
+
+
+class NotificationType(str, enum.Enum):
+    """Channel for a persisted notification record."""
+
+    in_app = "in_app"
+    email = "email"
+    push = "push"

@@ -15,6 +15,14 @@ from decimal import Decimal
 from app.services import risk_engine
 
 
+async def notify_consumers_new_deal_bg(deal_id, store_id) -> None:
+    """Thin async wrapper so BackgroundTasks can fire geo notifications."""
+    from app.db.session import async_session_factory
+    from app.services.notification_service import notify_consumers_new_deal
+    async with async_session_factory() as db:
+        await notify_consumers_new_deal(db, deal_id, store_id)
+
+
 async def get_suggested_deals(db: AsyncSession, store_id: UUID) -> list[dict]:
     """
     Returns at-risk products (risk_score >= 50) that do NOT already
@@ -96,7 +104,8 @@ async def check_and_auto_list(db: AsyncSession, product: Product) -> None:
 
 
 async def create_deal(
-    db: AsyncSession, store_id: UUID, data: DealCreateRequest, auto_approve: bool = False
+    db: AsyncSession, store_id: UUID, data: DealCreateRequest, auto_approve: bool = False,
+    background_tasks=None,
 ) -> Deal:
     try:
         product_uuid = UUID(data.product_id)
@@ -136,21 +145,33 @@ async def create_deal(
     db.add(deal)
     await db.commit()
     await db.refresh(deal)
+
+    # Notify nearby consumers when a deal goes live
+    if status == DealStatus.active and background_tasks is not None:
+        background_tasks.add_task(
+            notify_consumers_new_deal_bg, deal.id, store_id
+        )
+
     return deal
 
 
-async def approve_deal(db: AsyncSession, deal_id: UUID, store_id: UUID) -> Deal:
+async def approve_deal(db: AsyncSession, deal_id: UUID, store_id: UUID, background_tasks=None) -> Deal:
     deal = await db.get(Deal, deal_id)
     if not deal or deal.store_id != store_id:
         raise NotFoundError("Deal not found")
-        
+
     if deal.status != DealStatus.draft:
         raise ConflictError("Only draft deals can be approved")
-        
+
     deal.status = DealStatus.active
     deal.listed_at = datetime.now(timezone.utc)
     await db.commit()
     await db.refresh(deal)
+
+    # Notify nearby consumers
+    if background_tasks is not None:
+        background_tasks.add_task(notify_consumers_new_deal_bg, deal.id, store_id)
+
     return deal
 
 

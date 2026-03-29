@@ -94,3 +94,20 @@ async def update_push_subscription(
     user: User = Depends(require_role(UserRole.consumer)),
 ):
     return await consumer_profile_service.upsert_push_token(db, user.id, data.subscribed)
+
+
+@router.post("/me/push-token")
+async def save_push_token(
+    data: dict,
+    db: AsyncSession = Depends(get_db),
+    user: User = Depends(require_role(UserRole.consumer)),
+):
+    """Save the full Web Push subscription object (JSON string) on the consumer profile."""
+    push_token = data.get("push_token", "")
+    profile = await consumer_profile_service.get_profile(db, user.id)
+    if profile:
+        profile.push_token = push_token
+        profile.push_subscribed = True
+        db.add(profile)
+        await db.commit()
+    return {"message": "Push token saved"}

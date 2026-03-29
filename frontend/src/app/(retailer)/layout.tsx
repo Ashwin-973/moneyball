@@ -21,6 +21,12 @@ import { useAuth } from "@/hooks/useAuth";
 import { UserRole } from "@/types/auth";
 import { useOnboardingStatus } from "@/hooks/useStore";
 
+import { NotificationBell } from "@/components/ui/NotificationBell";
+import { useSSE } from "@/hooks/useSSE";
+import { useNotificationStore } from "@/store/notificationStore";
+import { useToast } from "@/components/ui/Toast";
+import Spinner from "@/components/ui/Spinner";
+
 const SIDEBAR_ITEMS = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/strategy", label: "Strategy", icon: SlidersHorizontal },
@@ -40,6 +46,32 @@ export default function RetailerLayout({
   const { user, logout, isAuthenticated, isLoading } = useAuth();
   const { data: onboarding } = useOnboardingStatus();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+
+  const { incrementUnread, setLatestEvent, setSSEConnected } = useNotificationStore();
+  const toast = useToast();
+
+  // SSE Integration
+  const { isConnected } = useSSE((event) => {
+    if (event.type === "ping" || event.type === "connected") return;
+    
+    incrementUnread();
+    setLatestEvent(event);
+    
+    // Show toast for new notifications
+    if (event.title) {
+      toast.success(
+        <div className="flex flex-col gap-1">
+          <span className="font-bold">{event.title}</span>
+          <span className="text-sm opacity-90">{event.body}</span>
+        </div>
+      );
+    }
+  });
+
+  useEffect(() => {
+    setSSEConnected(isConnected);
+  }, [isConnected, setSSEConnected]);
 
   // Auth guard
   useEffect(() => {
@@ -79,8 +111,13 @@ export default function RetailerLayout({
   }
 
   const handleLogout = async () => {
-    await logout();
-    router.push("/login");
+    setIsLoggingOut(true);
+    try {
+      await logout();
+      router.push("/login");
+    } finally {
+      setIsLoggingOut(false);
+    }
   };
 
   return (
@@ -102,6 +139,9 @@ export default function RetailerLayout({
               </span>
             </div>
           </Link>
+          <div className="ml-auto">
+            <NotificationBell />
+          </div>
         </div>
 
         {/* Nav links */}
@@ -141,9 +181,10 @@ export default function RetailerLayout({
           )}
           <button
             onClick={handleLogout}
-            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-white/60 hover:text-white hover:bg-white/5 transition-colors"
+            disabled={isLoggingOut}
+            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-white/60 hover:text-white hover:bg-white/5 transition-colors disabled:opacity-50"
           >
-            <LogOut className="w-[18px] h-[18px]" />
+            {isLoggingOut ? <Spinner size="sm" className="w-[18px] h-[18px]" /> : <LogOut className="w-[18px] h-[18px]" />}
             Logout
           </button>
           <div className="px-3 py-3 rounded-lg bg-white/5">
@@ -176,13 +217,7 @@ export default function RetailerLayout({
           <span className="text-base font-bold text-white">DealDrop</span>
         </Link>
 
-        <button
-          className="relative w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center"
-          aria-label="Notifications"
-        >
-          <Bell className="w-5 h-5 text-white" />
-          <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-primary" />
-        </button>
+        <NotificationBell />
       </div>
 
       {/* ── Mobile Drawer ──────────────────────────────────── */}
@@ -219,9 +254,10 @@ export default function RetailerLayout({
             <div className="px-3 pb-6 space-y-2">
               <button
                 onClick={handleLogout}
-                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-white/60 hover:text-white hover:bg-white/5 transition-colors"
+                disabled={isLoggingOut}
+                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-white/60 hover:text-white hover:bg-white/5 transition-colors disabled:opacity-50"
               >
-                <LogOut className="w-[18px] h-[18px]" />
+                {isLoggingOut ? <Spinner size="sm" className="w-[18px] h-[18px]" /> : <LogOut className="w-[18px] h-[18px]" />}
                 Logout
               </button>
             </div>

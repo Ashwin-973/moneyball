@@ -9,6 +9,7 @@ from app.models.category import Category
 from app.models.deal import Deal
 from app.models.reservation import Reservation
 from app.models.consumer_profile import ConsumerProfile
+from app.models.notification import Notification
 
 __all__ = [
     "Base",
@@ -20,4 +21,5 @@ __all__ = [
     "Deal",
     "Reservation",
     "ConsumerProfile",
+    "Notification",
 ]

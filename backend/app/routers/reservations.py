@@ -163,6 +163,7 @@ async def get_store_reservations(
 async def update_reservation_status(
     reservation_id: UUID,
     body: ReservationStatusUpdate,
+    background_tasks: BackgroundTasks,
     db: AsyncSession = Depends(get_db),
     user: User = Depends(require_role(UserRole.retailer)),
 ):
@@ -175,6 +176,6 @@ async def update_reservation_status(
         raise ConflictError(f"Invalid status: {body.status}")
 
     reservation = await reservation_service.update_reservation_status(
-        db, reservation_id, store.id, new_status
+        db, reservation_id, store.id, new_status, background_tasks
     )
     return await _build_reservation_out(db, reservation)
