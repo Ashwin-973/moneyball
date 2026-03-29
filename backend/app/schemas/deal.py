@@ -47,3 +47,60 @@ class DealSuggestion(BaseModel):
 class DealListResponse(BaseModel):
     items: list[DealOut]
     total: int
+
+
+# ── Consumer-facing schemas (Phase 5) ────────────────────────
+
+class StoreMinimal(BaseModel):
+    id: str
+    name: str
+    address: str
+    lat: float
+    lng: float
+    category: str
+    distance_km: float
+
+
+class DealDetailOut(BaseModel):
+    id: str
+    store_id: str
+    product_id: str
+    deal_price: float
+    original_price: float
+    discount_pct: int
+    quantity_available: int
+    expiry_date: str
+    deal_type: str
+    status: str
+    listed_at: str
+    risk_score_at_listing: int
+    product_name: str
+    product_image_url: str | None = None
+    batch_number: str | None = None
+    store: StoreMinimal
+    days_to_expiry: int
+    is_urgent: bool
+    hours_to_expiry: int | None = None
+
+
+class DealFeedResponse(BaseModel):
+    items: list[DealDetailOut]
+    total: int
+    page: int
+    page_size: int
+    sort_by: str
+
+
+class MapPinOut(BaseModel):
+    store_id: str
+    store_name: str
+    lat: float
+    lng: float
+    category: str
+    deal_count: int
+    max_discount_pct: int
+
+
+class MapFeedResponse(BaseModel):
+    pins: list[MapPinOut]
+    total_deals: int

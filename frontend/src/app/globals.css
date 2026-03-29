@@ -106,3 +106,26 @@ body {
     text-wrap: balance;
   }
 }
+
+/* ── Leaflet + Map utilities ─────────────────────────────────── */
+
+@keyframes userPulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+  50% { opacity: 0.7; box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+}
+
+.user-location-marker,
+.store-pin-marker {
+  background: none !important;
+  border: none !important;
+}
+
+/* ── Hide scrollbar utility ──────────────────────────────────── */
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ── Safe area for mobile bottom bar ─────────────────────────── */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
