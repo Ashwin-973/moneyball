@@ -15,6 +15,11 @@ import { useAuth } from "@/hooks/useAuth";
 import { UserRole } from "@/types/auth";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import {
+  useConsumerOnboardingStatus,
+  useConsumerProfile,
+} from "@/hooks/useConsumerProfile";
+import { useLocationStore } from "@/store/locationStore";
 
 const NAV_ITEMS = [
   { href: "/deals", label: "Home", icon: Home },
@@ -32,6 +37,9 @@ export default function ConsumerLayout({
   const pathname = usePathname();
   const router = useRouter();
   const { user, logout, isAuthenticated, isLoading } = useAuth();
+  const { data: onboarding, isLoading: isAuthLoading } = useConsumerOnboardingStatus();
+  const { data: profile } = useConsumerProfile();
+  const locationStore = useLocationStore();
 
   useEffect(() => {
     if (!isLoading) {
@@ -43,8 +51,39 @@ export default function ConsumerLayout({
     }
   }, [isLoading, isAuthenticated, user, router]);
 
+  // Sync profile to store
+  useEffect(() => {
+    if (profile) {
+      locationStore.syncFromProfile(profile);
+    }
+  }, [profile]);
+
+  // Onboarding guard: redirect to /onboarding if not complete
+  useEffect(() => {
+    if (
+      onboarding &&
+      !onboarding.is_complete &&
+      pathname !== "/onboarding"
+    ) {
+      router.push("/onboarding");
+    } else if (
+      onboarding &&
+      onboarding.is_complete &&
+      pathname === "/onboarding"
+    ) {
+      router.push("/deals");
+    }
+  }, [onboarding, pathname, router]);
+
   if (isLoading || !isAuthenticated || user?.role !== UserRole.consumer) {
     return null; // Don't flash layout while redirecting
+  }
+
+  // If we are on onboarding, hide the top bar and bottom nav
+  const isOnboarding = pathname === "/onboarding";
+
+  if (isOnboarding) {
+    return <div className="min-h-screen bg-surface">{children}</div>;
   }
 
   return (

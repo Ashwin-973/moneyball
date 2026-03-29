@@ -6,7 +6,7 @@ export function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
 
   // Protect Retailer routes
-  const retailerPaths = ["/dashboard", "/products", "/onboarding", "/settings", "/retailer-deals", "/retailer-reservations"];
+  const retailerPaths = ["/dashboard", "/products", "/retailer-onboarding", "/settings", "/retailer-deals", "/retailer-reservations"];
   const isRetailerRoute = retailerPaths.some((p) => url.pathname.startsWith(p));
 
   if (isRetailerRoute) {
@@ -34,5 +34,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/products/:path*", "/deals/:path*", "/reservations/:path*", "/onboarding/:path*", "/settings/:path*", "/retailer-deals/:path*", "/retailer-reservations/:path*"],
+  matcher: ["/dashboard/:path*", "/products/:path*", "/deals/:path*", "/reservations/:path*", "/onboarding/:path*", "/retailer-onboarding/:path*", "/settings/:path*", "/retailer-deals/:path*", "/retailer-reservations/:path*"],
 };

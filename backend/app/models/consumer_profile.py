@@ -1,10 +1,12 @@
-"""Consumer profile model — location & preferences (stub for Phase 7)."""
+"""Consumer profile model — location & preferences."""
 
+from datetime import datetime, timezone
 from uuid import uuid4
 
-from sqlalchemy import Boolean, Float, ForeignKey, Integer
+from sqlalchemy import Boolean, DateTime, ForeignKey, Integer, Numeric
 from sqlalchemy.dialects.postgresql import JSON, UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy.sql import func
 
 from app.db.base import Base
 
@@ -21,16 +23,27 @@ class ConsumerProfile(Base):
         unique=True,
         nullable=False,
     )
-    home_lat: Mapped[float | None] = mapped_column(Float, nullable=True)
-    home_lng: Mapped[float | None] = mapped_column(Float, nullable=True)
-    work_lat: Mapped[float | None] = mapped_column(Float, nullable=True)
-    work_lng: Mapped[float | None] = mapped_column(Float, nullable=True)
+    home_lat = mapped_column(Numeric(9, 6), nullable=True)
+    home_lng = mapped_column(Numeric(9, 6), nullable=True)
+    work_lat = mapped_column(Numeric(9, 6), nullable=True)
+    work_lng = mapped_column(Numeric(9, 6), nullable=True)
     preferred_radius_km: Mapped[int] = mapped_column(
         Integer, default=3, nullable=False
     )
-    preferred_categories = mapped_column(JSON, nullable=True)
+    preferred_categories = mapped_column(
+        JSON, default=["bakery", "grocery", "fmcg"], nullable=True
+    )
     push_subscribed: Mapped[bool] = mapped_column(
-        Boolean, default=False, nullable=False
+        Boolean, default=False, nullable=False, index=True
+    )
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=func.now(), nullable=False
+    )
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True),
+        default=func.now(),
+        onupdate=func.now(),
+        nullable=False,
     )
 
     # ── Relationships ─────────────────────────────────────────

@@ -2,7 +2,7 @@
 
 import StoreSetupWizard from "@/components/retailer/StoreSetupWizard";
 
-export default function OnboardingPage() {
+export default function RetailerOnboardingPage() {
   return (
     <div className="min-h-[calc(100vh-56px)] lg:min-h-screen bg-surface">
       <div className="py-6">

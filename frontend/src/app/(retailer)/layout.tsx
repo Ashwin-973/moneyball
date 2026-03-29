@@ -52,23 +52,23 @@ export default function RetailerLayout({
     }
   }, [isLoading, isAuthenticated, user, router]);
 
-  // Onboarding guard: redirect to /onboarding if not complete
+  // Onboarding guard: redirect to /retailer-onboarding if not complete
   useEffect(() => {
     if (
       onboarding &&
       !onboarding.is_complete &&
-      pathname !== "/onboarding"
+      pathname !== "/retailer-onboarding"
     ) {
-      router.push("/onboarding");
+      router.push("/retailer-onboarding");
     }
   }, [onboarding, pathname, router]);
 
-  // If already onboarded and visiting /onboarding, redirect to dashboard
+  // If already onboarded and visiting /retailer-onboarding, redirect to dashboard
   useEffect(() => {
     if (
       onboarding &&
       onboarding.is_complete &&
-      pathname === "/onboarding"
+      pathname === "/retailer-onboarding"
     ) {
       router.push("/dashboard");
     }

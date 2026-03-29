@@ -1,4 +1,31 @@
+"use client";
+
+import { useLocationStore } from "@/store/locationStore";
+import { useEffect, useState } from "react";
+
 export default function ConsumerDealsPage() {
+  const locationStore = useLocationStore();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null; // Avoid hydration mismatch
+  }
+
+  if (!locationStore.hasLocation) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[50vh] text-center px-4">
+        <h2 className="text-2xl font-bold text-charcoal mb-2">Location Required</h2>
+        <p className="text-gray-500 max-w-md">
+          Please complete onboarding first to view deals near you.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 animate-fade-in">
       {/* Hero section */}
@@ -11,6 +38,12 @@ export default function ConsumerDealsPage() {
           Real-time biological urgency meets precision retail. Experience the
           next evolution of local shopping.
         </p>
+        <div className="mt-4 p-3 bg-blue-50 text-blue-800 rounded-lg inline-block text-sm border border-blue-100">
+          Showing deals within <strong>{locationStore.preferredRadius}km</strong> of{" "}
+          <span className="font-mono">
+            {locationStore.label || `${locationStore.homeLat}, ${locationStore.homeLng}`}
+          </span>
+        </div>
       </div>
 
       {/* Placeholder */}
