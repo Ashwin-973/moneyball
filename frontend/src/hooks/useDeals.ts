@@ -1,6 +1,15 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import api from "@/lib/api";
-import { Deal, DealCreateRequest, DealSuggestion, DealListResponse } from "@/types/deal";
+import {
+  Deal,
+  DealCreateRequest,
+  DealSuggestion,
+  DealListResponse,
+  DealDetailOut,
+  DealFeedResponse,
+  FeedTab,
+  MapFeedResponse,
+} from "@/types/deal";
 
 export function useDealSuggestions() {
   return useQuery({
@@ -86,5 +95,74 @@ export function useRescoreProducts() {
       queryClient.invalidateQueries({ queryKey: ["products"] });
       queryClient.invalidateQueries({ queryKey: ["deals", "suggestions"] });
     },
+  });
+}
+
+// ── Consumer feed hooks (Phase 5) ───────────────────────────
+
+export function useDealFeed(params: {
+  lat: number | null;
+  lng: number | null;
+  radius_km: number;
+  category?: string;
+  sort_by: FeedTab;
+  page: number;
+}) {
+  return useQuery({
+    queryKey: ["deals", "feed", params],
+    queryFn: async () => {
+      const searchParams = new URLSearchParams({
+        lat: String(params.lat),
+        lng: String(params.lng),
+        radius_km: String(params.radius_km),
+        sort_by: params.sort_by,
+        page: String(params.page),
+      });
+      if (params.category) {
+        searchParams.set("category", params.category);
+      }
+      const { data } = await api.get<DealFeedResponse>(
+        `/deals/feed?${searchParams.toString()}`
+      );
+      return data;
+    },
+    enabled: params.lat !== null && params.lng !== null,
+  });
+}
+
+export function useDealDetail(id: string) {
+  return useQuery({
+    queryKey: ["deals", "detail", id],
+    queryFn: async () => {
+      const { data } = await api.get<DealDetailOut>(`/deals/feed/${id}`);
+      return data;
+    },
+    enabled: !!id,
+  });
+}
+
+export function useMapPins(params: {
+  lat: number | null;
+  lng: number | null;
+  radius_km: number;
+  category?: string;
+}) {
+  return useQuery({
+    queryKey: ["deals", "map", params],
+    queryFn: async () => {
+      const searchParams = new URLSearchParams({
+        lat: String(params.lat),
+        lng: String(params.lng),
+        radius_km: String(params.radius_km),
+      });
+      if (params.category) {
+        searchParams.set("category", params.category);
+      }
+      const { data } = await api.get<MapFeedResponse>(
+        `/deals/feed/map?${searchParams.toString()}`
+      );
+      return data;
+    },
+    enabled: params.lat !== null && params.lng !== null,
   });
 }
