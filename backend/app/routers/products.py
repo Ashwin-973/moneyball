@@ -62,6 +62,7 @@ async def create_product(
 
 @router.post("/bulk-upload", response_model=CSVUploadResponse)
 async def bulk_upload(
+    background_tasks: BackgroundTasks,
     user: RetailerUser,
     db: DB,
     file: UploadFile = File(...),
@@ -73,7 +74,12 @@ async def bulk_upload(
         raise HTTPException(status_code=400, detail="Only .csv files are accepted")
     content = await file.read()
     store = await product_service.get_store_for_user(db, user.id)
-    return await product_service.bulk_create_from_csv(db, store.id, content)
+    result = await product_service.bulk_create_from_csv(db, store.id, content)
+    
+    # Run heavy rescoring and auto-listing in the background
+    background_tasks.add_task(product_service.process_post_upload_tasks, store.id)
+    
+    return result
 
 
 @router.get("/{product_id}", response_model=ProductOut)

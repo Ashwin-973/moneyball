@@ -32,7 +32,7 @@ const NAV_ITEMS = [
   { href: "/deals", label: "Home", icon: Home },
   { href: "/map", label: "Map", icon: Map },
   { href: "/reservations", label: "Orders", icon: CalendarCheck },
-  { href: "/savings", label: "Savings", icon: PiggyBank },
+  // { href: "/savings", label: "Savings", icon: PiggyBank },
   { href: "/profile", label: "Profile", icon: User },
 ] as const;
 

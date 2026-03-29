@@ -261,15 +261,35 @@ async def bulk_create_from_csv(
 
     if created > 0:
         await db.commit()
-        await risk_engine.rescore_all_products_for_store(db, store_id)
-        # Fetch all products from store again out of simplicity and run auto list
-        res = await db.execute(select(Product).where(Product.store_id == store_id))
-        all_store_products = res.scalars().all()
-        for p in all_store_products:
-            await deal_service.check_and_auto_list(db, p)
 
     return CSVUploadResponse(
         created=created,
         skipped=len(errors),
         errors=errors,
     )
+
+
+async def process_post_upload_tasks(store_id: UUID) -> None:
+    """Heavy logic for rescoring and auto-listing, meant for BackgroundTasks."""
+    from app.db.session import async_session_factory
+
+    async with async_session_factory() as db:
+        try:
+            # 1. Rescore all products in store
+            await risk_engine.rescore_all_products_for_store(db, store_id)
+
+            # 2. Check each product for auto-listing (deals)
+            res = await db.execute(
+                select(Product).where(Product.store_id == store_id)
+            )
+            all_store_products = res.scalars().all()
+            for p in all_store_products:
+                await deal_service.check_and_auto_list(db, p)
+
+            await db.commit()
+        except Exception:
+            await db.rollback()
+            # Log error here if you have a logger, or just pass
+            pass
+        finally:
+            await db.close()
