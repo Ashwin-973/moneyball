@@ -72,10 +72,10 @@ export function ProductForm({ initialData, onSubmit, isLoading, mode }: ProductF
         category,
         mrp: parseFloat(mrp),
         cost_price: parseFloat(costPrice),
-        batch_number: batchNumber || undefined,
+        batch_number: batchNumber || null,
         expiry_date: expiryDate,
         quantity: parseInt(quantity),
-        image_url: imageUrl || undefined,
+        image_url: imageUrl || null,
       };
       await onSubmit(data);
     } else {
@@ -85,10 +85,10 @@ export function ProductForm({ initialData, onSubmit, isLoading, mode }: ProductF
       if (category !== initialData?.category) data.category = category;
       if (parseFloat(mrp) !== initialData?.mrp) data.mrp = parseFloat(mrp);
       if (parseFloat(costPrice) !== initialData?.cost_price) data.cost_price = parseFloat(costPrice);
-      if (batchNumber !== (initialData?.batch_number || "")) data.batch_number = batchNumber || undefined;
-      if (expiryDate !== initialData?.expiry_date) data.expiry_date = expiryDate || undefined;
+      if (batchNumber !== (initialData?.batch_number || "")) data.batch_number = batchNumber || null;
+      if (expiryDate !== initialData?.expiry_date) data.expiry_date = expiryDate;
       if (parseInt(quantity) !== initialData?.quantity) data.quantity = parseInt(quantity);
-      if (imageUrl !== (initialData?.image_url || "")) data.image_url = imageUrl || undefined;
+      if (imageUrl !== (initialData?.image_url || "")) data.image_url = imageUrl || null;
       await onSubmit(data);
     }
   };

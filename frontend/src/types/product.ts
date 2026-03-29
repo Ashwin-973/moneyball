@@ -29,10 +29,10 @@ export interface ProductCreateRequest {
   category: StoreCategory;
   mrp: number;
   cost_price: number;
-  batch_number?: string;
+  batch_number?: string | null;
   expiry_date: string;
   quantity: number;
-  image_url?: string;
+  image_url?: string | null;
 }
 
 export interface ProductUpdateRequest {
@@ -40,10 +40,10 @@ export interface ProductUpdateRequest {
   category?: StoreCategory;
   mrp?: number;
   cost_price?: number;
-  batch_number?: string;
+  batch_number?: string | null;
   expiry_date?: string;
   quantity?: number;
-  image_url?: string;
+  image_url?: string | null;
 }
 
 export interface ProductListResponse {

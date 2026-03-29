@@ -185,6 +185,7 @@ async def bulk_create_from_csv(
         expiry_str = row.get("expiry_date", "")
         qty_str = row.get("quantity", "")
         batch = row.get("batch_number", "") or None
+        image_url = row.get("image_url", "") or None
 
         if not name or len(name) < 2:
             errors.append(f"Row {i}: Missing or too short product name")
@@ -252,6 +253,7 @@ async def bulk_create_from_csv(
             batch_number=batch,
             expiry_date=expiry,
             quantity=qty,
+            image_url=image_url,
             risk_score=0,
         )
         db.add(product)

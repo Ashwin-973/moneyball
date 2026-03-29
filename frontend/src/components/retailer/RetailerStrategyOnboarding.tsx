@@ -2,6 +2,7 @@
 
 import { useCallback, useMemo, useState } from "react";
 import { SlidersHorizontal } from "lucide-react";
+import api from "@/lib/api";
 import { cn } from "@/lib/utils";
 import {
   MARKDOWN_TRIGGER_OPTIONS,
@@ -187,10 +188,17 @@ export default function RetailerStrategyOnboarding() {
       return;
     }
 
-    setSavedFlash(true);
-    window.setTimeout(() => setSavedFlash(false), 2500);
-
-    // Wire to `api.patch("/stores/me/strategy", payload)` when the endpoint exists.
+    api.post("/stores/me/policies", {
+      min_discount_pct: minBaseDiscountPct,
+      auto_approve: autoApproveDeals,
+      fulfillment_mode: "pickup",
+      hide_outside_hours: false,
+    }).then(() => {
+      setSavedFlash(true);
+      window.setTimeout(() => setSavedFlash(false), 2500);
+    }).catch(() => {
+      setFormError("Failed to save strategy to backend.");
+    });
   };
 
   return (

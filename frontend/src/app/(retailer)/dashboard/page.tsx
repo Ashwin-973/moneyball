@@ -27,12 +27,6 @@ export default function RetailerDashboardPage() {
   // Fetch all products (with large page size to calculate stats)
   const { data: allProducts, isLoading } = useProducts({ page_size: 100 });
   
-  // Fetch specifically "at-risk" products for the action list
-  const { data: atRiskProducts } = useProducts({ 
-    page_size: 5, 
-    risk_filter: "at_risk" 
-  });
-
   const products = allProducts?.items || [];
   const totalProducts = allProducts?.total || 0;
 
@@ -230,31 +224,31 @@ export default function RetailerDashboardPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-50">
-                {atRiskProducts?.items.length === 0 ? (
+                {!suggestionsData || suggestionsData.length === 0 ? (
                   <tr>
                     <td colSpan={4} className="px-6 py-12 text-center">
                       <p className="text-sm text-gray-400 font-medium italic">No immediate actions required. Great job!</p>
                     </td>
                   </tr>
                 ) : (
-                  atRiskProducts?.items.map((product) => (
-                    <tr key={product.id} className="group hover:bg-gray-50 transition-all">
+                  suggestionsData.slice(0, 5).map((suggestion) => (
+                    <tr key={suggestion.product_id} className="group hover:bg-gray-50 transition-all">
                       <td className="px-6 py-4">
                         <div className="flex flex-col">
-                          <span className="text-sm font-bold text-charcoal">{product.name}</span>
-                          <span className="text-[10px] font-medium text-gray-400">MRP: {formatPrice(product.mrp)}</span>
+                          <span className="text-sm font-bold text-charcoal">{suggestion.product_name}</span>
+                          <span className="text-[10px] font-medium text-gray-400">MRP: {formatPrice(suggestion.mrp)}</span>
                         </div>
                       </td>
                       <td className="px-6 py-4">
                          <span className={cn(
                            "text-sm font-black",
-                           product.days_to_expiry <= 3 ? "text-red-500" : "text-amber-500"
+                           suggestion.days_to_expiry <= 3 ? "text-red-500" : "text-amber-500"
                          )}>
-                           {product.days_to_expiry} days
+                           {suggestion.days_to_expiry} days
                          </span>
                       </td>
                       <td className="px-6 py-4">
-                        <RiskBadge risk_label={product.risk_label} showScore={false} />
+                        <RiskBadge risk_label={suggestion.risk_label} risk_score={suggestion.risk_score} showScore={false} />
                       </td>
                       <td className="px-6 py-4 text-right">
                         <Link href="/retailer-deals?tab=suggestions">

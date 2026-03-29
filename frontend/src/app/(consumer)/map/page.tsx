@@ -96,12 +96,20 @@ export default function MapPage() {
           <div className="w-10 h-1 bg-gray-300 rounded-full" />
         </div>
 
-        <div className="px-4 pb-2">
+        <div className="px-4 pb-2 flex items-center justify-between">
           <h3 className="text-sm font-bold text-charcoal">
             {selectedPin
-              ? `${selectedPin.store_name} — ${selectedPin.deal_count} deals`
+              ? `${selectedPin.deal_count} deals at this location`
               : `${mapData?.total_deals || 0} deals near you`}
           </h3>
+          {selectedPin && (
+            <button
+              onClick={() => setSelectedStoreId(null)}
+              className="text-xs text-primary font-bold hover:underline"
+            >
+              Clear filter
+            </button>
+          )}
         </div>
 
         {/* Horizontal scroll of deal cards */}

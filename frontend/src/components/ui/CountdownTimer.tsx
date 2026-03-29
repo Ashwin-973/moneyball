@@ -28,8 +28,9 @@ export default function CountdownTimer({ expiryDate, showSeconds = false }: Coun
       const diffDays = Math.floor(diffH / 24);
 
       if (diffDays > 2) {
-        setTimeLeft(null);
-        return -1; // don't show
+        setTimeLeft(`${diffDays}d left`);
+        setColorClass("text-emerald-600 font-medium");
+        return 60000;
       }
 
       if (diffDays >= 1) {
@@ -50,11 +51,11 @@ export default function CountdownTimer({ expiryDate, showSeconds = false }: Coun
     }
 
     const interval = computeTimeLeft();
-    if (interval <= 0 && interval !== -1) return;
+    if (interval <= 0) return;
 
     const id = setInterval(() => {
       computeTimeLeft();
-    }, interval === -1 ? 60000 : interval);
+    }, interval);
 
     return () => clearInterval(id);
   }, [expiryDate]);

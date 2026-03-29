@@ -442,7 +442,7 @@ async def get_map_pins(
         "radius_meters": radius_meters,
     }
     if category:
-        category_filter = "AND s.category = :category"
+        category_filter = "AND p.category = :category"
         params["category"] = category
 
     sql = f"""
@@ -453,6 +453,7 @@ async def get_map_pins(
             MAX(d.discount_pct) AS max_discount_pct,
             MIN(d.deal_price) AS min_price
         FROM deals d
+        JOIN products p ON d.product_id = p.id
         JOIN stores s ON d.store_id = s.id
         WHERE d.status = 'active'
             AND d.expiry_date >= CURRENT_DATE
