@@ -60,7 +60,7 @@ export default function DealDetailView({ deal }: DealDetailViewProps) {
           <img
             src={deal.product_image_url}
             alt={deal.product_name}
-            className="w-full h-full object-cover"
+            className="h-full object-cover mx-auto"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-6xl text-gray-300">

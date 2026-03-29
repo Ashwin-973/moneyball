@@ -13,7 +13,7 @@ from app.core.exceptions import ConflictError, ForbiddenError, NotFoundError
 from app.models.deal import Deal
 from app.models.product import Product
 from app.models.store import Store
-from app.services import risk_engine, store_service
+from app.services import risk_engine, store_service, deal_service
 from app.schemas.product import (
     CSVUploadResponse,
     ProductCreateRequest,
@@ -110,7 +110,9 @@ async def create_product(
     db.add(product)
     await db.commit()
     await db.refresh(product)
-    return await risk_engine.rescore_product(db, product)
+    product = await risk_engine.rescore_product(db, product)
+    await deal_service.check_and_auto_list(db, product)
+    return product
 
 
 async def update_product(
@@ -124,7 +126,9 @@ async def update_product(
     db.add(product)
     await db.commit()
     await db.refresh(product)
-    return await risk_engine.rescore_product(db, product)
+    product = await risk_engine.rescore_product(db, product)
+    await deal_service.check_and_auto_list(db, product)
+    return product
 
 
 async def delete_product(db: AsyncSession, product: Product) -> None:
@@ -256,6 +260,11 @@ async def bulk_create_from_csv(
     if created > 0:
         await db.commit()
         await risk_engine.rescore_all_products_for_store(db, store_id)
+        # Fetch all products from store again out of simplicity and run auto list
+        res = await db.execute(select(Product).where(Product.store_id == store_id))
+        all_store_products = res.scalars().all()
+        for p in all_store_products:
+            await deal_service.check_and_auto_list(db, p)
 
     return CSVUploadResponse(
         created=created,

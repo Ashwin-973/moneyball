@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, date
 from decimal import Decimal
 from pydantic import BaseModel, ConfigDict, Field
 import uuid
@@ -19,7 +19,7 @@ class DealOut(BaseModel):
     original_price: float
     discount_pct: int
     quantity_available: int
-    expiry_date: str
+    expiry_date: str | date
     deal_type: str | DealType
     status: str | DealStatus
     listed_at: str | datetime | None = None
@@ -69,10 +69,10 @@ class DealDetailOut(BaseModel):
     original_price: float
     discount_pct: int
     quantity_available: int
-    expiry_date: str
-    deal_type: str
-    status: str
-    listed_at: str
+    expiry_date: str | date
+    deal_type: str | DealType
+    status: str | DealStatus
+    listed_at: str | datetime | None = None
     risk_score_at_listing: int
     product_name: str
     product_image_url: str | None = None

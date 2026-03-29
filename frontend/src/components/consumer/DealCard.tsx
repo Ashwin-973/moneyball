@@ -29,7 +29,7 @@ export default function DealCard({ deal }: DealCardProps) {
           <img
             src={deal.product_image_url}
             alt={deal.product_name}
-            className="w-full h-full object-cover"
+            className="h-full object-contain mx-auto"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-4xl text-gray-300">

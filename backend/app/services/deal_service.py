@@ -8,7 +8,10 @@ from app.core.constants import DealStatus, StoreCategory
 from app.core.exceptions import ConflictError, NotFoundError
 from app.models.deal import Deal
 from app.models.product import Product
+from app.models.store_policy import StorePolicy
 from app.schemas.deal import DealCreateRequest
+from app.core.constants import DealStatus, StoreCategory, DealType
+from decimal import Decimal
 from app.services import risk_engine
 
 
@@ -58,6 +61,38 @@ async def get_suggested_deals(db: AsyncSession, store_id: UUID) -> list[dict]:
             "quantity": p.quantity,
         })
     return suggestions
+
+
+async def check_and_auto_list(db: AsyncSession, product: Product) -> None:
+    """Evaluates product risk and auto-creates an active deal if it meets store policy criteria."""
+    if product.risk_score < 50 or product.quantity <= 0:
+        return
+        
+    policy = await db.scalar(select(StorePolicy).where(StorePolicy.store_id == product.store_id))
+    if not policy or not policy.auto_approve:
+        return
+        
+    discount = risk_engine.suggest_discount(product.risk_score, StoreCategory(product.category))
+    if discount == 0 or discount < policy.min_discount_pct:
+        return
+        
+    existing = await db.scalar(
+        select(Deal).where(
+            Deal.product_id == product.id,
+            Deal.status.in_([DealStatus.draft, DealStatus.active])
+        )
+    )
+    if existing:
+        return
+        
+    deal_price = risk_engine.compute_deal_price(product.mrp, discount)
+    deal_req = DealCreateRequest(
+        product_id=str(product.id),
+        deal_price=Decimal(str(deal_price)),
+        quantity_to_list=product.quantity,
+        deal_type=DealType.clearance
+    )
+    await create_deal(db, product.store_id, deal_req, auto_approve=True)
 
 
 async def create_deal(
