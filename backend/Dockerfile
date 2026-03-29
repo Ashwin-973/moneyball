@@ -1,4 +1,4 @@
-FROM python:3.11-slim
+FROM python:3.13-slim
 
 # Install uv
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
@@ -9,6 +9,13 @@ WORKDIR /app
 # Enable bytecode compilation and disable cache for smaller image
 ENV UV_COMPILE_BYTECODE=1
 ENV UV_LINK_MODE=copy
+
+# Install dependencies required to build psycopg2 from source
+# Using 3.13-slim as the base image to align with local .python-version
+RUN apt-get update && apt-get install -y \
+    gcc \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install dependencies FIRST (caching mechanism)
 # We copy only pyproject.toml and uv.lock so Docker caches the installation step
