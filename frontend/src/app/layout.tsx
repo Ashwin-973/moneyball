@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     "Hyperlocal flash-sale marketplace. Discover near-expiry deals from local retailers, reserve instantly, and pick up fresh savings.",
   manifest: "/manifest.json",
   icons: {
-    icon: "/favicon.ico",
+    icon: "/icons/favicon.png",
     apple: "/icons/icon-192.png",
   },
 };
