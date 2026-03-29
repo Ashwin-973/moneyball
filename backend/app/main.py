@@ -68,12 +68,15 @@ def create_app() -> FastAPI:
         return {"status": "ok"}
 
     # ── Routers ────────────────────────────────────────────────
-    from app.routers import auth, users, stores, products, deals
+    from app.routers import auth, users, stores, products, deals, reservations
     app.include_router(auth.router, prefix="/auth", tags=["auth"])
     app.include_router(users.router, prefix="/users", tags=["users"])
     app.include_router(stores.router, prefix="/stores", tags=["stores"])
     app.include_router(products.router, prefix="/products", tags=["products"])
     app.include_router(deals.router, prefix="/deals", tags=["deals"])
+    app.include_router(
+        reservations.router, prefix="/reservations", tags=["reservations"]
+    )
 
     return app
 

@@ -1,9 +1,9 @@
-"""Reservation model — consumer deal holds (stub for Phase 6)."""
+"""Reservation model — consumer deal holds."""
 
 from datetime import datetime, timezone
 from uuid import uuid4
 
-from sqlalchemy import DateTime, Enum, ForeignKey, Integer
+from sqlalchemy import DateTime, Enum, ForeignKey, Index, Integer
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -20,26 +20,30 @@ class Reservation(Base):
     deal_id: Mapped[str] = mapped_column(
         UUID(as_uuid=True),
         ForeignKey("deals.id", ondelete="CASCADE"),
+        index=True,
         nullable=False,
     )
     consumer_id: Mapped[str] = mapped_column(
         UUID(as_uuid=True),
         ForeignKey("users.id", ondelete="CASCADE"),
+        index=True,
         nullable=False,
     )
     store_id: Mapped[str] = mapped_column(
         UUID(as_uuid=True),
         ForeignKey("stores.id", ondelete="CASCADE"),
+        index=True,
         nullable=False,
     )
     quantity: Mapped[int] = mapped_column(Integer, nullable=False)
     status: Mapped[ReservationStatus] = mapped_column(
         Enum(ReservationStatus, name="reservationstatus", create_constraint=True),
         default=ReservationStatus.pending,
+        index=True,
         nullable=False,
     )
     hold_expires_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True), nullable=False
+        DateTime(timezone=True), index=True, nullable=False
     )
     reserved_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),
