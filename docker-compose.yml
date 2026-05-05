@@ -1,0 +1,50 @@
+services:
+  db:
+    image: postgis/postgis:16-3.4-alpine
+    container_name: dealdrop-db
+    environment:
+      POSTGRES_USER: dealdrop
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: dealdrop
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dealdrop -d dealdrop"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: dealdrop-backend
+    environment:
+      DATABASE_URL: postgresql+asyncpg://dealdrop:password123@db:5432/dealdrop
+      SECRET_KEY: ${SECRET_KEY:-super-secret-key-for-dev-only}
+      ENVIRONMENT: development
+      CORS_ORIGINS: '["http://localhost:3000"]'
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    command: >
+      bash -c "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: dealdrop-frontend
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
